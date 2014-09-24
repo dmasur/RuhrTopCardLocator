@@ -1,9 +1,6 @@
 class OffersController < ApplicationController
-  respond_to :json, :html
-
   def index
-    @offers = Offer.all
-    respond_with @offers
+    @offers = Offer.all.as_json only: [:id, :name, :longitude, :latitude]
   end
 
   def show

@@ -25,7 +25,6 @@ class Offer
 
 ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', ($scope, geolocation, $modal) ->
   $scope.userLatLng = $scope.userCoords = null
-
   $scope.sorting = 'name'
   $scope.distance = null
   $scope.shownOffers = []
@@ -39,12 +38,11 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal
       offer.refreshDistanceToUser($scope.userLatLng)
     $scope.refreshShownOffers()
 
-  # Get all offers from server and make offer objects
-  $.getJSON 'offers.json', (data) ->
-    $scope.offers = $.map data, (offer) ->
+  # Init with all offers
+  $scope.createOffers = (offers_json) ->
+    $scope.offers = $.map offers_json, (offer) ->
       new Offer(offer, $scope.userLatLng)
     $scope.refreshShownOffers()
-    $scope.$apply()
 
   # All offers that are shown
   $scope.refreshShownOffers = ->
@@ -63,7 +61,4 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal
   $scope.openInfo = (offerId) ->
     modalInstance = $modal.open
       templateUrl: "offers/#{offerId}"
-
 ]
-
-
