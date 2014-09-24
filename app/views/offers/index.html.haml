@@ -1,7 +1,12 @@
 #offer-index{ data: { ng_controller: "MapController" } }
   %google-map{ center: "map.center", zoom: "map.zoom" }
     %markers{ models: "offers", coords: "'coords'" }
-
+  %br/
+  .btn-group.pull-right
+    %label.btn.btn-default{ data: { ng_model: "sorting", btn_radio: "'name'"} }
+      Alphabetisch
+    %label.btn.btn-default{ data: { ng_model: "sorting", btn_radio: "'distanceToUser'"} }
+      Entfernung
   %table.table
     %thead
       %tr
@@ -9,7 +14,7 @@
         %td Name
         %td Entfernung
     %tbody
-      %tr{ data: { ng_repeat: 'offer in offers | orderBy:"distanceToUser" | limitTo: 20' } }
+      %tr{ data: { ng_repeat: 'offer in offers | orderBy:sorting | limitTo: 20' } }
         %td
           %a.description-link{ data: { ng_click: "offer.toggleDescription()" } }
             %i.fa.fa-caret-right

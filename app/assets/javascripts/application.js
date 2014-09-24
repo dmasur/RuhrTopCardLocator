@@ -18,5 +18,6 @@
 //= require underscore
 //= require angular/angular
 //= require angular-google-maps/dist/angular-google-maps
+//= require angular-ui-bootstrap-bower/ui-bootstrap
 //= require angularjs-geolocation/src/geolocation
 //= require_tree .

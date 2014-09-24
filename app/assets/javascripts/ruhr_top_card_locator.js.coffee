@@ -1,4 +1,4 @@
-ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation']);
+ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation', 'ui.bootstrap']);
 
 class Offer
   constructor: (offer, userLatLng) ->
@@ -26,6 +26,8 @@ class Offer
 
 ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', ($scope, geolocation) ->
   $scope.userLatLng = $scope.userCoords = null
+
+  $scope.sorting = 'name'
 
   # Fetch user geo coordinates
   geolocation.getLocation().then (data) ->
