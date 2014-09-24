@@ -1,0 +1,6 @@
+asset 'angular'
+asset 'angular-resource'
+asset 'angularjs-geolocation'
+asset 'angular-ui-bootstrap-bower'
+asset 'angular-google-maps'
+asset 'underscore'

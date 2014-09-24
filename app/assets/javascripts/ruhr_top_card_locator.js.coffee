@@ -1,0 +1,49 @@
+ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation']);
+
+class Offer
+  constructor: (offer, userLatLng) ->
+    @name = offer.name
+    @coords = { latitude: offer.latitude, longitude: offer.longitude }
+    @latLng = new google.maps.LatLng offer.latitude, offer.longitude
+    @id = offer.id
+    @description = offer.description
+    @distanceToUser = @.distanceTo(userLatLng)
+    @show_description = false
+
+  # Calculate distance to another location
+  distanceTo: (latLng2) ->
+    return unless latLng2?
+    window.google.maps.geometry.spherical.computeDistanceBetween(@latLng, latLng2)
+
+  # Calculate and save distance to user
+  refreshDistanceToUser: (userLatLng) ->
+    @distanceToUser = @.distanceTo(userLatLng)
+
+  # Toggle display of the description
+  toggleDescription: ->
+    $(event.target).toggleClass('fa-caret-right fa-caret-down')
+    @show_description = !@show_description
+
+ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', ($scope, geolocation) ->
+  $scope.userLatLng = $scope.userCoords = null
+
+  # Fetch user geo coordinates
+  geolocation.getLocation().then (data) ->
+    $scope.userCoords = { latitude: data.coords.latitude, longitude: data.coords.longitude }
+    $scope.userLatLng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude)
+    $scope.map.center = $scope.userCoords
+    $.each $scope.offers, (index, offer) ->
+      offer.refreshDistanceToUser($scope.userLatLng)
+
+  # Get all offers from server and make offer objects
+  $.getJSON 'offers.json', (data) ->
+    $scope.offers = $.map data, (offer) ->
+      offer = new Offer(offer, $scope.userLatLng)
+    $scope.$apply()
+
+  # Map defaults
+  $scope.map = {
+    center: { latitude: 51.4296308, longitude: 7.0039007 },
+    zoom: 9
+  }
+]

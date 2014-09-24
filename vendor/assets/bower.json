@@ -1,0 +1,11 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angularjs-geolocation": "latest",
+    "angular-ui-bootstrap-bower": "latest",
+    "angular-google-maps": "latest",
+    "underscore": "latest"
+  }
+}

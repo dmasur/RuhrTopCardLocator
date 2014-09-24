@@ -1,0 +1,23 @@
+#offer-index{ data: { ng_controller: "MapController" } }
+  %google-map{ center: "map.center", zoom: "map.zoom" }
+    %markers{ models: "offers", coords: "'coords'" }
+
+  %table.table
+    %thead
+      %tr
+        %td
+        %td Name
+        %td Entfernung
+    %tbody
+      %tr{ data: { ng_repeat: 'offer in offers | orderBy:"distanceToUser" | limitTo: 20' } }
+        %td
+          %a.description-link{ data: { ng_click: "offer.toggleDescription()" } }
+            %i.fa.fa-caret-right
+        %td
+          {{offer.name}}
+          .description{ data: { ng_if: "offer.show_description" } }
+            %hr
+            {{offer.description}}
+        %td
+          %span{ data: { ng_show: "offer.distanceToUser"}}
+            {{offer.distanceToUser / 1000 | number:2}} km
