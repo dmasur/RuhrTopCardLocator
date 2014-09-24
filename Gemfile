@@ -25,6 +25,7 @@ gem 'responders', '~> 2.0'
 
 group :development, :test do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'bower-rails'
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
