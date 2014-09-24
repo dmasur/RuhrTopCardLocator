@@ -5,7 +5,7 @@ class ParseOffer
 
   initialize :parser, :offer
 
-  def self.call
+  def self.call(parser)
     new(parser, Offer.find_or_create_by(name: parser.name))
   end
 
