@@ -28,6 +28,9 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', ($scope
   $scope.userLatLng = $scope.userCoords = null
 
   $scope.sorting = 'name'
+  $scope.distance = 50
+  $scope.distanceFilter = (offer) ->
+    offer.distanceToUser <= $scope.distance*1000
 
   # Fetch user geo coordinates
   geolocation.getLocation().then (data) ->
