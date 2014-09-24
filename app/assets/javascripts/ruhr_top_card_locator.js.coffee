@@ -28,9 +28,8 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', ($scope
   $scope.userLatLng = $scope.userCoords = null
 
   $scope.sorting = 'name'
-  $scope.distance = 50
-  $scope.distanceFilter = (offer) ->
-    offer.distanceToUser <= $scope.distance*1000
+  $scope.distance = null
+  $scope.shownOffers = []
 
   # Fetch user geo coordinates
   geolocation.getLocation().then (data) ->
@@ -39,12 +38,22 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', ($scope
     $scope.map.center = $scope.userCoords
     $.each $scope.offers, (index, offer) ->
       offer.refreshDistanceToUser($scope.userLatLng)
+    $scope.refreshShownOffers()
 
   # Get all offers from server and make offer objects
   $.getJSON 'offers.json', (data) ->
     $scope.offers = $.map data, (offer) ->
-      offer = new Offer(offer, $scope.userLatLng)
+      new Offer(offer, $scope.userLatLng)
+    $scope.refreshShownOffers()
     $scope.$apply()
+
+  # All offers that are shown
+  $scope.refreshShownOffers = ->
+    $scope.shownOffers = _.filter $scope.offers, (offer) ->
+      if $scope.distance?
+        offer.distanceToUser <= $scope.distance*1000
+      else
+        true
 
   # Map defaults
   $scope.map = {

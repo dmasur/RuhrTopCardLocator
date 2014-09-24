@@ -1,23 +1,26 @@
 #offer-index{ data: { ng_controller: "MapController" } }
   %google-map{ center: "map.center", zoom: "map.zoom" }
-    %markers{ models: "offers", coords: "'coords'" }
-  %br/
+    %markers{ models: "shownOffers", coords: "'coords'" }
+  %hr
   .pull-right
+    %h5.text-center Sortierung
     .btn-group
       %label.btn.btn-default{ data: { ng_model: "sorting", btn_radio: "'name'"} }
         Alphabetisch
       %label.btn.btn-default{ data: { ng_model: "sorting", btn_radio: "'distanceToUser'"} }
         Entfernung
   .pull-left
-    .btn-group
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "10"} }
-        10 km
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "20"} }
-        20 km
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "50"} }
-        50 km
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "200"} }
-        200 km
+    %h5.text-center Maximale Entfernung
+    .btn-group{ ng_click: 'refreshShownOffers()'}
+      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "15"} }
+        15 km
+      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "30"} }
+        30 km
+      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "80"} }
+        80 km
+      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "null"} }
+        egal
+  .text-center.lead {{shownOffers.length}} von {{offers.length}} Angeboten werden angezeigt
   %table.table
     %thead
       %tr
@@ -25,7 +28,7 @@
         %td Name
         %td Entfernung
     %tbody
-      %tr{ data: { ng_repeat: 'offer in offers | orderBy:sorting | limitTo: 20 | filter:distanceFilter' } }
+      %tr{ data: { ng_repeat: 'offer in shownOffers | orderBy:sorting | limitTo: 20' } }
         %td
           %a.description-link{ data: { ng_click: "offer.toggleDescription()" } }
             %i.fa.fa-caret-right
