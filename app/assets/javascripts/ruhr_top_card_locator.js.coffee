@@ -6,7 +6,6 @@ class Offer
     @coords = { latitude: offer.latitude, longitude: offer.longitude }
     @latLng = new google.maps.LatLng offer.latitude, offer.longitude
     @id = offer.id
-    @description = offer.description
     @distanceToUser = @.distanceTo(userLatLng)
     @show_description = false
 
@@ -24,7 +23,7 @@ class Offer
     $(event.target).toggleClass('fa-caret-right fa-caret-down')
     @show_description = !@show_description
 
-ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', ($scope, geolocation) ->
+ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', ($scope, geolocation, $modal) ->
   $scope.userLatLng = $scope.userCoords = null
 
   $scope.sorting = 'name'
@@ -51,13 +50,20 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', ($scope
   $scope.refreshShownOffers = ->
     $scope.shownOffers = _.filter $scope.offers, (offer) ->
       if $scope.distance?
-        offer.distanceToUser <= $scope.distance*1000
+        offer.distanceToUser <= $scope.distance * 1000
       else
         true
 
   # Map defaults
   $scope.map = {
     center: { latitude: 51.4296308, longitude: 7.0039007 },
-    zoom: 9
+    zoom: 11
   }
+
+  $scope.openInfo = (offerId) ->
+    modalInstance = $modal.open
+      templateUrl: "offers/#{offerId}"
+
 ]
+
+

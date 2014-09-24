@@ -21,22 +21,16 @@
       %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "null"} }
         egal
   .text-center.lead {{shownOffers.length}} von {{offers.length}} Angeboten werden angezeigt
-  %table.table
+  %table.table.table-striped
     %thead
       %tr
-        %td
         %td Name
         %td Entfernung
     %tbody
       %tr{ data: { ng_repeat: 'offer in shownOffers | orderBy:sorting | limitTo: 20' } }
         %td
-          %a.description-link{ data: { ng_click: "offer.toggleDescription()" } }
-            %i.fa.fa-caret-right
-        %td
-          {{offer.name}}
-          .description{ data: { ng_if: "offer.show_description" } }
-            %hr
-            {{offer.description}}
+          %a{ ng_click: 'openInfo(offer.id)'}
+            {{offer.name}}
         %td
           %span{ data: { ng_show: "offer.distanceToUser"}}
             {{offer.distanceToUser / 1000 | number:2}} km

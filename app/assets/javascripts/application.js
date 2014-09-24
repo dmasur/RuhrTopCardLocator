@@ -19,5 +19,6 @@
 //= require angular/angular
 //= require angular-google-maps/dist/angular-google-maps
 //= require angular-ui-bootstrap-bower/ui-bootstrap
+//= require angular-ui-bootstrap-bower/ui-bootstrap-tpls
 //= require angularjs-geolocation/src/geolocation
 //= require_tree .
