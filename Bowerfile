@@ -1,5 +1,5 @@
 asset 'angular'
-asset 'angular-cookies'
+asset 'angular-cookie'
 asset 'angular-resource'
 asset 'angularjs-geolocation'
 asset 'angular-ui-bootstrap-bower'
