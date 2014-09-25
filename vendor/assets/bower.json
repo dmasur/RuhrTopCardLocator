@@ -4,7 +4,6 @@
     "angular": "latest",
     "angular-mocks": "latest",
     "angular-cookie": "latest",
-    "angular-resource": "latest",
     "angularjs-geolocation": "latest",
     "angular-ui-bootstrap-bower": "latest",
     "angular-google-maps": "latest",

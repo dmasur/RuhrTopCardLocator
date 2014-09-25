@@ -1,7 +1,6 @@
 asset 'angular'
 asset 'angular-mocks'
 asset 'angular-cookie'
-asset 'angular-resource'
 asset 'angularjs-geolocation'
 asset 'angular-ui-bootstrap-bower'
 asset 'angular-google-maps'
