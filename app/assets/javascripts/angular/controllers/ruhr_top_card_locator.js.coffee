@@ -20,10 +20,6 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'ipCookie', 'UserLocat
     offer.visited()
     $scope.offerList.refreshShownOffers()
 
-  # refresh OfferList
-  $scope.refreshShownOffers = ->
-    $scope.offerList.refreshShownOffers()
-
   # Map defaults
   $scope.map = {
     center: { latitude: 51.4296308, longitude: 7.0039007 },

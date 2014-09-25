@@ -11,7 +11,7 @@
         Entfernung
   .pull-left
     %h5.text-center Maximale Entfernung
-    .btn-group{ ng_click: 'refreshShownOffers()'}
+    .btn-group{ ng_click: 'offerList.refreshShownOffers()'}
       %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "15"} }
         15 km
       %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "30"} }
