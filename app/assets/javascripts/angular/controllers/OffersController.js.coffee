@@ -1,6 +1,6 @@
 ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation', 'ui.bootstrap', 'ipCookie']);
 
-ruhrTopCardLocator.controller 'MapController', ['$scope', 'ipCookie', 'UserLocation', 'OfferList', ($scope, ipCookie, UserLocation, OfferList) ->
+ruhrTopCardLocator.controller 'OffersController', ['$scope', 'ipCookie', 'UserLocation', 'OfferList', ($scope, ipCookie, UserLocation, OfferList) ->
   # Set Cookies
   ipCookie('year', 2014, expires: 365)
   ipCookie("alreadyVisted") || ipCookie("alreadyVisted", [])

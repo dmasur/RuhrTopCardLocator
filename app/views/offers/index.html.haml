@@ -1,4 +1,4 @@
-#offer-index{ data: { ng_controller: "MapController", ng_init: "offerList.loadJson(#{@offers.to_json})" } }
+#offer-index{ data: { ng_controller: "OffersController", ng_init: "offerList.loadJson(#{@offers.to_json})" } }
   %google-map{ center: "map.center", zoom: "map.zoom" }
     %markers{ models: "offerList.shownOffers", coords: "'coords'" }
   %hr
