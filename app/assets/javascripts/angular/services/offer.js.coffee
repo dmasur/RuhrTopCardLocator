@@ -1,23 +1,33 @@
-class @Offer
-  constructor: (offer, userLatLng, visited) ->
-    @id = offer.id
-    @name = offer.name
-    @coords = { latitude: offer.latitude, longitude: offer.longitude }
-    @latLng = new google.maps.LatLng offer.latitude, offer.longitude
-    @distanceToUser = @.distanceTo(userLatLng)
-    @show_description = false
-    @visited = visited
+angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ipCookie, $modal) ->
+  class Offer
+    constructor: (offer_json) ->
+      @id = offer_json.id
+      @name = offer_json.name
+      @coords = { latitude: offer_json.latitude, longitude: offer_json.longitude }
+      @latLng = new google.maps.LatLng @coords.latitude, @coords.longitude
+      @distanceToUser = null
+      @visited = _.contains ipCookie("alreadyVisted"), @id
 
-  # Calculate distance to another location
-  distanceTo: (latLng2) ->
-    return unless latLng2?
-    window.google.maps.geometry.spherical.computeDistanceBetween(@latLng, latLng2)
+    # Calculate distance to another location
+    distanceTo: (otherLatLng) ->
+      return unless otherLatLng?
+      window.google.maps.geometry.spherical.computeDistanceBetween(@latLng, otherLatLng)
 
-  # Calculate and save distance to user
-  refreshDistanceToUser: (userLatLng) ->
-    @distanceToUser = @.distanceTo(userLatLng)
+    # Calculate and save distance to user
+    refreshDistanceToUser: (userLatLng) ->
+      @distanceToUser = @.distanceTo(userLatLng)
 
-  # Toggle display of the description
-  toggleDescription: ->
-    $(event.target).toggleClass('fa-caret-right fa-caret-down')
-    @show_description = !@show_description
+    visited: ->
+      alreadyVisted = ipCookie("alreadyVisted")
+      alreadyVisted.push(offer.id)
+      ipCookie("alreadyVisted", alreadyVisted, expires: 365)
+      @visited = true
+
+    openInfo: ->
+      modalInstance = $modal.open
+        templateUrl: "offers/#{@id}"
+
+    inRangeOf: (maxDistance) ->
+      return true unless maxDistance?
+      @distanceToUser <= maxDistance * 1000
+]
