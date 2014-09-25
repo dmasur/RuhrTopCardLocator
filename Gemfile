@@ -21,6 +21,7 @@ gem 'therubyracer'
 gem 'surrounded'
 gem 'casting'
 gem 'responders', '~> 2.0'
+gem 'rack-zippy'
 
 group :development, :test do
   gem 'better_errors'
