@@ -1,20 +1,31 @@
 ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation', 'ui.bootstrap', 'ipCookie']);
 
-ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', 'ipCookie', ($scope, geolocation, $modal, ipCookie) ->
-  $scope.userLatLng = $scope.userCoords = null
+ruhrTopCardLocator.factory 'UserLocation', ['geolocation', (geolocation) ->
+  class UserLocation
+    constructor: ->
+      @coords = null
+      @latLng = null
+
+    locateUser: (callback) ->
+      geolocation.getLocation().then (data) ->
+        @coords = { latitude: data.coords.latitude, longitude: data.coords.longitude }
+        @latLng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude)
+        callback(@latLng)
+]
+
+
+
+ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', 'ipCookie', 'UserLocation', ($scope, geolocation, $modal, ipCookie, UserLocation) ->
   $scope.sorting = 'name'
   $scope.distance = null
   $scope.shownOffers = []
   ipCookie('year', 2014, expires: 365)
   ipCookie("alreadyVisted") || ipCookie("alreadyVisted", [])
 
-  # Fetch user geo coordinates
-  geolocation.getLocation().then (data) ->
-    $scope.userCoords = { latitude: data.coords.latitude, longitude: data.coords.longitude }
-    $scope.userLatLng = new google.maps.LatLng(data.coords.latitude, data.coords.longitude)
-    $scope.map.center = $scope.userCoords
+  $scope.userLocation = new UserLocation
+  $scope.userLocation.locateUser (userLatLng) ->
     $.each $scope.offers, (index, offer) ->
-      offer.refreshDistanceToUser($scope.userLatLng)
+      offer.refreshDistanceToUser(userLatLng)
     $scope.refreshShownOffers()
 
   # Init with all offers
