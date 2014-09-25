@@ -22,6 +22,7 @@ gem 'surrounded'
 gem 'casting'
 gem 'responders', '~> 2.0'
 gem 'rack-zippy'
+gem 'google_places'
 
 group :development, :test do
   gem 'better_errors'
