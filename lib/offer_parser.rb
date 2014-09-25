@@ -1,5 +1,7 @@
 require 'nokogiri'
 
+##
+# Parses one Offer from the website
 class OfferParser
   CITY_REGEXP = /^\d{4}.*$/ # 4 because of the netherland postalcode
   STREET_REGEXP = /^[a-z\sßöäü:-]+([\d–\-]+\w?)?$/
@@ -55,6 +57,6 @@ class OfferParser
   def address_parts
     texts = @page.css('.claAngebot .claRight p').map(&:text)
     found_address = address_part(CITY_REGEXP, texts) || address_part(WEBSITE_REGEXP, texts) || ''
-    found_address.split("\n").map { |string| string.strip }
+    found_address.split("\n").map(&:strip)
   end
 end

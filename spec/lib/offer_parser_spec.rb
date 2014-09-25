@@ -16,7 +16,13 @@ describe OfferParser do
     end
 
     it 'has a description' do
-      expect(parser.description).to eq 'Multimediatechnik und herausragende Architektur machen den Rundgang durch den über 100 Jahre alten Wasserturm der RWW Rheinisch-Westfälische Wasserwerksgesellschaft zum faszinierenden Erlebnis. Starten Sie mit einer Chipkarte über 30 Computerstationen. Erfahren Sie Wissenswertes über Wassertürme, Kanäle und Talsperren! Lernen Sie u. a. die Themen Grund-, Trink- und Virtuelles Wasser besser kennen. Bereisen Sie am sprechenden Globus interessante Wasserwelten! Nehmen Sie an der Weltwasserkonferenz teil, um die Weichen für eine klima- und wasserfreundliche Zukunft zu stellen. Abschließend können Sie sich eine persönliche Urkunde mit Ihren gesammelten Punkten von Quiz und Spielen ausdrucken.'
+      expect(parser.description).to eq 'Multimediatechnik und herausragende Architektur machen den Rundgang durch den '\
+      'über 100 Jahre alten Wasserturm der RWW Rheinisch-Westfälische Wasserwerksgesellschaft zum faszinierenden '\
+      'Erlebnis. Starten Sie mit einer Chipkarte über 30 Computerstationen. Erfahren Sie Wissenswertes über '\
+      'Wassertürme, Kanäle und Talsperren! Lernen Sie u. a. die Themen Grund-, Trink- und Virtuelles Wasser besser '\
+      'kennen. Bereisen Sie am sprechenden Globus interessante Wasserwelten! Nehmen Sie an der Weltwasserkonferenz '\
+      'teil, um die Weichen für eine klima- und wasserfreundliche Zukunft zu stellen. Abschließend können Sie sich '\
+      'eine persönliche Urkunde mit Ihren gesammelten Punkten von Quiz und Spielen ausdrucken.'
     end
 
     it 'has an street' do

@@ -1,5 +1,7 @@
 require 'nokogiri'
 
+##
+# Parses an Offer overview page from the website
 class OfferOverviewParser
   def initialize(content)
     @page = Nokogiri::HTML.parse content

@@ -1,0 +1,22 @@
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - bin/*
+    - Guardfile
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+
+Style/Documentation:
+  Exclude:
+    - db/migrate/*
+    - config/application.rb
+    - app/helpers/application_helper.rb
+    - app/controllers/*
+
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space

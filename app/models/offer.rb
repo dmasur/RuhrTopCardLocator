@@ -1,3 +1,5 @@
+##
+# Offer that is parsed from the website
 class Offer < ActiveRecord::Base
   include Surrounded
 
@@ -5,6 +7,6 @@ class Offer < ActiveRecord::Base
   after_validation :geocode          # auto-fetch coordinates
 
   def full_street_address
-    [street, city].compact.join(", ")
+    [street, city].compact.join(', ')
   end
 end

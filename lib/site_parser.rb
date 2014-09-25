@@ -3,6 +3,8 @@ require 'offer_overview_parser'
 require 'offer_parser'
 require 'mechanize'
 
+##
+# Parse the main website and save all offers in database
 class SiteParser
   def self.parse_from_website
     agent = Mechanize.new
@@ -14,27 +16,5 @@ class SiteParser
         ParseOffer.call(offer_parser)
       end
     end
-  end
-
-  def self.parse_from_data
-    root_path = "./spec/data/www.ruhrtopcard.de/"
-    Dir.foreach(root_path) do |kind_path|
-      full_kind_path = root_path + kind_path + '/'
-      next unless is_valid_dir? full_kind_path
-      Dir.foreach(full_kind_path) do |category_path|
-        full_category_path = full_kind_path + category_path + '/'
-        next unless is_valid_dir? full_category_path
-        Dir.foreach(full_category_path) do |offer_path|
-          full_offer_path = full_category_path + offer_path
-          next if full_offer_path.ends_with?('.')
-          offer_parser = OfferParser.new(File.read full_offer_path)
-          ParseOffer.call(offer_parser)
-        end
-      end
-    end
-  end
-
-  def self.is_valid_dir?(path)
-    !path.ends_with?('./') && File.directory?(path)
   end
 end
