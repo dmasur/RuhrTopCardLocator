@@ -2,12 +2,13 @@ ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolo
 
 class Offer
   constructor: (offer, userLatLng) ->
+    @id = offer.id
     @name = offer.name
     @coords = { latitude: offer.latitude, longitude: offer.longitude }
     @latLng = new google.maps.LatLng offer.latitude, offer.longitude
-    @id = offer.id
     @distanceToUser = @.distanceTo(userLatLng)
     @show_description = false
+    @visited = false
 
   # Calculate distance to another location
   distanceTo: (latLng2) ->
@@ -22,6 +23,11 @@ class Offer
   toggleDescription: ->
     $(event.target).toggleClass('fa-caret-right fa-caret-down')
     @show_description = !@show_description
+
+  # Mark as visited
+  alreadyVisited: ->
+    $(event.target).parents('tr').remove()
+    @visted = true
 
 ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', ($scope, geolocation, $modal) ->
   $scope.userLatLng = $scope.userCoords = null

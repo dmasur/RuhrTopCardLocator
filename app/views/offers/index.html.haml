@@ -26,6 +26,7 @@
       %tr
         %td Name
         %td Entfernung
+        %td
     %tbody
       %tr{ data: { ng_repeat: 'offer in shownOffers | orderBy:sorting | limitTo: 20' } }
         %td
@@ -34,3 +35,5 @@
         %td
           %span{ data: { ng_show: "offer.distanceToUser"}}
             {{offer.distanceToUser / 1000 | number:2}} km
+        %td
+          %i.fa.fa-check-square-o{ tooltip: 'Schon besucht', data: { ng_click: "offer.alreadyVisited()" } }
