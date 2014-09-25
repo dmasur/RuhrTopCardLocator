@@ -1,26 +1,26 @@
-#offer-index{ data: { ng_controller: "MapController", ng_init: "createOffers(#{@offers.to_json})" } }
+#offer-index{ data: { ng_controller: "MapController", ng_init: "offerList.loadJson(#{@offers.to_json})" } }
   %google-map{ center: "map.center", zoom: "map.zoom" }
-    %markers{ models: "shownOffers", coords: "'coords'" }
+    %markers{ models: "offerList.shownOffers", coords: "'coords'" }
   %hr
   .pull-right
     %h5.text-center Sortierung
     .btn-group
-      %label.btn.btn-default{ data: { ng_model: "sorting", btn_radio: "'name'"} }
+      %label.btn.btn-default{ data: { ng_model: "offerList.sorting", btn_radio: "'name'"} }
         Alphabetisch
-      %label.btn.btn-default{ data: { ng_model: "sorting", btn_radio: "'distanceToUser'"} }
+      %label.btn.btn-default{ data: { ng_model: "offerList.sorting", btn_radio: "'distanceToUser'"} }
         Entfernung
   .pull-left
     %h5.text-center Maximale Entfernung
-    .btn-group{ ng_click: 'refreshShownOffers()'}
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "15"} }
+    .btn-group{ ng_click: 'offerList.refreshShownOffers()'}
+      %label.btn.btn-default{ data: { ng_model: "offerList.distance", btn_radio: "15"} }
         15 km
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "30"} }
+      %label.btn.btn-default{ data: { ng_model: "offerList.distance", btn_radio: "30"} }
         30 km
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "80"} }
+      %label.btn.btn-default{ data: { ng_model: "offerList.distance", btn_radio: "80"} }
         80 km
-      %label.btn.btn-default{ data: { ng_model: "distance", btn_radio: "null"} }
+      %label.btn.btn-default{ data: { ng_model: "offerList.distance", btn_radio: "null"} }
         egal
-  .text-center.lead {{shownOffers.length}} von {{offers.length}} Angeboten werden angezeigt
+  .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
   %table.table.table-striped
     %thead
       %tr
@@ -28,7 +28,7 @@
         %td Entfernung
         %td
     %tbody
-      %tr{ data: { ng_repeat: 'offer in shownOffers | orderBy:sorting | limitTo: 20' } }
+      %tr{ data: { ng_repeat: 'offer in offerList.shownOffers | orderBy:offerList.sortOrder | limitTo: 20' } }
         %td
           %a{ ng_click: 'openInfo(offer.id)'}
             {{offer.name}}

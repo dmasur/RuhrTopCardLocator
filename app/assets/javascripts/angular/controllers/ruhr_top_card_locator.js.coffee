@@ -3,8 +3,7 @@ ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolo
 ruhrTopCardLocator.factory 'UserLocation', ['geolocation', (geolocation) ->
   class UserLocation
     constructor: ->
-      @coords = null
-      @latLng = null
+      @coords = @latLng = null
 
     locateUser: (callback) ->
       geolocation.getLocation().then (data) ->
@@ -13,27 +12,39 @@ ruhrTopCardLocator.factory 'UserLocation', ['geolocation', (geolocation) ->
         callback(@latLng)
 ]
 
+ruhrTopCardLocator.factory 'OfferList', ['ipCookie', (ipCookie) ->
+  class OfferList
+    constructor: ->
+      @shownOffers = @offers = []
+      @sortOrder = 'name'
+      @maxDistance = null
 
+    loadJson: (json) ->
+      @offers = $.map json, (offer) ->
+        visited = _.contains ipCookie("alreadyVisted"), offer.id
+        new Offer(offer, null, visited)
+      @refreshShownOffers()
 
-ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', 'ipCookie', 'UserLocation', ($scope, geolocation, $modal, ipCookie, UserLocation) ->
-  $scope.sorting = 'name'
-  $scope.distance = null
-  $scope.shownOffers = []
+    # All offers that are shown
+    refreshShownOffers: ->
+      @shownOffers = _.filter @offers, (offer) ->
+        show = if @maxDistance?
+          offer.distanceToUser <= @maxDistance * 1000
+        else
+          true
+        show && !offer.visited
+]
+
+ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', 'ipCookie', 'UserLocation', 'OfferList', ($scope, geolocation, $modal, ipCookie, UserLocation, OfferList) ->
   ipCookie('year', 2014, expires: 365)
   ipCookie("alreadyVisted") || ipCookie("alreadyVisted", [])
 
+  $scope.offerList = new OfferList
+
   $scope.userLocation = new UserLocation
   $scope.userLocation.locateUser (userLatLng) ->
-    $.each $scope.offers, (index, offer) ->
+    $.each $scope.offerList.offers, (index, offer) ->
       offer.refreshDistanceToUser(userLatLng)
-    $scope.refreshShownOffers()
-
-  # Init with all offers
-  $scope.createOffers = (offers_json) ->
-    $scope.offers = $.map offers_json, (offer) ->
-      visited = _.contains ipCookie("alreadyVisted"), offer.id
-      new Offer(offer, $scope.userLatLng, visited)
-    $scope.refreshShownOffers()
 
   $scope.visitedOffer = (offer) ->
     $(event.target).parents('tr').remove()
@@ -43,14 +54,6 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal
     offer.visited = true
     $scope.refreshShownOffers()
 
-  # All offers that are shown
-  $scope.refreshShownOffers = ->
-    $scope.shownOffers = _.filter $scope.offers, (offer) ->
-      show = if $scope.distance?
-        offer.distanceToUser <= $scope.distance * 1000
-      else
-        true
-      show && !offer.visited
 
   # Map defaults
   $scope.map = {
