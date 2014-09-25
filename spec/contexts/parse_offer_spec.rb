@@ -33,4 +33,10 @@ describe ParseOffer do
     expect(offer.website).to eq 'www.aquarius-wassermuseum.de'
     expect(offer.category).to eq 'Erlebnis Industriekultur'
   end
+
+  it 'geocode offer' do
+    offer = described_class.call(offer_parser)
+    expect(offer.latitude).to eq 51.4430897
+    expect(offer.longitude).to eq 6.8559475
+  end
 end
