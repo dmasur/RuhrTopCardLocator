@@ -12,5 +12,9 @@ describe OfferOverviewParser do
     it 'has three links' do
       expect(parser.offer_links.size).to eq 95
     end
+
+    it 'has a kind' do
+      expect(parser.kind).to eq 'Eintritt frei'
+    end
   end
 end

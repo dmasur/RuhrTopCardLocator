@@ -12,4 +12,8 @@ class OfferOverviewParser
       anchor.attributes['href'].value
     end
   end
+
+  def kind
+    @page.css('.headline').text().split('-').first.strip
+  end
 end
