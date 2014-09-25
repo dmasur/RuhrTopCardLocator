@@ -1,14 +1,14 @@
-ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation', 'ui.bootstrap']);
+ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation', 'ui.bootstrap', 'ipCookie']);
 
 class Offer
-  constructor: (offer, userLatLng) ->
+  constructor: (offer, userLatLng, visited) ->
     @id = offer.id
     @name = offer.name
     @coords = { latitude: offer.latitude, longitude: offer.longitude }
     @latLng = new google.maps.LatLng offer.latitude, offer.longitude
     @distanceToUser = @.distanceTo(userLatLng)
     @show_description = false
-    @visited = false
+    @visited = visited
 
   # Calculate distance to another location
   distanceTo: (latLng2) ->
@@ -24,16 +24,13 @@ class Offer
     $(event.target).toggleClass('fa-caret-right fa-caret-down')
     @show_description = !@show_description
 
-  # Mark as visited
-  alreadyVisited: ->
-    $(event.target).parents('tr').remove()
-    @visted = true
-
-ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', ($scope, geolocation, $modal) ->
+ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal', 'ipCookie', ($scope, geolocation, $modal, ipCookie) ->
   $scope.userLatLng = $scope.userCoords = null
   $scope.sorting = 'name'
   $scope.distance = null
   $scope.shownOffers = []
+  ipCookie('year', 2014, expires: 365)
+  ipCookie("alreadyVisted") || ipCookie("alreadyVisted", [])
 
   # Fetch user geo coordinates
   geolocation.getLocation().then (data) ->
@@ -47,16 +44,26 @@ ruhrTopCardLocator.controller 'MapController', ['$scope', 'geolocation', '$modal
   # Init with all offers
   $scope.createOffers = (offers_json) ->
     $scope.offers = $.map offers_json, (offer) ->
-      new Offer(offer, $scope.userLatLng)
+      visited = _.contains ipCookie("alreadyVisted"), offer.id
+      new Offer(offer, $scope.userLatLng, visited)
+    $scope.refreshShownOffers()
+
+  $scope.visitedOffer = (offer) ->
+    $(event.target).parents('tr').remove()
+    alreadyVisted = ipCookie("alreadyVisted")
+    alreadyVisted.push(offer.id)
+    ipCookie("alreadyVisted", alreadyVisted, expires: 365)
+    offer.visited = true
     $scope.refreshShownOffers()
 
   # All offers that are shown
   $scope.refreshShownOffers = ->
     $scope.shownOffers = _.filter $scope.offers, (offer) ->
-      if $scope.distance?
+      show = if $scope.distance?
         offer.distanceToUser <= $scope.distance * 1000
       else
         true
+      show && !offer.visited
 
   # Map defaults
   $scope.map = {
