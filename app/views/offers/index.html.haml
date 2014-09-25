@@ -36,4 +36,5 @@
           %span{ data: { ng_show: "offer.distanceToUser"}}
             {{offer.distanceToUser / 1000 | number:2}} km
         %td
-          %i.fa.fa-check-square-o{ tooltip: 'Schon besucht', data: { ng_click: "visitedOffer(offer)" } }
+          %a{ data: { ng_click: "visitedOffer(offer)" } }
+            %i.fa.fa-check-square-o{ tooltip: 'Schon besucht' }
