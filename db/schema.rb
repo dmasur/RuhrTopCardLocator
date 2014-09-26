@@ -11,23 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922183351) do
+ActiveRecord::Schema.define(version: 20140926050422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "offers", force: true do |t|
-    t.string   "path"
+    t.string   "url"
     t.string   "name"
     t.string   "description"
     t.string   "street"
     t.string   "city"
     t.string   "website"
     t.string   "category"
+    t.string   "kind"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "year"
+    t.string   "google_place_id"
+    t.string   "google_place_rating"
+    t.string   "google_place_url"
   end
 
 end
