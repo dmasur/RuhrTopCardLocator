@@ -1,7 +1,14 @@
 require 'rails_helper'
 require './lib/offer_parser'
+require './lib/offer_overview_parser'
 
 describe ParseOffer do
+  let(:offer_overview_parser) do
+    dir = File.dirname(__FILE__)
+    offer_overview_path = "#{dir}/../data/www.ruhrtopcard.de/angebote_eintritt_frei/eintritt_frei.php.html"
+    OfferOverviewParser.new File.read(offer_overview_path)
+  end
+
   let(:offer_parser) do
     dir = File.dirname(__FILE__)
     path = 'angebote_eintritt_frei/erlebnis_industriekultur/aquarius_wassermuseum.php.html'
@@ -9,17 +16,12 @@ describe ParseOffer do
     OfferParser.new File.read(offer_path)
   end
 
-  it 'creates new Offer' do
-    expect { described_class.call(offer_parser) }.to change(Offer, :count)
-  end
-
-  it 'creates no new Offer when old one is found' do
-    Offer.create name: 'Aquarius Wassermuseum'
-    expect { described_class.call(offer_parser) }.to_not change(Offer, :count)
+  let(:offer) do
+    Offer.new name: 'Aquarius Wassermuseum'
   end
 
   it 'sets attributes' do
-    offer = described_class.call(offer_parser)
+    described_class.call(offer_parser, offer_overview_parser, offer)
     expect(offer.name).to eq 'Aquarius Wassermuseum'
     expect(offer.description).to eq 'Multimediatechnik und herausragende Architektur machen den Rundgang durch den '\
     'über 100 Jahre alten Wasserturm der RWW Rheinisch-Westfälische Wasserwerksgesellschaft zum faszinierenden '\
@@ -35,7 +37,7 @@ describe ParseOffer do
   end
 
   it 'geocode offer' do
-    offer = described_class.call(offer_parser)
+    described_class.call(offer_parser, offer_overview_parser, offer)
     expect(offer.latitude).to eq 51.4430897
     expect(offer.longitude).to eq 6.8559475
   end

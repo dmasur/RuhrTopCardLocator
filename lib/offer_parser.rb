@@ -12,11 +12,11 @@ class OfferParser
   end
 
   def name
-    @page.css('.claRight.claPrint h1').text.gsub("\n", '').gsub(/[[:space:]]*$/,'')
+    clean_up_spaces @page.css('.claRight.claPrint h1').text
   end
 
   def description
-    @page.css('.claRight.claPrint div p').map(&:text).find(&:present?)
+    clean_up_spaces @page.css('.claRight.claPrint div p').map(&:text).find(&:present?)
   end
 
   def street
@@ -57,6 +57,10 @@ class OfferParser
   def address_parts
     texts = @page.css('.claAngebot .claRight p').map(&:text)
     found_address = address_part(CITY_REGEXP, texts) || address_part(WEBSITE_REGEXP, texts) || ''
-    found_address.split("\n").map(&:strip)
+    found_address.split("\n").map { |line| clean_up_spaces(line) }
+  end
+
+  def clean_up_spaces(string)
+    string.gsub("\n", ' ').gsub(/[[:space:]]+/,' ').strip if string.is_a? String
   end
 end
