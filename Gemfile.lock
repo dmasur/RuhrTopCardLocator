@@ -219,9 +219,6 @@ GEM
       sass (~> 3.2)
       sprockets (~> 2.12)
       sprockets-rails (>= 2.0, < 4.0)
-    seed-fu (2.3.3)
-      activerecord (>= 3.1, < 4.2)
-      activesupport (>= 3.1, < 4.2)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -292,7 +289,6 @@ DEPENDENCIES
   rspec-rails
   rubocop
   sass-rails (~> 5.0.0.beta1)
-  seed-fu
   simple_form
   spring
   surrounded
