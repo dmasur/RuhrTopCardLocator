@@ -35,25 +35,22 @@ class UpdateOffer
 
   role :offer do
     def update_infos
-      if google_place
-        self.google_place_id = google_place.place_id
-        self.latitude = google_place.lat
-        self.longitude = google_place.lng
-        self.street = [google_place.street, google_place.street_number].join(' ')
-        self.city = [google_place.postal_code, google_place.city].join(' ')
-      end
+      return unless google_place
+      self.google_place_id = google_place.place_id
+      self.latitude = google_place.lat
+      self.longitude = google_place.lng
+      self.street = [google_place.street, google_place.street_number].join(' ')
+      self.city = [google_place.postal_code, google_place.city].join(' ')
     end
 
     def update_rating
-      if google_place
-        self.google_place_rating = google_place.rating
-      end
+      return unless google_place
+      self.google_place_rating = google_place.rating
     end
 
     def update_place_id
-      if google_place
-        self.google_place_id = google_place.place_id
-      end
+      return unless google_place
+      self.google_place_id = google_place.place_id
     end
 
     ##

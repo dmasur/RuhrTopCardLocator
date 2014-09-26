@@ -18,7 +18,7 @@ namespace :seed do
         spot = client.spot(offer.google_place_id)
         puts spot.name
         puts offer.google_place_id
-        distance = offer.distance_to([spot.lat,spot.lng])
+        distance = offer.distance_to([spot.lat, spot.lng])
         if distance > 1
           puts "Distance from geocoding to Google Geocoords: #{distance}"
           puts "Original: #{offer.latitude}, #{offer.longitude} #{offer.street} #{offer.city}"

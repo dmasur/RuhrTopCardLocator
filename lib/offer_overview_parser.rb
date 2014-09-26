@@ -14,6 +14,6 @@ class OfferOverviewParser
   end
 
   def kind
-    @page.css('.headline').text().split('-').first.strip
+    @page.css('.headline').text.split('-').first.strip
   end
 end

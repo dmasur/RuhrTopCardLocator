@@ -61,6 +61,6 @@ class OfferParser
   end
 
   def clean_up_spaces(string)
-    string.gsub("\n", ' ').gsub(/[[:space:]]+/,' ').strip if string.is_a? String
+    string.gsub("\n", ' ').gsub(/[[:space:]]+/, ' ').strip if string.is_a? String
   end
 end
