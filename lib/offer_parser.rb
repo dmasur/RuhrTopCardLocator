@@ -12,11 +12,11 @@ class OfferParser
   end
 
   def name
-    @page.css('.claRight.claPrint h1').text
+    @page.css('.claRight.claPrint h1').text.gsub("\n", '').strip
   end
 
   def description
-    @page.css('.claRight.claPrint div p').first.text
+    @page.css('.claRight.claPrint div p').map(&:text).find(&:present?)
   end
 
   def street

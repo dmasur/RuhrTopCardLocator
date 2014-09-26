@@ -77,6 +77,13 @@ describe OfferParser do
     end
   end
 
+  describe 'Legoland Discovery Centre' do
+    let(:path) { 'angebote_eintritt_frei/erlebnis_spass_action/legoland_discovery_centre.php.html' }
+    it 'parses description right' do
+      expect(parser.description).to be_present
+    end
+  end
+
   describe 'Tour de Ruhr – Dortmund, Phoenix aus der Asche' do
     let(:path) { 'angebote_halber_preis/13_abenteuer_nrw_2013/tour_de_ruhr.php.html' }
     xit 'parses street right' do
