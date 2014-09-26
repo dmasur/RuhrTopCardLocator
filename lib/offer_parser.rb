@@ -12,7 +12,7 @@ class OfferParser
   end
 
   def name
-    @page.css('.claRight.claPrint h1').text.gsub("\n", '').strip
+    @page.css('.claRight.claPrint h1').text.gsub("\n", '').gsub(/[[:space:]]*$/,'')
   end
 
   def description

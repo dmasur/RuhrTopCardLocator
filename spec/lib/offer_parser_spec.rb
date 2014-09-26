@@ -42,6 +42,13 @@ describe OfferParser do
     end
   end
 
+  describe 'Zoo Duisburg' do
+    let(:path) { 'angebote_eintritt_frei/erlebnis_spass_action/zoo_duisburg.php.html' }
+    it 'parses name right' do
+      expect(parser.name).to eq 'Zoo Duisburg'
+    end
+  end
+
   describe 'RevuePalast' do
     let(:path) { 'angebote_halber_preis/14_vorhang_auf_2013/revuepalast_ruhr.php.html' }
     it 'parses street right' do
