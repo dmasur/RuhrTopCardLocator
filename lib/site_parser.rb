@@ -14,16 +14,15 @@ class SiteParser
   ##
   # Parse the hole website and save offers
   def parse_from_website
-    puts 'Parsing from Website:'
+    Logger.info 'Parsing from Website:'
     offer_overview_links = HomepageParser.new(get_body_from('/index.php')).offer_overview_links
     offer_overview_links.each do |offer_overview_link|
       overview_parser = OfferOverviewParser.new(get_body_from(offer_overview_link))
       overview_parser.offer_links.each do |offer_link|
-        print '.'
         create_and_parse_offer(offer_link, overview_parser)
       end
     end
-    puts
+    Logger.info
   end
 
   private
@@ -32,6 +31,7 @@ class SiteParser
   # Create and parse one offer
   def create_and_parse_offer(offer_link, overview_parser)
     offer_parser = OfferParser.new(get_body_from(offer_link))
+      Logger.info offer_parser.name
     offer = Offer.find_or_create_by(name: offer_parser.name)
     offer.url = offer_link
     ParseOffer.call(offer_parser, overview_parser, offer)
