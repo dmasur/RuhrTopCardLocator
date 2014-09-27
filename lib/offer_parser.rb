@@ -54,7 +54,7 @@ class OfferParser
 
   ##
   # Shortcut to find part that matches the regexp
-  def address_part(reg_exp, string=address_parts)
+  def address_part(reg_exp, string = address_parts)
     string.find { |line| reg_exp.match line.downcase }
   end
 

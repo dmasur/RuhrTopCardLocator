@@ -31,7 +31,7 @@ class SiteParser
   # Create and parse one offer
   def create_and_parse_offer(offer_link, overview_parser)
     offer_parser = OfferParser.new(get_body_from(offer_link))
-      Logger.info offer_parser.name
+    Logger.info offer_parser.name
     offer = Offer.find_or_create_by(name: offer_parser.name)
     offer.url = offer_link
     ParseOffer.call(offer_parser, overview_parser, offer)

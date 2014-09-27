@@ -1,10 +1,10 @@
 namespace :karma  do
-  task :start => :environment do
+  task start: :environment do
     with_tmp_config :start
   end
 
-  task :run => :environment do
-    exit with_tmp_config :start, "--single-run"
+  task run: :environment do
+    exit with_tmp_config :start, '--single-run'
   end
 
   private
@@ -19,11 +19,11 @@ namespace :karma  do
   end
 
   def application_spec_files
-    Rails.application.assets.find_asset("application_spec.js").to_a.map {|e| e.pathname.to_s }
+    Rails.application.assets.find_asset('application_spec.js').to_a.map { |e| e.pathname.to_s }
   end
 
   def unit_js(files)
     unit_js = File.open('spec/karma/config/unit.js', 'r').read
-    unit_js.gsub "APPLICATION_SPEC", "\"#{files.join("\",\n\"")}\""
+    unit_js.gsub 'APPLICATION_SPEC', "\"#{files.join("\",\n\"")}\""
   end
 end

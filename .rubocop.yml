@@ -20,4 +20,4 @@ Style/Documentation:
     - app/controllers/*
 
 Style/SpaceAroundEqualsInParameterDefault:
-  EnforcedStyle: no_space
+  EnforcedStyle: space
