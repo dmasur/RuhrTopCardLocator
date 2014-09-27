@@ -11,26 +11,25 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'rails-html-sanitizer', '~> 1.0'
 gem 'nokogiri'
-gem 'mechanize'
-gem 'simple_form'
 gem 'haml-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'surrounded'
-gem 'casting'
-gem 'responders', '~> 2.0'
 gem 'rack-zippy'
 gem 'google_places'
 
-group :development, :test do
+group :development do
   gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'bower-rails'
+end
+
+group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-byebug'
+  gem 'binding_of_caller'
   gem 'spring'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'

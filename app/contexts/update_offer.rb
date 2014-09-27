@@ -5,6 +5,8 @@ class UpdateOffer
 
   initialize :offer
 
+  ##
+  # Update all offers with full infos
   def self.full_update_all
     puts 'Full google update for all offers'
     ::Offer.all.each do |offer|
@@ -14,6 +16,8 @@ class UpdateOffer
 
   shortcut_triggers
 
+  ##
+  # Update all infos
   def full
     offer.update_infos
     offer.update_rating
@@ -21,12 +25,16 @@ class UpdateOffer
   end
   trigger :full
 
+  ##
+  # Only update the rating
   def rating
     offer.update_rating
     offer.save!
   end
   trigger :rating
 
+  ##
+  # Only set the place id
   def place_id
     offer.update_place_id
     offer.save!

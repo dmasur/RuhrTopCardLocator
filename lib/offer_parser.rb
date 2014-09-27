@@ -7,41 +7,46 @@ class OfferParser
   STREET_REGEXP = /^[a-z\sßöäü:-]+([\d–\-]+\w?)?$/
   WEBSITE_REGEXP = /^www.*$/
 
+  ##
+  # Init nokogiri
   def initialize(content)
     @page = Nokogiri::HTML.parse content
   end
 
+  ##
+  # Name of the Offer
   def name
     clean_up_spaces @page.css('.claRight.claPrint h1').text
   end
 
+  ##
+  # Description text
   def description
     clean_up_spaces @page.css('.claRight.claPrint div p').map(&:text).find(&:present?)
   end
 
+  ##
+  # Street
   def street
     address_part(STREET_REGEXP)
   end
 
+  ##
+  # City
   def city
     address_part(CITY_REGEXP)
   end
 
+  ##
+  # Website
   def website
     address_part(WEBSITE_REGEXP)
   end
 
+  ##
+  # Category
   def category
     @page.css('h2').first.text
-  end
-
-  def to_s
-    puts name
-    puts street
-    puts city
-    puts website
-    puts category
-    puts '-' * 20
   end
 
   private
@@ -60,6 +65,8 @@ class OfferParser
     found_address.split("\n").map { |line| clean_up_spaces(line) }
   end
 
+  ##
+  # Clean line brakes, unbreakable and normal spaces
   def clean_up_spaces(string)
     string.gsub("\n", ' ').gsub(/[[:space:]]+/, ' ').strip if string.is_a? String
   end

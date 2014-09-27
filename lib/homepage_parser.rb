@@ -7,6 +7,8 @@ class HomepageParser
     @page = Nokogiri::HTML.parse content
   end
 
+  ##
+  # Links to the offer overview pages
   def offer_overview_links
     links = @page.css('.claLeft.claNoPrint a').map { |anchor| anchor.attributes['href'].value }
     links.select { |link| link.include? 'angebot' }
