@@ -25,13 +25,21 @@
     %thead
       %tr
         %td Name
+        %td Kategory
         %td Entfernung
         %td
     %tbody
-      %tr{ data: { ng_repeat: "offer in offerList.shownOffers | orderBy:offerList.sortOrder | limitTo: 20" } }
+      %tr{ data: { ng_repeat: "offer in offerList.shownOffers | orderBy:offerList.sortOrder" } }
         %td
+          %span{ data: { ng_if: 'offer.kind == "half-price"', tooltip: 'Halber Preis' }}
+            %i.fa.fa-eur
+          %span{ data: { ng_if: 'offer.kind == "special"', tooltip: 'Spezial' }}
+            %i.fa.fa-eur
+            %i.fa.fa-eur
           %a{ ng_click: 'offer.openInfo()'}
             {{offer.name}}
+        %td
+          {{offer.category}}
         %td
           %span{ data: { ng_show: "offer.distanceToUser"}}
             {{offer.distanceToUser / 1000 | number:2}} km

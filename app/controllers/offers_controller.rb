@@ -5,7 +5,7 @@ class OffersController < ApplicationController
   # Homepage
   # Offers will only be included as json
   def index
-    @offers = Offer.all.as_json only: [:id, :name, :longitude, :latitude]
+    @offers = Offer.all.as_json only: [:id, :name, :longitude, :latitude, :category, :kind]
   end
 
   ##

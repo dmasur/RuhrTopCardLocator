@@ -3,6 +3,8 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ip
     constructor: (offer_json) ->
       @id = offer_json.id
       @name = offer_json.name
+      @kind = @chooseKind(offer_json.kind)
+      @category = offer_json.category unless @kind
       @coords = { latitude: offer_json.latitude, longitude: offer_json.longitude }
       @latLng = new google.maps.LatLng @coords.latitude, @coords.longitude
       @distanceToUser = null
@@ -30,4 +32,8 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ip
     inRangeOf: (maxDistance) ->
       return true unless maxDistance?
       @distanceToUser <= maxDistance * 1000
+
+    chooseKind: (kind) ->
+      return 'half-price' if kind == 'Halber Preis'
+      return 'special' if kind.contains 'Special'
 ]
