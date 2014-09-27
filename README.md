@@ -4,4 +4,4 @@
 
 Alle Angebote der [Ruhr.TopCard](www.ruhrtopcard.de) 2014 auf einer Google Map mit der Entfernung zum Benutzer.
 
-Website: [Ruhr.TopCard Locator](ruhrtopcard-locator.herokuapp.com/)
+Website: [Ruhr.TopCard Locator](http://ruhrtopcard-locator.herokuapp.com/)
