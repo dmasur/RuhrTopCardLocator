@@ -7,6 +7,7 @@ class ParseOffer
 
   shortcut_triggers
 
+  # Update offer from parsing
   def call
     offer.attributes = offer_parser.as_attributes
     offer.kind = overview_parser.kind

@@ -1,14 +1,23 @@
+##
+# Fix Offers that are not properly parsed from the website
 class FixGoogleInfos
+  # Shortcut
   def self.fix_all
     new.fix_all
   end
 
+  ##
+  # Update and delete google places
   def fix_all
     puts 'Fixing Seeds'
     delete_google_place_ids
     update_google_place_ids
   end
 
+  private
+
+  ##
+  # Update the place id to proper location
   def update_google_place_ids
     update_google_place_id 'AQUApark',
                            from_place_id: 'ChIJRVviqn8K_UYRCm6pACHIHNI', to_place_id: 'ChIJgx1_kW_quEcRtS1shUXqFbE'
@@ -24,6 +33,8 @@ class FixGoogleInfos
                            from_place_id: 'ChIJFb_galrDmUcRKfRTEmspLd0', to_place_id: 'ChIJ6y8dFNbwuEcRoXHLIxjIyBM'
   end
 
+  ##
+  # There are not places for this locations
   def delete_google_place_ids
     delete_google_place_id 'alpincenter Klettergarten', 'ChIJ4TXSKgnpuEcR4Cz0KO0F9OU'
     delete_google_place_id 'alpincenter Sommerrodelbahn', 'ChIJ4TXSKgnpuEcR4Cz0KO0F9OU'
@@ -37,10 +48,15 @@ class FixGoogleInfos
     delete_google_place_id 'Personenschifffahrt Schmidt - MS Kemnade', 'ChIJjTnli1DYnUcRPnW_kFpqkRc'
   end
 
+  ##
+  # Deletes place id from offer
   def delete_google_place_id(name, place_id)
     update_google_place_id(name, from_place_id: place_id, to_place_id: nil)
   end
 
+  ##
+  # Updates a place id of a offer
+  # Ensure that the old location is there if the seeding from the website changed
   def update_google_place_id(name, from_place_id:, to_place_id:)
     offer = Offer.find_by name: name, google_place_id: from_place_id
     fail "Offer with name #{name} and place id #{from_place_id} not found" unless offer.present?
