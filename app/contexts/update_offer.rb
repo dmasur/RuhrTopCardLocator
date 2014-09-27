@@ -8,7 +8,7 @@ class UpdateOffer
   ##
   # Update all offers with full infos
   def self.full_update_all
-    puts 'Full google update for all offers'
+    Logger.info 'Full google update for all offers'
     ::Offer.all.each do |offer|
       UpdateOffer.full(offer)
     end
@@ -44,11 +44,13 @@ class UpdateOffer
   role :offer do
     def update_infos
       return unless google_place
-      self.google_place_id = google_place.place_id
-      self.latitude = google_place.lat
-      self.longitude = google_place.lng
-      self.street = [google_place.street, google_place.street_number].join(' ')
-      self.city = [google_place.postal_code, google_place.city].join(' ')
+      attributes = {
+        google_place_id: google_place.place_id,
+        latitude: google_place.lat,
+        longitude: google_place.lng,
+        street: [google_place.street, google_place.street_number].join(' '),
+        city: [google_place.postal_code, google_place.city].join(' ')
+      }
     end
 
     def update_rating
