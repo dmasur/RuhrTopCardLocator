@@ -8,3 +8,8 @@ addons:
 before_script:
   - psql -c 'create database ruhr_top_card_locator_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
+  - npm install
+
+script:
+  - bundle exec rspec spec
+  - bundle exec rake karma:run
