@@ -19,9 +19,7 @@ namespace :karma  do
   end
 
   def application_spec_files
-    sprockets = Rails.application.assets
-    sprockets.append_path Rails.root.join("spec/karma")
-    files = Rails.application.assets.find_asset("application_spec.js").to_a.map {|e| e.pathname.to_s }
+    Rails.application.assets.find_asset("application_spec.js").to_a.map {|e| e.pathname.to_s }
   end
 
   def unit_js(files)
