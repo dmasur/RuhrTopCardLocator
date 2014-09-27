@@ -13,3 +13,8 @@ before_script:
 script:
   - bundle exec rspec spec
   - bundle exec rake karma:run
+
+cache:
+  bundler: true
+  directories:
+    - node_modules
