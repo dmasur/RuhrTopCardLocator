@@ -9,6 +9,7 @@ before_script:
   - psql -c 'create database ruhr_top_card_locator_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
   - npm install
+  - mkdir -p tmp
 
 script:
   - bundle exec rspec spec
