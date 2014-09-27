@@ -5,6 +5,7 @@
     "karma-jasmine": ">= 0.2.2",
     "karma-coffee-preprocessor": ">= 0.2.1",
     "karma-phantomjs-launcher": ">= 0.1.4",
+    "karma-osx-reporter": ">= 0.1.0",
     "karma-ng-html2js-preprocessor": "git://github.com/monterail/karma-ng-html2js-preprocessor#feature/strip-sufix",
     "phantomjs": ">= 1.9.7"
   }
