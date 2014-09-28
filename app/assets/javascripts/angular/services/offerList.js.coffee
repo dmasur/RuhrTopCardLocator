@@ -11,6 +11,8 @@ angular.module('ruhrTopCardLocator').factory 'OfferList', ['Offer', (Offer) ->
       @showKindFree = true
       @showKindHalfPrice = true
       @showKindSpecial = true
+      @showAlreadyVisited = false
+      @showNotVisited = true
 
     loadJson: (offers_json) ->
       @offers = $.map offers_json, (offer_json) ->
@@ -25,10 +27,13 @@ angular.module('ruhrTopCardLocator').factory 'OfferList', ['Offer', (Offer) ->
     # All offers that are shown
     refreshShownOffers: ->
       @shownOffers = _.filter @offers, (offer) =>
-        offer.inRangeOf(@maxDistance) &&
-        !offer.visited &&
-        @categoryIsShown(offer.category)  &&
+        show = offer.inRangeOf(@maxDistance) &&
+        @categoryIsShown(offer.category) &&
         @kindIsShown(offer.kind)
+        if offer.visited
+          show && @showAlreadyVisited
+        else
+          show && @showNotVisited
 
     categoryIsShown: (category) ->
       switch category

@@ -32,6 +32,11 @@
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showKindFree' } } Kostenlos
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showKindHalfPrice' } } Halber Preis
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showKindSpecial' } } Special
+      .options
+        %h5.text-center Anzeigen
+        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showAlreadyVisited' } } Besuchte
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showNotVisited' } } Unbesuchte
     .col-lg-10
       .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
       %google-map{ center: "map.center", zoom: "map.zoom" }
@@ -60,5 +65,5 @@
               %span{ data: { ng_show: "offer.distanceToUser"}}
                 {{offer.distanceToUser / 1000 | number:2}} km
             %td
-              %a{ data: { ng_click: "visitedOffer(offer)" } }
+              %a{ data: { ng_click: "visitedOffer(offer)", ng_if: '!offer.visited' } }
                 %i.fa.fa-check-square-o{ tooltip: 'Schon besucht' }
