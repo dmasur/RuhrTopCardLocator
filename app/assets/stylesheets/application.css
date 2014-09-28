@@ -14,3 +14,11 @@
  *= require_self
  */
 .angular-google-map-container { height: 400px; }
+.map-sidebar .btn-group-vertical {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.categories label {
+  font-size: 0.8em;
+}

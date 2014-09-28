@@ -1,48 +1,58 @@
-#offer-index{ data: { ng_controller: "OffersController", ng_init: "offerList.loadJson(#{@offers.to_json})" } }
-  %google-map{ center: "map.center", zoom: "map.zoom" }
-    %markers{ models: "offerList.shownOffers", coords: "'coords'" }
-  %hr
-  .pull-right
-    %h5.text-center Sortierung
-    .btn-group
-      %label.btn.btn-default{ data: { ng_model: "offerList.sortOrder", btn_radio: "'name'"} }
-        Alphabetisch
-      %label.btn.btn-default{ data: { ng_model: "offerList.sortOrder", btn_radio: "'distanceToUser'"} }
-        Entfernung
-  .pull-left
-    %h5.text-center Maximale Entfernung
-    .btn-group{ ng_click: 'offerList.refreshShownOffers()'}
-      %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "15"} }
-        15 km
-      %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "30"} }
-        30 km
-      %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "80"} }
-        80 km
-      %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "null"} }
-        egal
-  .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
-  %table.table.table-striped
-    %thead
-      %tr
-        %td Name
-        %td Kategory
-        %td Entfernung
-        %td
-    %tbody
-      %tr{ data: { ng_repeat: "offer in offerList.shownOffers | orderBy:offerList.sortOrder" } }
-        %td
-          %span{ data: { ng_if: 'offer.kind == "half-price"', tooltip: 'Halber Preis' }}
-            %i.fa.fa-eur
-          %span{ data: { ng_if: 'offer.kind == "special"', tooltip: 'Spezial' }}
-            %i.fa.fa-eur
-            %i.fa.fa-eur
-          %a{ ng_click: 'offer.openInfo()'}
-            {{offer.name}}
-        %td
-          {{offer.category}}
-        %td
-          %span{ data: { ng_show: "offer.distanceToUser"}}
-            {{offer.distanceToUser / 1000 | number:2}} km
-        %td
-          %a{ data: { ng_click: "visitedOffer(offer)" } }
-            %i.fa.fa-check-square-o{ tooltip: 'Schon besucht' }
+.container#offer-index{ data: { ng_controller: "OffersController", ng_init: "offerList.loadJson(#{@offers.to_json})" } }
+  .row
+    .col-lg-2.map-sidebar
+      .max-distance
+        %h5.text-center Maximale Entfernung
+        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+          %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "15" } }
+            15 km
+          %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "30" } }
+            30 km
+          %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "80" } }
+            80 km
+          %label.btn.btn-default{ data: { ng_model: "offerList.maxDistance", btn_radio: "null" } }
+            egal
+      .sort-order
+        %h5.text-center Sortierung
+        .btn-group-vertical
+          %label.btn.btn-default{ data: { ng_model: "offerList.sortOrder", btn_radio: "'name'" } }
+            Alphabetisch
+          %label.btn.btn-default{ data: { ng_model: "offerList.sortOrder", btn_radio: "'distanceToUser'" } }
+            Entfernung
+      .categories
+        %h5.text-center Kategorien
+        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showAction' } } Erlebnis, Spaß und Action
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showShips' } } Schifffahrt und Bäder
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showIndustry' } } Erlebnis Industriekultur
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showMuseum' } } Schätze und Museen
+    .col-lg-10
+      .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
+      %google-map{ center: "map.center", zoom: "map.zoom" }
+        %markers{ models: "offerList.shownOffers", coords: "'coords'" }
+      %hr
+      %table.table.table-striped
+        %thead
+          %tr
+            %td Name
+            %td Kategory
+            %td Entfernung
+            %td
+        %tbody
+          %tr{ data: { ng_repeat: "offer in offerList.shownOffers | orderBy:offerList.sortOrder" } }
+            %td
+              %span{ data: { ng_if: 'offer.kind == "half-price"', tooltip: 'Halber Preis' }}
+                %i.fa.fa-eur
+              %span{ data: { ng_if: 'offer.kind == "special"', tooltip: 'Spezial' }}
+                %i.fa.fa-eur
+                %i.fa.fa-eur
+              %a{ ng_click: 'offer.openInfo()'}
+                {{offer.name}}
+            %td
+              {{offer.category}}
+            %td
+              %span{ data: { ng_show: "offer.distanceToUser"}}
+                {{offer.distanceToUser / 1000 | number:2}} km
+            %td
+              %a{ data: { ng_click: "visitedOffer(offer)" } }
+                %i.fa.fa-check-square-o{ tooltip: 'Schon besucht' }
