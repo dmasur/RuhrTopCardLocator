@@ -44,7 +44,7 @@ class UpdateOffer
   role :offer do
     def update_infos
       return unless google_place
-      attributes = {
+      self.attributes = {
         google_place_id: google_place.place_id,
         latitude: google_place.lat,
         longitude: google_place.lng,
