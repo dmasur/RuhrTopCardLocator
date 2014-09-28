@@ -47,6 +47,7 @@
           %tr
             %td Name
             %td Kategory
+            %td Bewertung
             %td Entfernung
             %td
         %tbody
@@ -61,6 +62,8 @@
                 {{offer.name}}
             %td
               {{offer.category}}
+            %td
+              %rating{ data: { ng_model: "offer.rating", readonly: 'true', ng_if: "offer.rating" } }
             %td
               %span{ data: { ng_show: "offer.distanceToUser"}}
                 {{offer.distanceToUser / 1000 | number:2}} km

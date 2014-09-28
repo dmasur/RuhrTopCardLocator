@@ -1,3 +1,12 @@
+angular.module("template/rating/rating.html", []).run ["$templateCache", ($templateCache) ->
+  $templateCache.put("template/rating/rating.html",
+    "<span ng-mouseleave=\"reset()\" ng-keydown=\"onKeydown($event)\" tabindex=\"0\" role=\"slider\" aria-valuemin=\"0\" aria-valuemax=\"{{range.length}}\" aria-valuenow=\"{{value}}\">\n" +
+    "    <i ng-repeat=\"r in range track by $index\" ng-mouseenter=\"enter($index + 1)\" ng-click=\"rate($index + 1)\" class=\"fa\" ng-class=\"$index < value && (r.stateOn || 'fa-star') || (r.stateOff || 'fa-star-o')\">\n" +
+    "        <span class=\"sr-only\">({{ $index < value ? '*' : ' ' }})</span>\n" +
+    "    </i>\n" +
+    "</span>");
+]
+
 angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ipCookie, $modal) ->
   class Offer
     constructor: (offer_json) ->
@@ -9,6 +18,7 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ip
       @latLng = new google.maps.LatLng @coords.latitude, @coords.longitude
       @distanceToUser = null
       @visited = _.contains ipCookie("alreadyVisted"), @id
+      @rating = offer_json.google_place_rating
 
     # Calculate distance to another location
     distanceTo: (otherLatLng) ->
