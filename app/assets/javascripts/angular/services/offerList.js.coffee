@@ -4,10 +4,13 @@ angular.module('ruhrTopCardLocator').factory 'OfferList', ['Offer', (Offer) ->
       @shownOffers = @offers = []
       @sortOrder = 'name'
       @maxDistance = null
-      @showAction = true
-      @showShips = true
-      @showIndustry = true
-      @showMuseum = true
+      @showCategoryAction = true
+      @showCategoryShips = true
+      @showCategoryIndustry = true
+      @showCategoryMuseum = true
+      @showKindFree = true
+      @showKindHalfPrice = true
+      @showKindSpecial = true
 
     loadJson: (offers_json) ->
       @offers = $.map offers_json, (offer_json) ->
@@ -24,13 +27,20 @@ angular.module('ruhrTopCardLocator').factory 'OfferList', ['Offer', (Offer) ->
       @shownOffers = _.filter @offers, (offer) =>
         offer.inRangeOf(@maxDistance) &&
         !offer.visited &&
-        @categoryIsShown(offer.category)
+        @categoryIsShown(offer.category)  &&
+        @kindIsShown(offer.kind)
 
     categoryIsShown: (category) ->
       switch category
-        when "Erlebnis, Spaß und Action" then @showAction
-        when "Schifffahrt und Bäder" then @showShips
-        when "Erlebnis Industriekultur" then @showIndustry
-        when "Schätze und Museen" then @showMuseum
+        when "Erlebnis, Spaß und Action" then @showCategoryAction
+        when "Schifffahrt und Bäder" then @showCategoryShips
+        when "Erlebnis Industriekultur" then @showCategoryIndustry
+        when "Schätze und Museen" then @showCategoryMuseum
         else true
+
+    kindIsShown: (kind) ->
+      switch kind
+        when "half-price" then @showKindHalfPrice
+        when "special" then @showKindSpecial
+        else @showKindFree
 ]

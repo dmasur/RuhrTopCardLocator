@@ -22,10 +22,16 @@
       .categories
         %h5.text-center Kategorien
         .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
-          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showAction' } } Erlebnis, Spaß und Action
-          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showShips' } } Schifffahrt und Bäder
-          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showIndustry' } } Erlebnis Industriekultur
-          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showMuseum' } } Schätze und Museen
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showCategoryAction' } } Erlebnis, Spaß und Action
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showCategoryShips' } } Schifffahrt und Bäder
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showCategoryIndustry' } } Erlebnis Industriekultur
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showCategoryMuseum' } } Schätze und Museen
+      .kinds
+        %h5.text-center Arten
+        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showKindFree' } } Kostenlos
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showKindHalfPrice' } } Halber Preis
+          %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.showKindSpecial' } } Special
     .col-lg-10
       .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
       %google-map{ center: "map.center", zoom: "map.zoom" }
