@@ -9,10 +9,11 @@ ruhrTopCardLocator.controller 'OffersController', ['$scope', 'ipCookie', 'UserLo
   $scope.offerList = new OfferList
 
   # Load UserLocation and refresh Offers
-  $scope.userLocation = new UserLocation
-  $scope.userLocation.locateUser (userLatLng) ->
+  successLocateCallback = (userLatLng) ->
     $.each $scope.offerList.offers, (index, offer) ->
       offer.refreshDistanceToUser(userLatLng)
+
+  $scope.userLocation = new UserLocation successLocateCallback
 
   # Mark Offer as visited and remove from list
   $scope.visitedOffer = (offer) ->

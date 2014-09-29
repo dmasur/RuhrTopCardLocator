@@ -1,6 +1,8 @@
 .container#offer-index{ data: { ng_controller: "OffersController", ng_init: "offerList.loadJson(#{@offers.to_json})" } }
   .row
     .col-lg-2.map-sidebar
+      .btn-group-vertical
+        %button.btn.btn-primary{ type: "button", data: { ng_click_async: 'userLocation.locateUser()' } } Orte mich!
       .max-distance
         %h5.text-center Maximale Entfernung
         .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
