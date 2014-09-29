@@ -38,4 +38,12 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara-screenshot'
+  gem 'capybara-angular'
+  gem 'phantomjs'
+  gem 'launchy'
+  gem 'poltergeist'
+  gem 'factory_girl_rails'
+  gem 'vcr'
+  gem 'webmock'
 end
