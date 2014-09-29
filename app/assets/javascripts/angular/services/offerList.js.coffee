@@ -14,14 +14,10 @@ angular.module('ruhrTopCardLocator').factory 'OfferList', ['Offer', (Offer) ->
       @showAlreadyVisited = false
       @showNotVisited = true
 
+    # Load given Offer array
     loadJson: (offers_json) ->
       @offers = $.map offers_json, (offer_json) ->
         new Offer(offer_json)
-
-      # Fetching Categories list
-      @categories = _.uniq $.map @offers, (offer) =>
-        offer.category
-
       @refreshShownOffers()
 
     # All offers that are shown
