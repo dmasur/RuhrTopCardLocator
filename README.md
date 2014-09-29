@@ -11,10 +11,8 @@ Alle Angebote der [Ruhr.TopCard](www.ruhrtopcard.de) 2014 auf einer Google Map m
 Website: [Ruhr.TopCard Locator](http://ruhrtopcard-locator.herokuapp.com/)
 
 # Todo
-- Add Javascript tests
 - Remove from offers from already visited state
 - Show other icons in map for categories and kinds
-- Integrate kinds with categories
 - Save search and visited state in cookie
 - Autodeploy from Travis
 - Add Integration tests with rspec

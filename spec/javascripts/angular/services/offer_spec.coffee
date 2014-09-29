@@ -11,8 +11,10 @@ describe "RuhrTopCard Locator", () ->
           computeDistanceBetween: (latLng1, latLng2) ->
             1000
 
+  it "definies Offer", inject (Offer) ->
+    expect(Offer).toBeDefined()
 
-  describe "test", () ->
+  describe "Offer", () ->
     valid_offer_json = {
       id: 1
       name: "Test Offer"
@@ -23,42 +25,37 @@ describe "RuhrTopCard Locator", () ->
       google_place_rating: 3
     }
 
-    it "definies Offer", inject (Offer) ->
-      expect(Offer).toBeDefined()
 
-    it "loads a free offer", inject (Offer) ->
-      offer = new Offer(valid_offer_json)
-      expect(offer.id).toBe(1)
-      expect(offer.name).toBe('Test Offer')
-      expect(offer.coords.longitude).toBe(10)
-      expect(offer.coords.latitude).toBe(20)
-      expect(offer.category).toBe("Erlebnis, Spaß und Action")
-      expect(offer.kind).toBeNotDefined
-      expect(offer.rating).toBe(3)
+    beforeEach inject (Offer) ->
+      @offer = new Offer(valid_offer_json)
 
-    it "calls google for a distance calc", inject (Offer) ->
-      offer = new Offer(valid_offer_json)
-      offer.latLng = 'LatLng' # TODO: Remove in favor of a good mock
+    it "loads a free offer", ->
+      expect(@offer.id).toBe(1)
+      expect(@offer.name).toBe('Test Offer')
+      expect(@offer.coords.longitude).toBe(10)
+      expect(@offer.coords.latitude).toBe(20)
+      expect(@offer.category).toBe("Erlebnis, Spaß und Action")
+      expect(@offer.kind).toBeNotDefined
+      expect(@offer.rating).toBe(3)
+
+    it "calls google for a distance calc", ->
+      @offer.latLng = 'LatLng' # TODO: Remove in favor of a good mock
       latLng = 'LatLng2'
       spyOn(google.maps.geometry.spherical, 'computeDistanceBetween')
-      offer.distanceTo(latLng)
+      @offer.distanceTo(latLng)
       expect(google.maps.geometry.spherical.computeDistanceBetween).toHaveBeenCalledWith 'LatLng', 'LatLng2'
 
-    it "mark a visit and saves in cookie", inject (Offer, ipCookie) ->
-      offer = new Offer(valid_offer_json)
-      offer.markAsVisited()
-      expect(offer.visited).toBe true
-      expect(ipCookie("alreadyVisted").length).toBe 1
-      expect(ipCookie("alreadyVisted")).toContain 1
+    it "mark a visit and saves in cookie", inject (ipCookie) ->
+      @offer.markAsVisited()
+      expect(@offer.visited).toBe true
+      expect(ipCookie("alreadyVisted")).toEqual [1]
 
-    it "shows that an offer is in range", inject (Offer) ->
-      offer = new Offer(valid_offer_json)
-      offer.distanceToUser = 2000 # Meters
+    it "shows that an offer is in range", ->
+      @offer.distanceToUser = 2000 # Meters
       maxDistance = 3 # Kilometers
-      expect(offer.inRangeOf(maxDistance)).toBe(true)
+      expect(@offer.inRangeOf(maxDistance)).toBe(true)
 
-    it "shows that an offer is not in range", inject (Offer) ->
-      offer = new Offer(valid_offer_json)
-      offer.distanceToUser = 2000 # Meters
+    it "shows that an offer is not in range", ->
+      @offer.distanceToUser = 2000 # Meters
       maxDistance = 1 # Kilometers
-      expect(offer.inRangeOf(maxDistance)).toBe(false)
+      expect(@offer.inRangeOf(maxDistance)).toBe(false)
