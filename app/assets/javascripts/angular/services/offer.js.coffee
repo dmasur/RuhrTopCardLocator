@@ -29,12 +29,14 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ip
     refreshDistanceToUser: (userLatLng) ->
       @distanceToUser = @.distanceTo(userLatLng)
 
-    visited: ->
-      alreadyVisted = ipCookie("alreadyVisted")
-      alreadyVisted.push(offer.id)
-      ipCookie("alreadyVisted", alreadyVisted, expires: 365)
+    # Save the info in a cookie
+    markAsVisited: ->
+      alreadyVisted = ipCookie("alreadyVisted") || []
+      alreadyVisted.push(@id)
+      ipCookie("alreadyVisted", _.uniq(alreadyVisted), expires: 365)
       @visited = true
 
+    # opens the modal with more infos
     openInfo: ->
       modalInstance = $modal.open
         templateUrl: "offers/#{@id}"
