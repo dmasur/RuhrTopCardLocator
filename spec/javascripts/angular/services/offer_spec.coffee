@@ -45,17 +45,35 @@ describe "RuhrTopCard Locator", () ->
       @offer.distanceTo(latLng)
       expect(google.maps.geometry.spherical.computeDistanceBetween).toHaveBeenCalledWith 'LatLng', 'LatLng2'
 
-    it "mark a visit and saves in cookie", inject (ipCookie) ->
-      @offer.markAsVisited()
-      expect(@offer.visited).toBe true
-      expect(ipCookie("alreadyVisted")).toEqual [1]
+    describe 'mark an offer as visited', ->
+      it 'is visited', ->
+        @offer.markAsVisited()
+        expect(@offer.visited).toBe true
 
-    it "shows that an offer is in range", ->
-      @offer.distanceToUser = 2000 # Meters
-      maxDistance = 3 # Kilometers
-      expect(@offer.inRangeOf(maxDistance)).toBe(true)
+      it 'is saved to cookie', inject (ipCookie) ->
+        @offer.markAsVisited()
+        expect(ipCookie("alreadyVisted")).toEqual [1]
 
-    it "shows that an offer is not in range", ->
-      @offer.distanceToUser = 2000 # Meters
-      maxDistance = 1 # Kilometers
-      expect(@offer.inRangeOf(maxDistance)).toBe(false)
+    describe 'mark an offer as not visited', ->
+      beforeEach inject (ipCookie) ->
+        ipCookie("alreadyVisted", [1])
+
+      it 'is visited', ->
+        @offer.markAsNotVisited()
+        expect(@offer.visited).toBe false
+
+      it 'is saved to cookie', inject (ipCookie) ->
+        @offer.markAsNotVisited()
+        expect(ipCookie("alreadyVisted")).toEqual []
+
+    describe 'filter with distance', ->
+      beforeEach ->
+        @offer.distanceToUser = 2000 # Meters
+
+      it "shows that an offer is in range", ->
+        maxDistance = 3 # Kilometers
+        expect(@offer.inRangeOf(maxDistance)).toBe(true)
+
+      it "shows that an offer is not in range", ->
+        maxDistance = 1 # Kilometers
+        expect(@offer.inRangeOf(maxDistance)).toBe(false)

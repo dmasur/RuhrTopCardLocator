@@ -15,12 +15,6 @@ ruhrTopCardLocator.controller 'OffersController', ['$scope', 'ipCookie', 'UserLo
 
   $scope.userLocation = new UserLocation successLocateCallback
 
-  # Mark Offer as visited and remove from list
-  $scope.visitedOffer = (offer) ->
-    $(event.target).parents('tr').remove()
-    offer.visited()
-    $scope.offerList.refreshShownOffers()
-
   # Map defaults
   $scope.map = {
     center: { latitude: 51.4296308, longitude: 7.0039007 },

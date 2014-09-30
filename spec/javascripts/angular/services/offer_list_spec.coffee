@@ -38,12 +38,11 @@ describe "RuhrTopCard Locator", () ->
       expect(@offer_list.refreshShownOffers).toHaveBeenCalled()
 
     describe 'refreshShownOffers', ->
-
       beforeEach inject (OfferList) ->
         @offer_list = new OfferList
         @offer_list.loadJson([valid_offer_json])
 
-      it 'shows without changes', ->
+      it 'refreshes without changes', ->
         expect(@offer_list.shownOffers.length).toBe 1
         @offer_list.refreshShownOffers()
         expect(@offer_list.shownOffers.length).toBe 1
