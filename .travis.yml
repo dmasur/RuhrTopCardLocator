@@ -1,21 +1,22 @@
 language: ruby
 rvm:
-  - 2.1.3
-
+- 2.1.3
 addons:
-  postgresql: "9.3"
-
+  postgresql: '9.3'
 before_script:
-  - psql -c 'create database ruhr_top_card_locator_test;' -U postgres
-  - cp config/database.travis.yml config/database.yml
-  - npm install
-  - mkdir -p tmp
-
+- psql -c 'create database ruhr_top_card_locator_test;' -U postgres
+- cp config/database.travis.yml config/database.yml
+- npm install
+- mkdir -p tmp
 script:
-  - bundle exec rspec spec
-  - bundle exec rake karma:run
-
+- bundle exec rspec spec
+- bundle exec rake karma:run
 cache:
   bundler: true
   directories:
-    - node_modules
+  - node_modules
+deploy:
+  provider: heroku
+  app: ruhrtopcard-locator
+  api_key:
+    secure: fPCzmyElN9F8wj4Ya4vBTUhTiTu0CcvUmcnXRCfATp/nAOB6XiNl4T+2Xwy4u9i133FETWL+sray7uR5qPRiXvNMvsDxijRoOkLF0zTOfXy7WpeNF7GQXLawiWvxkt9OdbWD+0IyuBK+rMuvkWFg91OWVClL7DCr5rgUyeyN6AU=
