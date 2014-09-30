@@ -14,4 +14,3 @@ Website: [Ruhr.TopCard Locator](http://ruhrtopcard-locator.herokuapp.com/)
 - Show other icons in map for categories and kinds
 - Save search and visited state in cookie
 - Autodeploy from Travis
-

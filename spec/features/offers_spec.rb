@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe "Offer Indexpage", type: :feature do
+describe 'Offer Indexpage', type: :feature do
   before do
-    execute_script ""
+    execute_script ''
   end
 
   xit 'shows the offers' do
@@ -19,7 +19,7 @@ describe "Offer Indexpage", type: :feature do
       create :offer, :kernie
       visit '/'
       expect(page).to have_content('0 km') # Wait for distance calc
-      find('label', :text => '15 km').click
+      find('label', text: '15 km').click
       expect(page).to have_content('Grupapark')
       expect(page).to have_no_content('Kernie´s Familienpark im Wunderland Kalkar')
     end
@@ -31,7 +31,7 @@ describe "Offer Indexpage", type: :feature do
       it 'hides action offers' do
         create :offer, :grugapark
         visit '/'
-        find('label', :text => 'Erlebnis, Spaß und Action').click
+        find('label', text: 'Erlebnis, Spaß und Action').click
         expect(page).to have_content('0 von 1 Angeboten werden angezeigt')
       end
     end
@@ -51,12 +51,12 @@ describe "Offer Indexpage", type: :feature do
     expect(page).to have_content('Grupapark')
     find('a.js-mark-as-vistied').click
     expect(page).to have_no_content('Grupapark')
-    find('label:not(.active)', :text => 'Besuchte').click
-    find('label.active', :text => 'Unbesuchte').click
+    find('label:not(.active)', text: 'Besuchte').click
+    find('label.active', text: 'Unbesuchte').click
     expect(page).to have_content('Grupapark')
     find('a.js-mark-as-not-vistied').click
     expect(page).to have_no_content('Grupapark')
-    find('label:not(.active)', :text => 'Unbesuchte').click
+    find('label:not(.active)', text: 'Unbesuchte').click
     expect(page).to have_content('Grupapark')
   end
 end
