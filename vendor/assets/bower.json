@@ -3,10 +3,10 @@
   "dependencies": {
     "angular": "latest",
     "angular-mocks": "latest",
-    "angular-cookie": "latest",
     "angularjs-geolocation": "latest",
     "angular-ui-bootstrap-bower": "latest",
     "angular-google-maps": "latest",
-    "underscore": "latest"
+    "underscore": "latest",
+    "ngstorage": "latest"
   }
 }

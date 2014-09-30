@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require underscore
 //= require angular/angular
-//= require angular-cookie/angular-cookie
+//= require ngstorage/ngStorage
 //= require angular-google-maps/dist/angular-google-maps
 //= require angular-ui-bootstrap-bower/ui-bootstrap
 //= require angular-ui-bootstrap-bower/ui-bootstrap-tpls

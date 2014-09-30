@@ -1,4 +1,4 @@
-angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ipCookie, $modal) ->
+angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal', ($localStorage, $sessionStorage, $modal) ->
   class Offer
     constructor: (offer_json) ->
       @id = offer_json.id
@@ -8,7 +8,7 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ip
       @coords = { latitude: offer_json.latitude, longitude: offer_json.longitude }
       @latLng = new google.maps.LatLng @coords.latitude, @coords.longitude
       @distanceToUser = null
-      @visited = _.contains ipCookie("alreadyVisted"), @id
+      @visited = _.contains $localStorage.alreadyVisted, @id
       @rating = offer_json.google_place_rating
 
     # Calculate distance to another location
@@ -22,16 +22,15 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['ipCookie', '$modal', (ip
 
     # Save the info in a cookie
     markAsVisited: ->
-      alreadyVisted = ipCookie("alreadyVisted") || []
+      alreadyVisted = $localStorage.alreadyVisted || []
       alreadyVisted.push(@id)
-      ipCookie("alreadyVisted", _.uniq(alreadyVisted), expires: 365)
+      $localStorage.alreadyVisted = _.uniq(alreadyVisted)
       @visited = true
 
     # Save the info in a cookie
     markAsNotVisited: ->
-      alreadyVisted = ipCookie("alreadyVisted") || []
-      alreadyVisted = _.without(alreadyVisted, @id)
-      ipCookie("alreadyVisted", alreadyVisted, expires: 365)
+      alreadyVisted = $localStorage.alreadyVisted || []
+      $localStorage.alreadyVisted = _.without(alreadyVisted, @id)
       @visited = false
 
     # opens the modal with more infos

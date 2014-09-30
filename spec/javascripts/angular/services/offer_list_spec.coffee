@@ -1,8 +1,8 @@
 describe "RuhrTopCard Locator", () ->
 
   beforeEach module('ruhrTopCardLocator')
-  beforeEach inject (ipCookie) ->
-    ipCookie("alreadyVisted", [])
+  beforeEach inject ($localStorage) ->
+    $localStorage.$reset()
 
   window.google =
     maps:
@@ -37,6 +37,12 @@ describe "RuhrTopCard Locator", () ->
       expect(@offer_list.offers[0].name).toBe "Test Offer"
       expect(@offer_list.refreshShownOffers).toHaveBeenCalled()
 
+    describe 'save state to cookie', ->
+      it 'saves max Distance', inject ($localStorage) ->
+        expect($localStorage.maxDistance).toBe null
+        @offer_list.storage.maxDistance = 1
+        expect($localStorage.maxDistance).toBe 1
+
     describe 'refreshShownOffers', ->
       beforeEach inject (OfferList) ->
         @offer_list = new OfferList()
@@ -48,26 +54,26 @@ describe "RuhrTopCard Locator", () ->
         expect(@offer_list.shownOffers.length).toBe 1
 
       it 'dont show with max distance', ->
-        @offer_list.maxDistance = 1
+        @offer_list.storage.maxDistance = 1
         @offer_list.offers[0].distanceToUser = 2000
         expect(@offer_list.shownOffers.length).toBe 1
         @offer_list.refreshShownOffers()
         expect(@offer_list.shownOffers.length).toBe 0
 
       it 'dont show when category is not shown', ->
-        @offer_list.showCategoryAction = false
+        @offer_list.storage.showCategoryAction = false
         expect(@offer_list.shownOffers.length).toBe 1
         @offer_list.refreshShownOffers()
         expect(@offer_list.shownOffers.length).toBe 0
 
       it 'dont show when kind is not shown', ->
-        @offer_list.showKindFree = false
+        @offer_list.storage.showKindFree = false
         expect(@offer_list.shownOffers.length).toBe 1
         @offer_list.refreshShownOffers()
         expect(@offer_list.shownOffers.length).toBe 0
 
       it 'dont show when not visited are hidden', ->
-        @offer_list.showNotVisited = false
+        @offer_list.storage.showNotVisited = false
         expect(@offer_list.shownOffers.length).toBe 1
         @offer_list.refreshShownOffers()
         expect(@offer_list.shownOffers.length).toBe 0

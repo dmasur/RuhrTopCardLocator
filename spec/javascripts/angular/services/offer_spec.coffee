@@ -50,21 +50,21 @@ describe "RuhrTopCard Locator", () ->
         @offer.markAsVisited()
         expect(@offer.visited).toBe true
 
-      it 'is saved to cookie', inject (ipCookie) ->
+      it 'is saved to cookie', inject ($localStorage) ->
         @offer.markAsVisited()
-        expect(ipCookie("alreadyVisted")).toEqual [1]
+        expect($localStorage.alreadyVisted).toEqual [1]
 
     describe 'mark an offer as not visited', ->
-      beforeEach inject (ipCookie) ->
-        ipCookie("alreadyVisted", [1])
+      beforeEach inject ($localStorage) ->
+        $localStorage.alreadyVisted = [1]
 
       it 'is visited', ->
         @offer.markAsNotVisited()
         expect(@offer.visited).toBe false
 
-      it 'is saved to cookie', inject (ipCookie) ->
+      it 'is saved to cookie', inject ($localStorage) ->
         @offer.markAsNotVisited()
-        expect(ipCookie("alreadyVisted")).toEqual []
+        expect($localStorage.alreadyVisted).toEqual []
 
     describe 'filter with distance', ->
       beforeEach ->
