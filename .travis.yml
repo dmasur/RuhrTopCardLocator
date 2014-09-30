@@ -16,6 +16,7 @@ cache:
   directories:
   - node_modules
 deploy:
+  buildpack: ruby
   provider: heroku
   app: ruhrtopcard-locator
   api_key:
