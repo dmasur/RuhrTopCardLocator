@@ -12,3 +12,21 @@ Website: [Ruhr.TopCard Locator](http://ruhrtopcard-locator.herokuapp.com/)
 
 # Todo
 - Show other icons in map for categories and kinds
+- Mapicons with Tooltips
+- Click on Map opens Modal
+- Better Modal
+  - Rating
+  - Website
+  - Address
+  - Open today? (google place api)
+  - Distance by different kinds (car, public transportation) (google maps api)
+- Textsuche
+
+
+# Map Image Sources
+Water: http://mapicons.nicolasmollet.com/markers/sports/relaxing-sports/swimming/?custom_color=275fb3
+Special: http://mapicons.nicolasmollet.com/markers/tourism/place-to-see/star/?custom_color=275fb3
+HalfPrice: http://mapicons.nicolasmollet.com/numbers-letters/special-characters/?custom_color=275fb3
+Industry: http://mapicons.nicolasmollet.com/markers/industry/industry-museum/?custom_color=275fb3
+Museum: http://mapicons.nicolasmollet.com/markers/culture-entertainment/culture/museums/art-museum-2/?custom_color=275fb3
+Action: http://mapicons.nicolasmollet.com/markers/culture-entertainment/entertainment/outdoor-activities/theme-park/?custom_color=275fb3

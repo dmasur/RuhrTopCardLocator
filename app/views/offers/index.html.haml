@@ -1,4 +1,4 @@
-.container#offer-index{ data: { ng_controller: "OffersController", ng_init: "offerList.loadJson(#{@offers.to_json})" } }
+.container#offer-index{ data: { ng_controller: "OffersController", ng_init: "offerList.loadJson(#{@offers}).offers" } }
   .row
     .col-lg-2.map-sidebar
       .btn-group-vertical
@@ -42,7 +42,7 @@
     .col-lg-10
       .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
       %google-map{ center: "map.center", zoom: "map.zoom" }
-        %markers{ models: "offerList.shownOffers", coords: "'coords'" }
+        %markers{ models: "offerList.shownOffers", coords: "'coords'", icon: "'icon'" }
       %hr
       %table.table.table-striped
         %thead

@@ -5,8 +5,12 @@ class OffersController < ApplicationController
   # Homepage
   # Offers will only be included as json
   def index
-    @offers = Offer.all.as_json only: [:id, :name, :longitude, :latitude, :category, :kind, :google_place_rating]
+    @offers = render_to_string(partial: "offers/offers.json")
+    respond_to do |format|
+      format.html {}
+    end
   end
+
 
   ##
   # Modal dialog with more infos

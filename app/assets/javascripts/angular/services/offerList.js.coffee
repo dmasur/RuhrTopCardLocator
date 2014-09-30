@@ -20,9 +20,6 @@ angular.module('ruhrTopCardLocator').factory 'OfferList', ['Offer', '$localStora
       @offers = $.map offers_json, (offer_json) ->
         new Offer(offer_json)
       @refreshShownOffers()
-    #
-    # saveToCookie: =>
-    #   ipCookie('maxDistance', @maxDistance)
 
     # All offers that are shown
     refreshShownOffers: ->
