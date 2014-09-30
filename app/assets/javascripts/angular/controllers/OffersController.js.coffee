@@ -8,7 +8,7 @@ ruhrTopCardLocator.controller 'OffersController',
   ipCookie("alreadyVisted") || ipCookie("alreadyVisted", [])
 
   # Init empty OfferList
-  $scope.offerList = new OfferList
+  $scope.offerList = new OfferList()
 
   # Load UserLocation and refresh Offers
   successLocateCallback = (userLatLng) ->

@@ -28,7 +28,7 @@ describe "RuhrTopCard Locator", () ->
     }
 
     beforeEach inject (OfferList) ->
-      @offer_list = new OfferList
+      @offer_list = new OfferList()
       spyOn(@offer_list, 'refreshShownOffers')
       @offer_list.loadJson([valid_offer_json])
 
@@ -39,7 +39,7 @@ describe "RuhrTopCard Locator", () ->
 
     describe 'refreshShownOffers', ->
       beforeEach inject (OfferList) ->
-        @offer_list = new OfferList
+        @offer_list = new OfferList()
         @offer_list.loadJson([valid_offer_json])
 
       it 'refreshes without changes', ->

@@ -3,27 +3,27 @@
         "level": "ignore"
     },
     "camel_case_classes": {
-        "level": "error"
+        "level": "warn"
     },
     "coffeescript_error": {
-        "level": "error"
+        "level": "warn"
     },
     "colon_assignment_spacing": {
-        "level": "ignore",
+        "level": "warn",
         "spacing": {
             "left": 0,
-            "right": 0
+            "right": 1
         }
     },
     "cyclomatic_complexity": {
         "value": 10,
-        "level": "ignore"
+        "level": "warn"
     },
     "duplicate_key": {
         "level": "error"
     },
     "empty_constructor_needs_parens": {
-        "level": "ignore"
+        "level": "warn"
     },
     "indentation": {
         "value": 2,
