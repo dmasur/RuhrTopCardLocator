@@ -20,4 +20,5 @@
 //= require angular-ui-bootstrap-bower/ui-bootstrap
 //= require angular-ui-bootstrap-bower/ui-bootstrap-tpls
 //= require angularjs-geolocation/src/geolocation
+//= require angular/modules/ruhrTopCardLocator
 //= require_tree .

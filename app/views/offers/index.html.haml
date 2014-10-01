@@ -1,5 +1,8 @@
 .container#offer-index{ data: { ng_controller: "OffersController", ng_init: "offerList.loadJson(#{@offers}).offers" } }
   .row
+    %p.well
+      Hier findest du alle Angebote der Ruhr.TopCard 2014 in einer filterbaren Karte.
+      Alle Filtereinstellungen werden in deinem Browser gespeichert.
     .col-lg-2.map-sidebar
       .btn-group-vertical
         %button.btn.btn-primary{ type: "button", data: { ng_click_async: 'userLocation.locateUser()' } } Orte mich!
@@ -48,7 +51,7 @@
         %thead
           %tr
             %td Name
-            %td Kategory
+            %td Kategorie
             %td Bewertung
             %td Entfernung
             %td

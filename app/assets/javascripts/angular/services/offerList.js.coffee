@@ -1,4 +1,5 @@
-angular.module('ruhrTopCardLocator').factory 'OfferList', ['Offer', '$localStorage', (Offer, $localStorage, $sessionStorage) ->
+angular.module('ruhrTopCardLocator').factory 'OfferList',
+['Offer', '$localStorage', (Offer, $localStorage, $sessionStorage) ->
   class OfferList
     constructor: ->
       @shownOffers = @offers = []

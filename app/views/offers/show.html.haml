@@ -1,4 +1,18 @@
-.modal-header
-  .h3.modal-title= @offer.name
-.modal-body
-  %p= @offer.description
+%div{ data: { ng_controller: "OfferController", ng_init: "loadOffer(#{@offer})" } }
+  .modal-header
+    .h3.modal-title {{offer.name}}
+  .modal-body
+    %p{ data: { ng_if: "offer.rating" } }
+      Bewertung
+      %rating{ data: { ng_model: "offer.rating", readonly: 'true' } }
+    %p{ data: { ng_if: "offer.website" } }
+      Website:
+      %a{ href: '{{offer.website}}'} {{offer.name}}
+    %p
+      {{offer.street}}
+      %br
+      {{offer.city}}
+    %p {{offer.description}}
+    %p
+      Mehr Infos:
+      %a{ href: '//www.ruhrtopcard.de{{offer.url}}'} RuhrTopCard Website

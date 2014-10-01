@@ -1,16 +1,12 @@
-angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal', ($localStorage, $sessionStorage, $modal) ->
+angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal', ($localStorage, $modal) ->
   class Offer
     constructor: (offer_json) ->
-      @id = offer_json.id
-      @name = offer_json.name
+      $.extend this, offer_json
       @kind = @chooseKind(offer_json.kind)
       @category = offer_json.category unless @kind
-      @coords = { latitude: offer_json.latitude, longitude: offer_json.longitude }
       @latLng = new google.maps.LatLng @coords.latitude, @coords.longitude
-      @icon = offer_json.icon
       @distanceToUser = null
       @visited = _.contains $localStorage.alreadyVisted, @id
-      @rating = offer_json.google_place_rating
 
     # Calculate distance to another location
     distanceTo: (otherLatLng) ->

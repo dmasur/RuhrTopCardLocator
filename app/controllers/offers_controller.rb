@@ -15,7 +15,10 @@ class OffersController < ApplicationController
   ##
   # Modal dialog with more infos
   def show
-    @offer = Offer.find params[:id]
-    render layout: nil
+    offer = Offer.find params[:id]
+    @offer = render_to_string partial: "offers/offer.json", locals: { offer: offer }
+    respond_to do |format|
+      format.html { render layout: false }
+    end
   end
 end

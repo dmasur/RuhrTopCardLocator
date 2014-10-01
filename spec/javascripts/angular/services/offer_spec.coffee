@@ -18,11 +18,12 @@ describe "RuhrTopCard Locator", () ->
     valid_offer_json = {
       id: 1
       name: "Test Offer"
-      longitude: 10
-      latitude: 20
+      coords:
+        longitude: 10
+        latitude: 20
       category: "Erlebnis, Spaß und Action"
       kind: "Eintritt frei"
-      google_place_rating: 3
+      rating: 3
     }
 
 

@@ -1,6 +1,4 @@
-ruhrTopCardLocator = angular.module('ruhrTopCardLocator', ['google-maps', 'geolocation', 'ui.bootstrap', 'ngStorage'])
-
-ruhrTopCardLocator.controller 'OffersController',
+angular.module('ruhrTopCardLocator').controller 'OffersController',
 ['$scope', '$localStorage', 'UserLocation', 'OfferList', ($scope, $localStorage, UserLocation, OfferList) ->
 
   # Set Cookies
