@@ -9,7 +9,6 @@ class FixGoogleInfos
   ##
   # Update and delete google places
   def fix_all
-    puts 'Fixing Seeds'
     delete_google_place_ids
     update_google_place_ids
   end

@@ -8,7 +8,7 @@ class UpdateOffer
   ##
   # Update all offers with full infos
   def self.full_update_all
-    Logger.info 'Full google update for all offers'
+    Logger.new(STDOUT).info 'Full google update for all offers'
     ::Offer.all.each do |offer|
       UpdateOffer.full(offer)
     end
