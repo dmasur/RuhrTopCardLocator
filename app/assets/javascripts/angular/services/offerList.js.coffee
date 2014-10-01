@@ -25,13 +25,13 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
     # All offers that are shown
     refreshShownOffers: ->
       @shownOffers = _.filter @offers, (offer) =>
-        show = offer.inRangeOf(@storage.maxDistance) &&
-        @categoryIsShown(offer.category) &&
+        show = offer.inRangeOf(@storage.maxDistance) and
+        @categoryIsShown(offer.category) and
         @kindIsShown(offer.kind)
         if offer.visited
-          show && @storage.showAlreadyVisited
+          show and @storage.showAlreadyVisited
         else
-          show && @storage.showNotVisited
+          show and @storage.showNotVisited
 
     categoryIsShown: (category) ->
       switch category

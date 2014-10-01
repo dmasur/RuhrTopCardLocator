@@ -19,14 +19,14 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal'
 
     # Save the info in a cookie
     markAsVisited: ->
-      alreadyVisted = $localStorage.alreadyVisted || []
+      alreadyVisted = $localStorage.alreadyVisted or []
       alreadyVisted.push(@id)
       $localStorage.alreadyVisted = _.uniq(alreadyVisted)
       @visited = true
 
     # Save the info in a cookie
     markAsNotVisited: ->
-      alreadyVisted = $localStorage.alreadyVisted || []
+      alreadyVisted = $localStorage.alreadyVisted or []
       $localStorage.alreadyVisted = _.without(alreadyVisted, @id)
       @visited = false
 
@@ -40,6 +40,6 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal'
       @distanceToUser <= maxDistance * 1000
 
     chooseKind: (kind) ->
-      return 'half-price' if kind == 'Halber Preis'
+      return 'half-price' if kind is 'Halber Preis'
       return 'special' if kind.contains 'Special'
 ]
