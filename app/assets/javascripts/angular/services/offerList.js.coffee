@@ -15,6 +15,7 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
         showKindSpecial: true
         showAlreadyVisited: false
         showNotVisited: true
+      @markers = {}
 
     # Load given Offer array
     loadJson: (offers_json) ->
@@ -32,6 +33,19 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
           show and @storage.showAlreadyVisited
         else
           show and @storage.showNotVisited
+      @refreshMarkers()
+
+    refreshMarkers: ->
+      icon = L.icon
+      @markers = {}
+      _.each @shownOffers, (offer) =>
+        if offer.coords.latitude? and offer.coords.longitude?
+          icon.iconUrl = offer.icon
+          @markers[offer.id] =
+            lat: offer.coords.latitude
+            lng: offer.coords.longitude
+            icon: icon
+
 
     categoryIsShown: (category) ->
       switch category

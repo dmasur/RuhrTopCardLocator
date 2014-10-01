@@ -16,7 +16,8 @@
 //= require underscore
 //= require angular/angular
 //= require ngstorage/ngStorage
-//= require angular-google-maps/dist/angular-google-maps
+//= require leaflet/dist/leaflet-src
+//= require angular-leaflet-directive/dist/angular-leaflet-directive
 //= require angular-ui-bootstrap-bower/ui-bootstrap
 //= require angular-ui-bootstrap-bower/ui-bootstrap-tpls
 //= require angularjs-geolocation/src/geolocation

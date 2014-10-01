@@ -4,14 +4,14 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal'
       $.extend this, offer_json
       @kind = @chooseKind(offer_json.kind)
       @category = offer_json.category unless @kind
-      @latLng = new google.maps.LatLng @coords.latitude, @coords.longitude
+      @latLng = new L.LatLng @coords.latitude, @coords.longitude
       @distanceToUser = null
       @visited = _.contains $localStorage.alreadyVisted, @id
 
     # Calculate distance to another location
     distanceTo: (otherLatLng) ->
       return unless otherLatLng?
-      window.google.maps.geometry.spherical.computeDistanceBetween(@latLng, otherLatLng)
+      @latLng.distanceTo(otherLatLng)
 
     # Calculate and save distance to user
     refreshDistanceToUser: (userLatLng) ->
@@ -41,5 +41,5 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal'
 
     chooseKind: (kind) ->
       return 'half-price' if kind is 'Halber Preis'
-      return 'special' if kind.contains 'Special'
+      return 'special' if $.contains(kind, 'Special')
 ]

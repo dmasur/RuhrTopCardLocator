@@ -16,8 +16,12 @@ angular.module('ruhrTopCardLocator').controller 'OffersController',
   $scope.userLocation = new UserLocation successLocateCallback
 
   # Map defaults
-  $scope.map = {
-    center: { latitude: 51.4296308, longitude: 7.0039007 },
-    zoom: 11
-  }
+  $scope.map =
+    center:
+      lat: 51.4296308
+      lng: 7.0039007
+      zoom: 11
+    defaults:
+      scrollWheelZoom: false
+
 ]

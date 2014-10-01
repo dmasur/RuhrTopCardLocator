@@ -5,7 +5,7 @@
     "angular-mocks": "latest",
     "angularjs-geolocation": "latest",
     "angular-ui-bootstrap-bower": "latest",
-    "angular-google-maps": "latest",
+    "angular-leaflet-directive": "latest",
     "underscore": "latest",
     "ngstorage": "latest"
   }
