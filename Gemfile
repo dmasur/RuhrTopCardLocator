@@ -20,6 +20,11 @@ gem 'surrounded'
 gem 'rack-zippy'
 gem 'google_places'
 
+group :production do
+  gem 'rails_12factor'
+  gem 'unicorn'
+end
+
 group :development do
   gem 'better_errors'
   gem 'bower-rails'
