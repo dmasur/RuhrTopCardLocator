@@ -17,6 +17,7 @@ Website: [Ruhr.TopCard Locator](http://ruhrtopcard-locator.herokuapp.com/)
   - Open today? (google place api)
   - Distance by different kinds (car, public transportation) (google maps api)
 - Textsuche
+- Change to Leafmap
 
 
 # Map Image Sources
