@@ -19,6 +19,7 @@ gem 'therubyracer'
 gem 'surrounded'
 gem 'rack-zippy'
 gem 'google_places'
+gem 'rollbar', '~> 1.0.0'
 
 group :production do
   gem 'rails_12factor'
