@@ -36,7 +36,6 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
       @refreshMarkers()
 
     refreshMarkers: ->
-
       @markers = {}
       _.each @shownOffers, (offer) =>
         if offer.coords.latitude? and offer.coords.longitude?
@@ -44,6 +43,7 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
             lat: offer.coords.latitude
             lng: offer.coords.longitude
             icon: offer.icon
+            layer: 'offers'
 
     categoryIsShown: (category) ->
       switch category

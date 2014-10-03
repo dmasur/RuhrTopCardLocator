@@ -6,6 +6,7 @@
     "angularjs-geolocation": "latest",
     "angular-ui-bootstrap-bower": "latest",
     "angular-leaflet-directive": "latest",
+    "leaflet.markercluster": "latest",
     "underscore": "latest",
     "ngstorage": "latest"
   }

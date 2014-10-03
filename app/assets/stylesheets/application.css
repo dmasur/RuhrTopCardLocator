@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require leaflet/dist/leaflet
+ *= require leaflet.markercluster/dist/MarkerCluster.css
+ *= require leaflet.markercluster/dist/MarkerCluster.Default.css
  *= require_tree .
  *= require_self
  */
@@ -28,4 +30,8 @@
 
 .leaflet-container {
   height: 75%;
+}
+
+.leaflet-control-layers.leaflet-control {
+  display: none;
 }

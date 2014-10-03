@@ -39,13 +39,6 @@ describe "RuhrTopCard Locator", () ->
       expect(@offer.kind).toBeNotDefined
       expect(@offer.rating).toBe(3)
 
-    it "calls google for a distance calc", ->
-      @offer.latLng = 'LatLng' # TODO: Remove in favor of a good mock
-      latLng = 'LatLng2'
-      spyOn(google.maps.geometry.spherical, 'computeDistanceBetween')
-      @offer.distanceTo(latLng)
-      expect(google.maps.geometry.spherical.computeDistanceBetween).toHaveBeenCalledWith 'LatLng', 'LatLng2'
-
     describe 'mark an offer as visited', ->
       it 'is visited', ->
         @offer.markAsVisited()

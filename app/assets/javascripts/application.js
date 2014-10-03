@@ -18,6 +18,7 @@
 //= require ngstorage/ngStorage
 //= require leaflet/dist/leaflet-src
 //= require angular-leaflet-directive/dist/angular-leaflet-directive
+//= require leaflet.markercluster/dist/leaflet.markercluster-src
 //= require angular-ui-bootstrap-bower/ui-bootstrap
 //= require angular-ui-bootstrap-bower/ui-bootstrap-tpls
 //= require angularjs-geolocation/src/geolocation

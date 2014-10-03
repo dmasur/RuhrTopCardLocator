@@ -23,5 +23,18 @@ angular.module('ruhrTopCardLocator').controller 'OffersController',
       zoom: 10
     defaults:
       scrollWheelZoom: false
-
+    layers:
+      baselayers:
+        osm:
+          name: 'OpenStreetMap'
+          type: 'xyz'
+          url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          layerOptions:
+            subdomains: ['a', 'b', 'c']
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      overlays:
+        offers:
+          name: 'Angebote'
+          type: 'markercluster'
+          visible: true
 ]
