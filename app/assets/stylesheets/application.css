@@ -10,15 +10,22 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require leaflet/dist/leaflet
  *= require_tree .
  *= require_self
  */
 .angular-google-map-container { height: 400px; }
+
 .map-sidebar .btn-group-vertical {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
 .categories label {
   font-size: 0.8em;
+}
+
+.leaflet-container {
+  height: 75%;
 }

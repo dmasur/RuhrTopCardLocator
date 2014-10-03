@@ -20,7 +20,7 @@ angular.module('ruhrTopCardLocator').controller 'OffersController',
     center:
       lat: 51.4296308
       lng: 7.0039007
-      zoom: 11
+      zoom: 10
     defaults:
       scrollWheelZoom: false
 

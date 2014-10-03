@@ -44,7 +44,7 @@
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showNotVisited' } } Unbesuchte
     .col-lg-10
       .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
-      %leaflet{ center: "map.center", markers: "offerList.markers", defaults: "map.defaults", width: 100, height: 100  }
+      %leaflet{ center: "map.center", markers: "offerList.markers", defaults: "map.defaults", width: 'auto', height: 480  }
       %hr
       %table.table.table-striped
         %thead

@@ -36,16 +36,14 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
       @refreshMarkers()
 
     refreshMarkers: ->
-      icon = L.icon
+
       @markers = {}
       _.each @shownOffers, (offer) =>
         if offer.coords.latitude? and offer.coords.longitude?
-          icon.iconUrl = offer.icon
           @markers[offer.id] =
             lat: offer.coords.latitude
             lng: offer.coords.longitude
-            icon: icon
-
+            icon: offer.icon
 
     categoryIsShown: (category) ->
       switch category
