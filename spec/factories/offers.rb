@@ -13,6 +13,7 @@ FactoryGirl.define do
       longitude 6.99055
       google_place_id 'ChIJmcKtLSLDuEcRnjYJRDiyUIE'
     end
+
     trait :kernie do
       name 'Kernie´s Familienpark im Wunderland Kalkar'
       category 'Halber Preis'

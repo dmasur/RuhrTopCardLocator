@@ -11,7 +11,7 @@ class SiteParser
     new.parse_from_website
   end
 
-  def log(message=nil)
+  def log(message = nil)
     @logger ||= Logger.new(STDOUT)
     @logger.info message
   end
