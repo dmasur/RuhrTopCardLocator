@@ -11,13 +11,4 @@ before_script:
 script:
 - bundle exec rspec spec
 - bundle exec rake karma:run
-cache:
-  bundler: true
-  directories:
-  - node_modules
-deploy:
-  buildpack: ruby
-  provider: heroku
-  app: ruhrtopcard-locator
-  api_key:
-    secure: fPCzmyElN9F8wj4Ya4vBTUhTiTu0CcvUmcnXRCfATp/nAOB6XiNl4T+2Xwy4u9i133FETWL+sray7uR5qPRiXvNMvsDxijRoOkLF0zTOfXy7WpeNF7GQXLawiWvxkt9OdbWD+0IyuBK+rMuvkWFg91OWVClL7DCr5rgUyeyN6AU=
+cache: bundler
