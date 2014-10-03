@@ -43,6 +43,7 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
             lat: offer.coords.latitude
             lng: offer.coords.longitude
             icon: offer.icon
+            message: offer.name
             layer: 'offers'
 
     categoryIsShown: (category) ->

@@ -17,8 +17,6 @@ Website: [Ruhr.TopCard Locator](http://ruhrtopcard-locator.herokuapp.com/)
   - Open today? (google place api)
   - Distance by different kinds (car, public transportation) (google maps api)
 - Textsuche
-- Change to Leafmap
-
 
 # Map Image Sources
 Water: http://mapicons.nicolasmollet.com/markers/sports/relaxing-sports/swimming/?custom_color=275fb3
