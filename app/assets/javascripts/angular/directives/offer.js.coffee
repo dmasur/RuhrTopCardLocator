@@ -6,13 +6,5 @@ angular.module('ruhrTopCardLocator').directive 'offerRow', [ ->
     $scope.openInfo = ->
       modalInstance = $modal.open
         templateUrl: "offers/#{@offer.id}"
-
-    $scope.markAsVisited = ->
-      @offer.markAsVisited()
-      @offerList.refreshShownOffers()
-
-    $scope.markAsNotVisited = ->
-      @offer.markAsNotVisited()
-      @offerList.refreshShownOffers()
   ]
 ]

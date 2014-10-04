@@ -14,7 +14,7 @@
   %span{ data: { ng_show: "offer.distanceToUser"}}
     {{offer.distanceToUser / 1000 | number:2}} km
 %td
-  %a.js-mark-as-vistied{ data: { ng_click: "markAsVisited()", ng_if: '!offer.visited' } }
+  %a.js-mark-as-vistied{ data: { ng_click: "offer.markAsVisited()", ng_if: '!offer.visited' } }
     %i.fa.fa-check-square-o{ tooltip: 'Schon besucht' }
-  %a.js-mark-as-not-vistied{ data: { ng_click: "markAsNotVisited()", ng_if: 'offer.visited' } }
+  %a.js-mark-as-not-vistied{ data: { ng_click: "offer.markAsNotVisited()", ng_if: 'offer.visited' } }
     %i.fa.fa-check-square{ tooltip: 'Doch nicht besucht' }

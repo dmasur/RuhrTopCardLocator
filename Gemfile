@@ -30,6 +30,8 @@ end
 group :development do
   gem 'better_errors'
   gem 'bower-rails'
+  gem 'spring'
+  gem "spring-commands-rspec"
 end
 
 group :development, :test do
@@ -37,7 +39,6 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-byebug'
   gem 'binding_of_caller'
-  gem 'spring'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'
   gem 'rubocop'

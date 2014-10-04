@@ -21,13 +21,11 @@ describe "RuhrTopCard Locator", () ->
 
     beforeEach inject (OfferList) ->
       @offer_list = new OfferList()
-      spyOn(@offer_list, 'refreshShownOffers')
       @offer_list.loadJson([valid_offer_json])
 
     it 'loads offers', ->
       expect(@offer_list.offers.length).toBe 1
       expect(@offer_list.offers[0].name).toBe "Test Offer"
-      expect(@offer_list.refreshShownOffers).toHaveBeenCalled()
 
     describe 'save state to cookie', ->
       it 'saves max Distance', inject ($localStorage) ->
@@ -39,6 +37,7 @@ describe "RuhrTopCard Locator", () ->
       beforeEach inject (OfferList) ->
         @offer_list = new OfferList()
         @offer_list.loadJson([valid_offer_json])
+        @offer_list.refreshShownOffers()
 
       it 'refreshes without changes', ->
         expect(@offer_list.shownOffers.length).toBe 1

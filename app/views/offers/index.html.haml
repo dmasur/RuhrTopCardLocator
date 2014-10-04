@@ -8,7 +8,7 @@
         %button.btn.btn-primary{ type: "button", data: { ng_click_async: 'userLocation.locateUser()' } } Orte mich!
       .max-distance
         %h5.text-center Maximale Entfernung
-        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+        .btn-group-vertical
           %label.btn.btn-default{ data: { ng_model: "offerList.storage.maxDistance", btn_radio: "15" } }
             15 km
           %label.btn.btn-default{ data: { ng_model: "offerList.storage.maxDistance", btn_radio: "30" } }
@@ -26,20 +26,20 @@
             Entfernung
       .categories
         %h5.text-center Kategorien
-        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+        .btn-group-vertical
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showCategoryAction' } } Erlebnis, Spaß und Action
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showCategoryShips' } } Schifffahrt und Bäder
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showCategoryIndustry' } } Erlebnis Industriekultur
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showCategoryMuseum' } } Schätze und Museen
       .kinds
         %h5.text-center Arten
-        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+        .btn-group-vertical
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showKindFree' } } Kostenlos
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showKindHalfPrice' } } Halber Preis
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showKindSpecial' } } Special
       .options
         %h5.text-center Anzeigen
-        .btn-group-vertical{ ng_click: 'offerList.refreshShownOffers()'}
+        .btn-group-vertical
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showAlreadyVisited' } } Besuchte
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showNotVisited' } } Unbesuchte
     .col-lg-10
