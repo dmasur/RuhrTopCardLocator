@@ -55,24 +55,4 @@
             %td Entfernung
             %td
         %tbody
-          %tr{ data: { ng_repeat: "offer in offerList.shownOffers | orderBy:offerList.sortOrder" } }
-            %td
-              %span{ data: { ng_if: 'offer.kind == "half-price"', tooltip: 'Halber Preis' }}
-                %i.fa.fa-eur
-              %span{ data: { ng_if: 'offer.kind == "special"', tooltip: 'Spezial' }}
-                %i.fa.fa-eur
-                %i.fa.fa-eur
-              %a{ ng_click: 'offer.openInfo()'}
-                {{offer.name}}
-            %td
-              {{offer.category}}
-            %td
-              %rating{ data: { ng_model: "offer.rating", readonly: 'true', ng_if: "offer.rating" } }
-            %td
-              %span{ data: { ng_show: "offer.distanceToUser"}}
-                {{offer.distanceToUser / 1000 | number:2}} km
-            %td
-              %a.js-mark-as-vistied{ data: { ng_click: "offer.markAsVisited(); offerList.refreshShownOffers()", ng_if: '!offer.visited' } }
-                %i.fa.fa-check-square-o{ tooltip: 'Schon besucht' }
-              %a.js-mark-as-not-vistied{ data: { ng_click: "offer.markAsNotVisited(); offerList.refreshShownOffers()", ng_if: 'offer.visited' } }
-                %i.fa.fa-check-square{ tooltip: 'Doch nicht besucht' }
+          %tr{ offer_row: true, ng_repeat: "offer in offerList.shownOffers | orderBy:offerList.sortOrder" }

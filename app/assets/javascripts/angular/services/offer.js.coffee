@@ -1,4 +1,4 @@
-angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal', ($localStorage, $modal) ->
+angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', ($localStorage) ->
   class Offer
     constructor: (offer_json) ->
       $.extend this, offer_json
@@ -32,11 +32,6 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', '$modal'
       alreadyVisted = $localStorage.alreadyVisted or []
       $localStorage.alreadyVisted = _.without(alreadyVisted, @id)
       @visited = false
-
-    # opens the modal with more infos
-    openInfo: ->
-      modalInstance = $modal.open
-        templateUrl: "offers/#{@id}"
 
     inRangeOf: (maxDistance) ->
       return true unless maxDistance?

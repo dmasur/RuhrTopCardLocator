@@ -4,15 +4,6 @@ describe "RuhrTopCard Locator", () ->
   beforeEach inject ($localStorage) ->
     $localStorage.$reset()
 
-  window.google =
-    maps:
-      LatLng: ->
-        'LatLng1'
-      geometry:
-        spherical:
-          computeDistanceBetween: (latLng1, latLng2) ->
-            1000
-
   it "definies OfferList", inject (OfferList) ->
     expect(OfferList).toBeDefined()
 

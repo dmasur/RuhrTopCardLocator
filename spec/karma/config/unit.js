@@ -13,7 +13,7 @@ module.exports = function(config) {
       'vendor/assets/bower_components/angular-mocks/angular-mocks.js',
       'vendor/assets/bower_components/underscore/underscore-min.js',
       'spec/mocks/**/*.js',
-      'vendor/assets/bower_components/angular-google-maps/dist/angular-google-maps.js',
+      '**/*.haml',
       APPLICATION_SPEC,
       'spec/javascripts/**/*_spec.{coffee,js}'
     ],
@@ -57,7 +57,12 @@ module.exports = function(config) {
 
     // Preprocessors
     preprocessors: {
-      '**/*.coffee': ['coffee']
+      '**/*.coffee': ['coffee'],
+      '**/*.haml': ['ng-haml2js']
+    },
+    ngHaml2JsPreprocessor: {
+      // we want all templates to be loaded in the same module called 'templates'
+      moduleName: 'templates'
     }
   });
 };

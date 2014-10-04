@@ -23,4 +23,6 @@
 //= require angular-ui-bootstrap-bower/ui-bootstrap-tpls
 //= require angularjs-geolocation/src/geolocation
 //= require angular/modules/ruhrTopCardLocator
-//= require_tree .
+//= require angular-rails-templates
+//= require_tree ./templates
+//= require_tree ./angular

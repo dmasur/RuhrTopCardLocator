@@ -2,15 +2,6 @@ describe "RuhrTopCard Locator", () ->
 
   beforeEach module('ruhrTopCardLocator')
 
-  window.google =
-    maps:
-      LatLng: ->
-        'LatLng1'
-      geometry:
-        spherical:
-          computeDistanceBetween: (latLng1, latLng2) ->
-            1000
-
   it "definies Offer", inject (Offer) ->
     expect(Offer).toBeDefined()
 
