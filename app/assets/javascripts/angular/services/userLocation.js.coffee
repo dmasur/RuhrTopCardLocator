@@ -1,7 +1,6 @@
 angular.module('ruhrTopCardLocator').factory 'UserLocation', ['geolocation', '$timeout', (geolocation, $timeout) ->
   class UserLocation
     constructor: (locateCallback) ->
-      @latLng = null
       @locateCallback = locateCallback
 
     locateUser: ->

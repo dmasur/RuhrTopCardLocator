@@ -5,7 +5,6 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
       @shownOffers = @offers = []
       @storage = $localStorage.$default
         sortOrder: 'name'
-        maxDistance: null
         showCategoryAction: true
         showCategoryShips: true
         showCategoryIndustry: true
