@@ -29,7 +29,7 @@ describe "RuhrTopCard Locator", () ->
 
     describe 'save state to cookie', ->
       it 'saves max Distance', inject ($localStorage) ->
-        expect($localStorage.maxDistance).toBe null
+        expect($localStorage.maxDistance).toBe undefined
         @offer_list.storage.maxDistance = 1
         expect($localStorage.maxDistance).toBe 1
 
