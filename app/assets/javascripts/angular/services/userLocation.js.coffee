@@ -6,8 +6,7 @@ angular.module('ruhrTopCardLocator').factory 'UserLocation',
 
     locateUser: ->
       $timeout =>
-        geolocation.getLocation().then (data) =>
-          console.log 'finish geocoding'
+        window.geolocation.getLocation().then (data) =>
           @latLng = new L.LatLng(data.coords.latitude, data.coords.longitude)
           @locateCallback(@latLng)
 ]

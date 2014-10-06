@@ -21,6 +21,10 @@ angular.module('ruhrTopCardLocator').controller 'OffersController',
     $.each $scope.offerList.offers, (index, offer) ->
       offer.refreshDistanceToUser(userLatLng)
 
+  $scope.reset = ->
+    $scope.offerList.reset()
+    $scope.offerList.refreshShownOffers()
+
   # Map defaults
   $scope.map =
     center:

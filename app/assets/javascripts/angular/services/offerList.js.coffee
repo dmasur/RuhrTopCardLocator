@@ -16,6 +16,19 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
         showNotVisited: true
       @markers = {}
 
+    reset: ->
+      @storage.sortOrder = 'name'
+      @storage.showCategoryAction = true
+      @storage.showCategoryShips = true
+      @storage.showCategoryIndustry = true
+      @storage.showCategoryMuseum = true
+      @storage.showKindFree = true
+      @storage.showKindHalfPrice = true
+      @storage.showKindSpecial = true
+      @storage.showAlreadyVisited = false
+      @storage.showNotVisited = true
+      @storage.maxDistance = null
+
     # Load given Offer array
     loadJson: (offers_json) ->
       @offers = $.map offers_json, (offer_json) ->

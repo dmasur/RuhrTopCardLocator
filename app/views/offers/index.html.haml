@@ -42,6 +42,8 @@
         .btn-group-vertical
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showAlreadyVisited' } } Besuchte
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showNotVisited' } } Unbesuchte
+      .reset
+        %button.btn.btn-small.btn-danger{ data: { ng_click: 'reset()' } } Reset
     .col-lg-10
       .text-center.lead {{offerList.shownOffers().length}} von {{offerList.offers.length}} Angeboten werden angezeigt
       %leaflet{ center: "map.center", markers: "offerList.markers", defaults: "map.defaults", layers: "map.layers", width: 'auto', height: 480  }

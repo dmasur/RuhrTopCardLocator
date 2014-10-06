@@ -5,7 +5,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(
     app,
     extensions: [
-      File.expand_path('../spec/support/phantomjs_ext/geolocation.js', __FILE__)
+      File.expand_path('../phantomjs_ext/geolocation.js', __FILE__)
     ]
   )
 end
