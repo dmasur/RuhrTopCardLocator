@@ -24,5 +24,7 @@
 //= require angularjs-geolocation/src/geolocation
 //= require angular/modules/ruhrTopCardLocator
 //= require angular-rails-templates
+//= require spin.js/spin.js
+//= require angular-spinner/angular-spinner.js
 //= require_tree ./templates
 //= require_tree ./angular

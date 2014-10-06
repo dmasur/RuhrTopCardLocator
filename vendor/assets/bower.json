@@ -8,6 +8,8 @@
     "angular-leaflet-directive": "latest",
     "leaflet.markercluster": "latest",
     "underscore": "latest",
-    "ngstorage": "latest"
+    "ngstorage": "latest",
+    "spin.js": "latest",
+    "angular-spinner": "latest"
   }
 }

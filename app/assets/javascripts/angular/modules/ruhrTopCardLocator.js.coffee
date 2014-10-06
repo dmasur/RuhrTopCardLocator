@@ -1,1 +1,1 @@
-angular.module('ruhrTopCardLocator', ['leaflet-directive', 'geolocation', 'ui.bootstrap', 'ngStorage', 'templates'])
+angular.module('ruhrTopCardLocator', ['leaflet-directive', 'geolocation', 'ui.bootstrap', 'ngStorage', 'templates', 'angularSpinner'])

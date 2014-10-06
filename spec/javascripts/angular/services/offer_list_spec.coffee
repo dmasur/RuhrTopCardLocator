@@ -40,31 +40,31 @@ describe "RuhrTopCard Locator", () ->
         @offer_list.refreshShownOffers()
 
       it 'refreshes without changes', ->
-        expect(@offer_list.shownOffers.length).toBe 1
+        expect(@offer_list.shownOffers().length).toBe 1
         @offer_list.refreshShownOffers()
-        expect(@offer_list.shownOffers.length).toBe 1
+        expect(@offer_list.shownOffers().length).toBe 1
 
       it 'dont show with max distance', ->
         @offer_list.storage.maxDistance = 1
         @offer_list.offers[0].distanceToUser = 2000
-        expect(@offer_list.shownOffers.length).toBe 1
+        expect(@offer_list.shownOffers().length).toBe 1
         @offer_list.refreshShownOffers()
-        expect(@offer_list.shownOffers.length).toBe 0
+        expect(@offer_list.shownOffers().length).toBe 0
 
       it 'dont show when category is not shown', ->
         @offer_list.storage.showCategoryAction = false
-        expect(@offer_list.shownOffers.length).toBe 1
+        expect(@offer_list.shownOffers().length).toBe 1
         @offer_list.refreshShownOffers()
-        expect(@offer_list.shownOffers.length).toBe 0
+        expect(@offer_list.shownOffers().length).toBe 0
 
       it 'dont show when kind is not shown', ->
         @offer_list.storage.showKindFree = false
-        expect(@offer_list.shownOffers.length).toBe 1
+        expect(@offer_list.shownOffers().length).toBe 1
         @offer_list.refreshShownOffers()
-        expect(@offer_list.shownOffers.length).toBe 0
+        expect(@offer_list.shownOffers().length).toBe 0
 
       it 'dont show when not visited are hidden', ->
         @offer_list.storage.showNotVisited = false
-        expect(@offer_list.shownOffers.length).toBe 1
+        expect(@offer_list.shownOffers().length).toBe 1
         @offer_list.refreshShownOffers()
-        expect(@offer_list.shownOffers.length).toBe 0
+        expect(@offer_list.shownOffers().length).toBe 0

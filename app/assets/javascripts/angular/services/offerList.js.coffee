@@ -2,7 +2,7 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
 ['Offer', '$localStorage', (Offer, $localStorage, $sessionStorage) ->
   class OfferList
     constructor: ->
-      @shownOffers = @offers = []
+      @offers = []
       @storage = $localStorage.$default
         sortOrder: 'name'
         showCategoryAction: true
@@ -21,22 +21,26 @@ angular.module('ruhrTopCardLocator').factory 'OfferList',
       @offers = $.map offers_json, (offer_json) ->
         new Offer(offer_json)
 
+    shownOffers: ->
+      _.filter @offers, (offer) ->
+        offer.show
+
     # All offers that are shown
     refreshShownOffers: ->
-      @shownOffers = _.filter @offers, (offer) =>
-        show = offer.inRangeOf(@storage.maxDistance) and
+      _.each @offers, (offer) =>
+        offer.show = offer.inRangeOf(@storage.maxDistance) and
         @categoryIsShown(offer.category) and
-        @kindIsShown(offer.kind)
-        if offer.visited
-          show and @storage.showAlreadyVisited
-        else
-          show and @storage.showNotVisited
+        @kindIsShown(offer.kind) and
+        (
+          (offer.visited and @storage.showAlreadyVisited) or
+          (!offer.visited and @storage.showNotVisited)
+        )
       @refreshMarkers()
 
     refreshMarkers: ->
       @markers = {}
-      _.each @shownOffers, (offer) =>
-        if offer.coords.latitude? and offer.coords.longitude?
+      _.each @offers, (offer) =>
+        if offer.show and offer.coords.latitude? and offer.coords.longitude?
           @markers[offer.id] =
             lat: offer.coords.latitude
             lng: offer.coords.longitude

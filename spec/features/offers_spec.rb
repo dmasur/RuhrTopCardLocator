@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 describe 'Offer Indexpage', type: :feature do
-  before do
-    execute_script ''
-  end
-
   xit 'shows the offers' do
     create :offer, :grugapark
     visit '/'

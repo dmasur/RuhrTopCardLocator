@@ -1,4 +1,5 @@
-angular.module('ruhrTopCardLocator').factory 'UserLocation', ['geolocation', '$timeout', (geolocation, $timeout) ->
+angular.module('ruhrTopCardLocator').factory 'UserLocation',
+['geolocation', '$timeout', 'usSpinnerService', (geolocation, $timeout, usSpinnerService) ->
   class UserLocation
     constructor: (locateCallback) ->
       @locateCallback = locateCallback
@@ -6,6 +7,7 @@ angular.module('ruhrTopCardLocator').factory 'UserLocation', ['geolocation', '$t
     locateUser: ->
       $timeout =>
         geolocation.getLocation().then (data) =>
+          console.log 'finish geocoding'
           @latLng = new L.LatLng(data.coords.latitude, data.coords.longitude)
           @locateCallback(@latLng)
 ]

@@ -8,7 +8,7 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', ($localS
       @visited = _.contains $localStorage.alreadyVisted, @id
       @icon = new L.icon
       @icon.iconUrl = offer_json.icon
-
+      @show = false
 
     # Calculate distance to another location
     distanceTo: (otherLatLng) ->

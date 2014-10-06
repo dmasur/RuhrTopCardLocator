@@ -43,7 +43,7 @@
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showAlreadyVisited' } } Besuchte
           %label.btn.btn-default{ data: { btn_checkbox: true, ng_model: 'offerList.storage.showNotVisited' } } Unbesuchte
     .col-lg-10
-      .text-center.lead {{offerList.shownOffers.length}} von {{offerList.offers.length}} Angeboten werden angezeigt
+      .text-center.lead {{offerList.shownOffers().length}} von {{offerList.offers.length}} Angeboten werden angezeigt
       %leaflet{ center: "map.center", markers: "offerList.markers", defaults: "map.defaults", layers: "map.layers", width: 'auto', height: 480  }
       %hr
       %table.table.table-striped
@@ -55,4 +55,4 @@
             %td Entfernung
             %td
         %tbody
-          %tr{ offer_row: true, ng_repeat: "offer in offerList.shownOffers | orderBy:offerList.sortOrder" }
+          %tr{ offer_row: true, ng_repeat: "offer in offerList.shownOffers() | orderBy:offerList.sortOrder" }
