@@ -17,4 +17,4 @@
 //= require leaflet/dist/leaflet-src
 //= require leaflet.markercluster/dist/leaflet.markercluster-src
 //= require react
-//= require app
+//= require compiled

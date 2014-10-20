@@ -10,4 +10,4 @@ describe "Offers", ->
     Offers = require '../src/react/Offers'
     offers = TestUtils.renderIntoDocument(Offers())
     div = TestUtils.findRenderedDOMComponentWithClass(offers, 'row')
-    expect(div.getDOMNode().textContent).toEqual('5 von 10 Angeboten werden angezeigt')
+    expect(div.getDOMNode().textContent).toEqual('0 von 0 Angeboten werden angezeigt')

@@ -57,23 +57,32 @@ module.exports = ListInfo;
 var ListInfo = require('./ListInfo');
 
 var Offers = React.createClass({displayName: 'Offers',
+  getDefaultProps: function() {
+    return {
+      offers: []
+    };
+  },
   render: function() {
-      return (
-        React.DOM.div({className: "row"}, 
-          React.DOM.div({className: "col-lg-10"}, 
-            ListInfo({shownSize: "5", allSize: "10"})
-          )
+    return (
+      React.DOM.div({className: "row"}, 
+        React.DOM.div({className: "col-lg-10"}, 
+          ListInfo({shownSize: this.props.offers.length, allSize: this.props.offers.length})
         )
-      );
-    }
+      )
+    );
+  }
 });
 
 module.exports = Offers;
 
-var domready = require("domready");
+if (typeof($) != "undefined") {
+  var domready = require("domready");
 
-domready(function () {
-  React.renderComponent(Offers(), document.getElementById('offers-list'));
-});
+  domready(function () {
+    element = document.getElementById('offers-list')
+    data = $(element).data()
+    React.renderComponent(Offers(data), element);
+  });
+}
 
 },{"./ListInfo":2,"domready":1}]},{},[2,3]);

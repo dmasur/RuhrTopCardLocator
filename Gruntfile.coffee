@@ -6,15 +6,14 @@ module.exports = (grunt) ->
   paths = {
     dist: 'public/assets'
     tmp: 'tmp/grunt_tasks/'
-    vendor: 'vendor/'
+    client:
+      compiled: 'app/assets/javascripts/compiled.js'
+    test:
+      compiled: 'spec/javascripts/harness/compiled.js'
     src:
-      app: 'app/assets/javascripts/app.js'
       app_dir: 'app/assets/javascripts'
-      test: 'spec/javascripts/harness/src'
     temp:
       react: 'spec/javascripts/harness/src'
-      browserify: 'tmp/javascripts/build.js'
-      app: 'spec/javascripts/harness/application.js'
   }
 
   grunt.initConfig
@@ -55,24 +54,14 @@ module.exports = (grunt) ->
     browserify:
       client:
         src: ['<%= paths.temp.react %>/**/*.js']
-        dest: '<%= paths.src.app %>'
+        dest: '<%= paths.client.compiled %>'
         options:
           external: ['jQuery', 'react']
       test:
         src: ['<%= paths.temp.react %>/**/*.js']
-        dest: '<%= paths.temp.react %>/../app.js'
+        dest: '<%= paths.test.compiled %>'
         options:
           external: ['jQuery', 'react']
-
-    concat:
-      options:
-        separator: ''
-      app:
-        src: [
-          '<%= paths.temp.react %>/**/*.js',
-          'spec/javascripts/harness/exports.js'
-        ]
-        dest: '<%= paths.src.app %>'
 
   require('load-grunt-tasks')(grunt)
 
