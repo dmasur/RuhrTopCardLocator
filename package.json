@@ -1,13 +1,36 @@
 {
   "name": "ruhrtopcard-locator",
-  "dependencies" : {
-    "karma": ">= 0.12.16",
-    "karma-jasmine": ">= 0.2.2",
-    "karma-coffee-preprocessor": ">= 0.2.1",
-    "karma-phantomjs-launcher": ">= 0.1.4",
-    "karma-ng-haml2js-preprocessor": ">= 0.1.0",
-    "karma-osx-reporter": ">= 0.1.0",
-    "karma-ng-html2js-preprocessor": "git://github.com/monterail/karma-ng-html2js-preprocessor#feature/strip-sufix",
-    "phantomjs": ">= 1.9.7"
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^6.1.0",
+    "coffee-script": "^1.8.0",
+    "domready": "^1.0.7",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.0.1",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jest": "^0.1.1",
+    "grunt-notify": "^0.3.1",
+    "grunt-react": "^0.9.0",
+    "jest-cli": "^0.1.18",
+    "jquery": "^2.1.1",
+    "load-grunt-tasks": "^0.6.0",
+    "matchdep": "^0.3.0",
+    "react": "^0.11.2",
+    "react-tools": "^0.11.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "spec/javascripts/harness/preprocessor.js",
+    "testFileExtensions": [
+      "js",
+      "coffee"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ]
   }
 }
