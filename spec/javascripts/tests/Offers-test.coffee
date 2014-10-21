@@ -1,5 +1,5 @@
-jest.dontMock('../src/react/Offers')
-jest.dontMock('../src/react/ListInfo')
+jest.dontMock('../src/Offers')
+jest.dontMock('../src/ListInfo')
 
 describe "Offers", ->
   beforeEach ->
@@ -7,7 +7,7 @@ describe "Offers", ->
     global.TestUtils = React.addons.TestUtils
 
   it 'returns right output', ->
-    Offers = require '../src/react/Offers'
+    Offers = require '../src/Offers'
     offers = TestUtils.renderIntoDocument(Offers())
     div = TestUtils.findRenderedDOMComponentWithClass(offers, 'col-lg-10')
     expect(div.getDOMNode().textContent).toEqual('0 von 0 Angeboten werden angezeigt')

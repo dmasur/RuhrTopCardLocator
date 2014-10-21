@@ -1,37 +1,39 @@
 gulp = require('gulp')
-react = require('gulp-react')
-jest = require('gulp-jest')
-browserify = require('browserify')
-reactify = require('reactify')
-source = require("vinyl-source-stream")
-rename = require 'gulp-rename'
+livereload = require('gulp-livereload')
 
 gulp.task 'prepareTest', ->
-  gulp.src 'app/assets/javascripts/**/*.jsx'
-    .pipe react(harmony: true)
-    .pipe gulp.dest 'spec/javascripts/harness/src'
+  cjsx = require 'gulp-cjsx'
+  gutil = require 'gulp-util'
+  gulp.src 'app/react_js/**/*.cjsx'
+    .pipe cjsx({bare: true}).on('error', gutil.log)
+    .pipe gulp.dest 'spec/javascripts/src'
 
 gulp.task 'jest', ['prepareTest'], ->
-  gulp.src './spec/javascripts/harness'
+  jest = require('gulp-jest')
+  gulp.src './spec/javascripts'
     .pipe jest
       scriptPreprocessor: "./preprocessor.js"
-      unmockedModulePathPatterns: [
-          "node_modules/react"
-      ]
-      testDirectoryName: "__tests__"
+      unmockedModulePathPatterns: ["node_modules/react"]
+      testDirectoryName: "tests"
       testPathIgnorePatterns: [
           "node_modules",
           "spec/support"
       ]
-      testFileExtensions: [
-          "js",
-          "coffee"
-      ]
+      testFileExtensions: ["coffee"]
+
 gulp.task 'prepareApp', ->
-  b = browserify()
-  b.transform(reactify)
-  b.add('./app/react_js/application.js')
+  browserify = require('browserify')
+  source = require("vinyl-source-stream")
+  rename = require 'gulp-rename'
+  coffeeReactify = require 'coffee-reactify'
+  b = browserify({extensions: ['.cjsx', '.js']})
+  b.transform(coffeeReactify)
+  b.add('./app/react_js/application.coffee')
   b.bundle()
-    .pipe(source('app/react_js/application.js'))
+    .pipe source('app/react_js/application.coffee')
     .pipe rename('application.js')
     .pipe gulp.dest 'app/assets/javascripts'
+    .pipe livereload()
+
+gulp.task 'watch', ->
+  gulp.watch('app/react_js/**/*.cjsx', ['prepareApp', 'jest'])
