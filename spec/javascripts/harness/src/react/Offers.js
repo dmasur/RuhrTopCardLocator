@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
 var ListInfo = require('./ListInfo');
+var Sidebar = require('./Sidebar');
+var OffersList = require('./OffersList');
 
 var Offers = React.createClass({displayName: 'Offers',
   getDefaultProps: function() {
@@ -10,9 +12,13 @@ var Offers = React.createClass({displayName: 'Offers',
   },
   render: function() {
     return (
-      React.DOM.div({className: "row"}, 
+      React.DOM.div(null, 
+        React.DOM.div({className: "col-lg-2"}, 
+          Sidebar(null)
+        ), 
         React.DOM.div({className: "col-lg-10"}, 
-          ListInfo({shownSize: this.props.offers.length, allSize: this.props.offers.length})
+          ListInfo({shownSize: this.props.offers.length, allSize: this.props.offers.length}), 
+          OffersList({offers: this.props.offers})
         )
       )
     );
