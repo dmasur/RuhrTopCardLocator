@@ -54,7 +54,47 @@ module.exports = ListInfo;
 },{}],3:[function(require,module,exports){
 /** @jsx React.DOM */
 
+var OffersInfo = React.createClass({displayName: 'OffersInfo',
+  getDefaultProps: function() {
+    return {
+      offers: []
+    };
+  },
+  render: function() {
+    return (
+      React.DOM.div(null, 
+        OfferInfo({offer: offer})
+      )
+    );
+  }
+});
+
+module.exports = OffersInfo;
+
+},{}],4:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var OfferRow = React.createClass({displayName: 'OfferRow',
+  render: function() {
+    return (
+      React.DOM.tr(null, 
+        React.DOM.td(null, this.props.offer.name), 
+        React.DOM.td(null, this.props.offer.category), 
+        React.DOM.td(null), 
+        React.DOM.td(null)
+      )
+    );
+  }
+});
+
+module.exports = OfferRow;
+
+},{}],5:[function(require,module,exports){
+/** @jsx React.DOM */
+
 var ListInfo = require('./ListInfo');
+var Sidebar = require('./Sidebar');
+var OffersList = require('./OffersList');
 
 var Offers = React.createClass({displayName: 'Offers',
   getDefaultProps: function() {
@@ -64,9 +104,13 @@ var Offers = React.createClass({displayName: 'Offers',
   },
   render: function() {
     return (
-      React.DOM.div({className: "row"}, 
+      React.DOM.div(null, 
+        React.DOM.div({className: "col-lg-2"}, 
+          Sidebar(null)
+        ), 
         React.DOM.div({className: "col-lg-10"}, 
-          ListInfo({shownSize: this.props.offers.length, allSize: this.props.offers.length})
+          ListInfo({shownSize: this.props.offers.length, allSize: this.props.offers.length}), 
+          OffersList({offers: this.props.offers})
         )
       )
     );
@@ -85,4 +129,55 @@ if (typeof($) != "undefined") {
   });
 }
 
-},{"./ListInfo":2,"domready":1}]},{},[2,3]);
+},{"./ListInfo":2,"./OffersList":6,"./Sidebar":7,"domready":1}],6:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var OfferRow = require('./OfferRow');
+
+var OffersList = React.createClass({displayName: 'OffersList',
+  getDefaultProps: function() {
+    return {
+      offers: []
+    };
+  },
+  render: function() {
+    var rows = [];
+    this.props.offers.forEach(function(offer) {
+      rows.push(OfferRow({offer: offer}));
+    });
+    return (
+      React.DOM.table({className: "table table-striped"}, 
+        React.DOM.thead(null, 
+          React.DOM.tr(null, 
+            React.DOM.td(null, "Name"), 
+            React.DOM.td(null, "Kategorie"), 
+            React.DOM.td(null, "Bewertung"), 
+            React.DOM.td(null, "Entfernung"), 
+            React.DOM.td(null)
+          )
+        ), 
+        React.DOM.tbody(null, 
+          rows
+        )
+      )
+    );
+  }
+});
+
+module.exports = OffersList;
+
+},{"./OfferRow":4}],7:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var Sidebar = React.createClass({displayName: 'Sidebar',
+  render: function() {
+    return (
+      React.DOM.div(null
+      )
+    );
+  }
+});
+
+module.exports = Sidebar;
+
+},{}]},{},[2,3,4,5,6,7]);

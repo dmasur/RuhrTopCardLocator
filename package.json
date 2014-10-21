@@ -23,7 +23,9 @@
     "matchdep": "^0.3.0",
     "react": "^0.11.2",
     "react-tools": "^0.11.2",
-    "reactify": "^0.14.0"
+    "reactify": "^0.14.0",
+    "react-leaflet": "0.1.0-dev",
+    "react-tools": "^0.11.2"
   },
   "scripts": {
     "test": "jest"
