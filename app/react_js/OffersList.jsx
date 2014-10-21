@@ -1,6 +1,5 @@
-/** @jsx React.DOM */
-
-var OfferRow = require('./OfferRow');
+var React = require('react');
+var OfferRow = require('./OfferRow.jsx');
 
 var OffersList = React.createClass({
   getDefaultProps: function() {

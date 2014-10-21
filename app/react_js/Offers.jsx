@@ -1,8 +1,7 @@
-/** @jsx React.DOM */
-
-var ListInfo = require('./ListInfo');
-var Sidebar = require('./Sidebar');
-var OffersList = require('./OffersList');
+var React = require('react');
+var ListInfo = require('./ListInfo.jsx');
+var Sidebar = require('./Sidebar.jsx');
+var OffersList = require('./OffersList.jsx');
 
 var Offers = React.createClass({
   getDefaultProps: function() {
@@ -26,13 +25,3 @@ var Offers = React.createClass({
 });
 
 module.exports = Offers;
-
-if (typeof($) != "undefined") {
-  var domready = require("domready");
-
-  domready(function () {
-    element = document.getElementById('offers-list')
-    data = $(element).data()
-    React.renderComponent(Offers(data), element);
-  });
-}

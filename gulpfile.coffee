@@ -1,11 +1,14 @@
 gulp = require('gulp')
 react = require('gulp-react')
 jest = require('gulp-jest')
-browserify = require('gulp-browserify')
+browserify = require('browserify')
+reactify = require('reactify')
+source = require("vinyl-source-stream")
+rename = require 'gulp-rename'
 
 gulp.task 'prepareTest', ->
   gulp.src 'app/assets/javascripts/**/*.jsx'
-    .pipe react()
+    .pipe react(harmony: true)
     .pipe gulp.dest 'spec/javascripts/harness/src'
 
 gulp.task 'jest', ['prepareTest'], ->
@@ -25,8 +28,10 @@ gulp.task 'jest', ['prepareTest'], ->
           "coffee"
       ]
 gulp.task 'prepareApp', ->
-  gulp.src 'app/assets/javascripts/**/*.jsx'
-    .pipe browserify
-      insertGlobals : true,
-      debug : true
-    .pipe gulp.dest 'app/assets/javascripts/compiled'
+  b = browserify()
+  b.transform(reactify)
+  b.add('./app/react_js/application.js')
+  b.bundle()
+    .pipe(source('app/react_js/application.js'))
+    .pipe rename('application.js')
+    .pipe gulp.dest 'app/assets/javascripts'
