@@ -2,24 +2,39 @@ React = require 'react'
 ListInfo = require './ListInfo'
 Sidebar = require './Sidebar'
 OffersList = require './OffersList'
+jQuery = require 'jquery'
 
 Offers = React.createClass
-  getDefaultProps: ->
-    offers: []
+  getInitialState: ->
     filters:
       free: false
       halfPrice: false
       special: false
-  changeFilter: (event, target) ->
-    debugger
+    shownOffers: @props.offers
+
+  getDefaultProps: ->
+    offers: []
+
+  filterOffers: ->
+    @props.offers.filter (offer) =>
+      showOffer = !@state.filters[offer.kind]
+      showOffer
+
+  updateFilter: (filters) ->
+    this.state.filters = jQuery.merge(@state.filters, filters)
+
+    this.setState
+      filters: @state.filters
+      shownOffers: @.filterOffers()
+
   render: ->
     <div>
-      <div className='col-lg-2'>
-        <Sidebar changeFilter={this.changeFilter}/>
+      <div className='sidebar col-lg-2'>
+        <Sidebar updateFilter={this.updateFilter} filters={this.state.filters}/>
       </div>
-      <div className='col-lg-10'>
-        <ListInfo shownSize={this.props.offers.length} allSize={this.props.offers.length} />
-        <OffersList offers={this.props.offers} />
+      <div className='main col-lg-10'>
+        <ListInfo shownSize={this.state.shownOffers.length} allSize={this.props.offers.length} />
+        <OffersList offers={this.state.shownOffers} />
       </div>
     </div>
 
