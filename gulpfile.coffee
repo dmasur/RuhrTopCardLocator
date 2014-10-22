@@ -3,15 +3,12 @@ livereload = require('gulp-livereload')
 notify = require("gulp-notify")
 plumber = require('gulp-plumber')
 
-notifyError = (error) ->
+OnError = (error) ->
   notify.onError(
     title:    "Gulp",
     subtitle: "Error",
     message:  "Error: <%= error.message %>"
   )(error)
-
-OnError = (error) ->
-  notifyError(error)
   this.emit('end')
 
 gulp.task 'prepareTest', ->
@@ -25,6 +22,7 @@ gulp.task 'prepareTest', ->
 gulp.task 'jest', ['prepareTest'], ->
   jest = require('gulp-jest')
   gulp.src './spec/javascripts'
+    .pipe plumber({errorHandler: OnError})
     .pipe jest
       scriptPreprocessor: "./preprocessor.js"
       unmockedModulePathPatterns: ["node_modules/react"]
@@ -54,3 +52,4 @@ gulp.task 'prepareApp', ->
 
 gulp.task 'watch', ['prepareApp', 'jest'], ->
   gulp.watch('app/react_js/**/*.cjsx', ['prepareApp', 'jest'])
+  gulp.watch('spec/javascripts/**/*.coffee', ['jest'])
