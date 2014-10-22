@@ -7,5 +7,4 @@ node_modules
 .env
 config/database.yml
 app/assets/javascripts/application.js
-spec/javascripts/src/Sidebar.js
-spec/javascripts/src/Offers.js
+spec/javascripts/src/*.js
