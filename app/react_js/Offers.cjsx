@@ -4,7 +4,7 @@ Sidebar = require './Sidebar'
 OffersList = require './OffersList'
 jQuery = require 'jquery'
 
-Offers = React.createClass
+module.exports = React.createClass
   getInitialState: ->
     filters:
       free: false
@@ -37,5 +37,3 @@ Offers = React.createClass
         <OffersList offers={this.state.shownOffers} />
       </div>
     </div>
-
-module.exports = Offers;

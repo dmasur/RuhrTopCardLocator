@@ -1,6 +1,6 @@
 React = require 'react'
 
-OfferRow = React.createClass
+module.exports = React.createClass
   render: ->
     <tr className='offer-row'>
       <td className='name'>{this.props.offer.name}</td>
@@ -8,5 +8,3 @@ OfferRow = React.createClass
       <td></td>
       <td></td>
     </tr>
-
-module.exports = OfferRow;

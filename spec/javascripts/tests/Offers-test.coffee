@@ -3,6 +3,7 @@ jest.dontMock('../src/ListInfo')
 jest.dontMock('../src/OffersList')
 jest.dontMock('../src/OfferRow')
 jest.dontMock('../src/Sidebar')
+jest.dontMock('../src/sidebar/KindFilter')
 jest.dontMock('jquery')
 
 Offers = require '../src/Offers'

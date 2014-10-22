@@ -1,7 +1,7 @@
 React = require 'react'
 OfferRow = require './OfferRow'
 
-OffersList = React.createClass
+module.exports = React.createClass
   getDefaultProps: ->
     offers: []
   render: ->
@@ -23,5 +23,3 @@ OffersList = React.createClass
         {rows}
       </tbody>
     </table>
-
-module.exports = OffersList
