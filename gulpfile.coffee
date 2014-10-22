@@ -1,11 +1,25 @@
 gulp = require('gulp')
 livereload = require('gulp-livereload')
+notify = require("gulp-notify")
+plumber = require('gulp-plumber')
+
+notifyError = (error) ->
+  notify.onError(
+    title:    "Gulp",
+    subtitle: "Error",
+    message:  "Error: <%= error.message %>"
+  )(error)
+
+OnError = (error) ->
+  notifyError(error)
+  this.emit('end')
 
 gulp.task 'prepareTest', ->
   cjsx = require 'gulp-cjsx'
   gutil = require 'gulp-util'
   gulp.src 'app/react_js/**/*.cjsx'
-    .pipe cjsx({bare: true}).on('error', gutil.log)
+    .pipe plumber({errorHandler: OnError})
+    .pipe cjsx({bare: true})
     .pipe gulp.dest 'spec/javascripts/src'
 
 gulp.task 'jest', ['prepareTest'], ->
@@ -20,6 +34,7 @@ gulp.task 'jest', ['prepareTest'], ->
           "spec/support"
       ]
       testFileExtensions: ["coffee"]
+    .pipe(notify("Tests Success"))
 
 gulp.task 'prepareApp', ->
   browserify = require('browserify')
@@ -30,10 +45,12 @@ gulp.task 'prepareApp', ->
   b.transform(coffeeReactify)
   b.add('./app/react_js/application.coffee')
   b.bundle()
+    .on 'error', OnError
     .pipe source('app/react_js/application.coffee')
     .pipe rename('application.js')
     .pipe gulp.dest 'app/assets/javascripts'
     .pipe livereload()
+    .pipe(notify("App Success"))
 
-gulp.task 'watch', ->
+gulp.task 'watch', ['prepareApp', 'jest'], ->
   gulp.watch('app/react_js/**/*.cjsx', ['prepareApp', 'jest'])

@@ -8,3 +8,4 @@ node_modules
 config/database.yml
 app/assets/javascripts/application.js
 spec/javascripts/src/Sidebar.js
+spec/javascripts/src/Offers.js

@@ -1,14 +1,19 @@
 React = require 'react'
+Button = require 'react-bootstrap/Button'
+ButtonGroup = require 'react-bootstrap/ButtonGroup'
 
 Sidebar = React.createClass
   render: ->
     <div className='map-sidebar'>
-      <div className='kinds'>
-        <h5 className='text-center'>Arten</h5>
-        <div className='btn-group-vertical'>
-          <label className='btn btn-default'>Kostenlos</label>
-          <label className='btn btn-default'>Halber Preis</label>
-          <label className='btn btn-default'>Special</label>
+      <div className='well'>
+        <h4 className='text-center'>Filter</h4>
+        <div className='kinds'>
+          <h5 className='text-center'>Arten</h5>
+          <ButtonGroup vertical onClick={this.props.changeFilter}>
+            <Button name='free'>Kostenlos</Button>
+            <Button name='halfPrice'>Halber Preis</Button>
+            <Button name='special'>Special</Button>
+          </ButtonGroup>
         </div>
       </div>
     </div>
