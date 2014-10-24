@@ -8,6 +8,6 @@ module.exports = React.createClass
     <div className='map-sidebar'>
       <div className='well'>
         <h4 className='text-center'>Filter</h4>
-        <KindFilter filters={this.props.filters} updateFilter={this.props.updateFilter} />
+        <KindFilter />
       </div>
     </div>

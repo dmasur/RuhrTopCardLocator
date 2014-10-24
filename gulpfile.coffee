@@ -14,7 +14,7 @@ OnError = (error) ->
 gulp.task 'prepareTest', ->
   cjsx = require 'gulp-cjsx'
   gutil = require 'gulp-util'
-  gulp.src 'app/react_js/**/*.cjsx'
+  gulp.src ['app/react_js/**/*.cjsx', 'app/react_js/**/*.coffee']
     .pipe plumber({errorHandler: OnError})
     .pipe cjsx({bare: true})
     .pipe gulp.dest 'spec/javascripts/src'
@@ -39,7 +39,7 @@ gulp.task 'prepareApp', ->
   source = require("vinyl-source-stream")
   rename = require 'gulp-rename'
   coffeeReactify = require 'coffee-reactify'
-  b = browserify({extensions: ['.cjsx', '.js']})
+  b = browserify({extensions: ['.cjsx', '.js', '.coffee']})
   b.transform(coffeeReactify)
   b.add('./app/react_js/application.coffee')
   b.bundle()
@@ -51,5 +51,5 @@ gulp.task 'prepareApp', ->
     .pipe(notify("App Success"))
 
 gulp.task 'watch', ['prepareApp', 'jest'], ->
-  gulp.watch('app/react_js/**/*.cjsx', ['prepareApp', 'jest'])
+  gulp.watch('app/react_js/**/*.*', ['prepareApp', 'jest'])
   gulp.watch('spec/javascripts/**/*.coffee', ['jest'])

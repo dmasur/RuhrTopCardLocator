@@ -23,6 +23,7 @@
     "matchdep": "^0.3.0",
     "react": "^0.11.2",
     "react-bootstrap": "^0.12.0",
+    "react-flux": "0.0.13",
     "react-leaflet": "0.1.0-dev",
     "react-tools": "^0.11.2",
     "reactify": "^0.14.0",
