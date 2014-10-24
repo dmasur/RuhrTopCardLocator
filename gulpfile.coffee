@@ -14,7 +14,7 @@ OnError = (error) ->
 gulp.task 'prepareTest', ->
   cjsx = require 'gulp-cjsx'
   gutil = require 'gulp-util'
-  gulp.src ['app/react_js/**/*.cjsx', 'app/react_js/**/*.coffee']
+  gulp.src ['app/javascripts/**/*.cjsx', 'app/javascripts/**/*.coffee']
     .pipe plumber({errorHandler: OnError})
     .pipe cjsx({bare: true})
     .pipe gulp.dest 'spec/javascripts/src'
@@ -41,15 +41,15 @@ gulp.task 'prepareApp', ->
   coffeeReactify = require 'coffee-reactify'
   b = browserify({extensions: ['.cjsx', '.js', '.coffee']})
   b.transform(coffeeReactify)
-  b.add('./app/react_js/application.coffee')
+  b.add('./app/javascripts/application.coffee')
   b.bundle()
     .on 'error', OnError
-    .pipe source('app/react_js/application.coffee')
+    .pipe source('app/javascripts/application.coffee')
     .pipe rename('application.js')
     .pipe gulp.dest 'app/assets/javascripts'
     .pipe livereload()
     .pipe(notify("App Success"))
 
 gulp.task 'watch', ['prepareApp', 'jest'], ->
-  gulp.watch('app/react_js/**/*.*', ['prepareApp', 'jest'])
+  gulp.watch('app/javascripts/**/*.*', ['prepareApp', 'jest'])
   gulp.watch('spec/javascripts/**/*.coffee', ['jest'])

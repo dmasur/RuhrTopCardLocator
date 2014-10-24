@@ -1,10 +1,10 @@
-jest.dontMock('../src/ListInfo');
+jest.dontMock('../../src/components/ListInfo');
 
 describe "ListInfo", ->
   beforeEach ->
     global.React = require('react/addons')
     global.TestUtils = React.addons.TestUtils
-    global.ListInfo = require '../src/ListInfo'
+    global.ListInfo = require '../../src/components/ListInfo'
 
   it 'returns right output with props', ->
     list_info = TestUtils.renderIntoDocument(ListInfo({shownSize:"1", allSize:"2"}))

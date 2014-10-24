@@ -6,9 +6,9 @@ Button = require('react-bootstrap/Button');
 
 ButtonGroup = require('react-bootstrap/ButtonGroup');
 
-filterStore = require('../stores/filter/store');
+filterStore = require('../../stores/filterStore');
 
-filterActions = require('../stores/filter/actions');
+filterActions = require('../../actions/filterActions');
 
 ReactFlux = require('react-flux');
 

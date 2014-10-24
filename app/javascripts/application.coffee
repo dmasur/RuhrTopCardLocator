@@ -1,4 +1,4 @@
-Offers = require './Offers.cjsx'
+Offers = require './components/Offers.cjsx'
 $ = require 'jQuery'
 React = require 'react'
 

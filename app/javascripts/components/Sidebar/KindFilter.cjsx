@@ -1,8 +1,8 @@
 React = require 'react'
 Button = require 'react-bootstrap/Button'
 ButtonGroup = require 'react-bootstrap/ButtonGroup'
-filterStore = require '../stores/filter/store'
-filterActions = require '../stores/filter/actions'
+filterStore = require '../../stores/filterStore'
+filterActions = require '../../actions/filterActions'
 ReactFlux = require 'react-flux'
 
 module.exports = React.createClass

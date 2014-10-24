@@ -1,7 +1,7 @@
 React = require 'react'
 Button = require 'react-bootstrap/Button'
 ButtonGroup = require 'react-bootstrap/ButtonGroup'
-KindFilter = require './sidebar/KindFilter'
+KindFilter = require './Sidebar/KindFilter'
 
 module.exports = React.createClass
   render: ->

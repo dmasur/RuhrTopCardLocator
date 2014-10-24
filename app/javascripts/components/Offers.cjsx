@@ -3,7 +3,7 @@ ListInfo = require './ListInfo'
 Sidebar = require './Sidebar'
 OffersList = require './OffersList'
 jQuery = require 'jquery'
-filterStore = require './stores/filter/store'
+filterStore = require '../stores/filterStore'
 ReactFlux = require 'react-flux'
 
 module.exports = React.createClass

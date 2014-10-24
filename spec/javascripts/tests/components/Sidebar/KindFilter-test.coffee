@@ -22,9 +22,9 @@ offer = {
 
 React = require('react/addons')
 TestUtils = React.addons.TestUtils
-filterActions = require '../../../src/actions/filterActions'
-KindFilter = require '../../../src/components/Sidebar/KindFilter'
-filterStore = require '../../../src/stores/filterStore'
+filterActions = require '../../src/actions/filterActions'
+KindFilter = require '../../src/components/Sidebar/KindFilter'
+filterStore = require '../../src/stores/filterStore'
 
 describe "KindFilter", ->
   it 'default stored value is false', ->

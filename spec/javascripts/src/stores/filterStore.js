@@ -2,7 +2,7 @@ var ReactFlux, filterConstants, jQuery;
 
 ReactFlux = require('react-flux');
 
-filterConstants = require('./constants');
+filterConstants = require('../constants/filterConstants');
 
 jQuery = require('jquery');
 

@@ -8,3 +8,8 @@ node_modules
 config/database.yml
 app/assets/javascripts/application.js
 spec/javascripts/src/*.js
+spec/javascripts/src/components/ListInfo.js
+spec/javascripts/src/components/OfferRow.js
+spec/javascripts/src/components/Offers.js
+spec/javascripts/src/components/OffersList.js
+spec/javascripts/src/components/Sidebar.js
