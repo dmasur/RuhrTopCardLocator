@@ -1,3 +1,2 @@
-ReactFlux = require('react-flux')
-
-module.exports = ReactFlux.createConstants ['ALL', 'UPDATE'], 'FILTER'
+module.exports =
+  MERGE_FILTER: "MERGE_FILTER"

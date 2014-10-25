@@ -6,5 +6,5 @@ module.exports = React.createClass
     allSize: 0
   render: ->
     <div className='text-center lead list-info'>
-      {this.props.shownSize} von {this.props.allSize} Angeboten werden angezeigt
+      {@props.shownSize} von {@props.allSize} Angeboten werden angezeigt
     </div>

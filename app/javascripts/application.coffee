@@ -4,5 +4,5 @@ React = require 'react'
 
 $ ->
   element = document.getElementById('offers-list')
-  data = $(element).data()
-  React.renderComponent(Offers(data), element)
+  offers = $(element).data().offers
+  React.renderComponent(Offers(offers: offers), element)

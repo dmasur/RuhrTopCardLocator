@@ -25,7 +25,9 @@ gulp.task 'jest', ['prepareTest'], ->
     .pipe plumber({errorHandler: OnError})
     .pipe jest
       scriptPreprocessor: "./preprocessor.js"
-      unmockedModulePathPatterns: ["node_modules/react"]
+      unmockedModulePathPatterns: [
+        "node_modules/react"
+        ]
       testDirectoryName: "tests"
       testPathIgnorePatterns: [
           "node_modules",

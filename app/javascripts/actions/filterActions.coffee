@@ -1,5 +1,5 @@
-ReactFlux = require('react-flux')
 filterConstants = require '../constants/filterConstants'
 
-module.exports = ReactFlux.createActions
-  update: [filterConstants.UPDATE]
+module.exports =
+  mergeFilter: (filter) ->
+    this.dispatch(filterConstants.MERGE_FILTER, filter)

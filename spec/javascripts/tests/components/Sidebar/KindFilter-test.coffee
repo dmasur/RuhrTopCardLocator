@@ -2,6 +2,9 @@ jest.dontMock('../../../src/components/Sidebar/KindFilter')
 jest.dontMock('../../../src/actions/filterActions')
 jest.dontMock('../../../src/constants/filterConstants')
 jest.dontMock('../../../src/stores/filterStore')
+jest.dontMock('fluxxor')
+jest.dontMock('util')
+jest.dontMock('../../../src/flux')
 
 offer = {
    "id":2,
@@ -22,54 +25,46 @@ offer = {
 
 React = require('react/addons')
 TestUtils = React.addons.TestUtils
-filterActions = require '../../src/actions/filterActions'
-KindFilter = require '../../src/components/Sidebar/KindFilter'
-filterStore = require '../../src/stores/filterStore'
+KindFilter = require '../../../src/components/Sidebar/KindFilter'
+flux = require '../../../src/flux'
+filterStore = flux.store('filterStore')
 
 describe "KindFilter", ->
+  beforeEach ->
+    @kindFilter = TestUtils.renderIntoDocument(KindFilter(offer: offer))
+    @kindFilter.reset()
+
   it 'default stored value is false', ->
-    expect(filterStore.get 'free').toEqual false
+    expect(filterStore.getKinds().free).toEqual false
 
   it 'default prop value is false', ->
-    kindFilter = TestUtils.renderIntoDocument(KindFilter(offer: offer))
-    expect(kindFilter.state.free).toEqual false
+    expect(@kindFilter.state.kindFilter.free).toEqual false
 
   it 'default button is inactive', ->
-    kindFilter = TestUtils.renderIntoDocument(KindFilter(offer: offer))
-    filterFreeButton = TestUtils.scryRenderedDOMComponentsWithTag(kindFilter, 'button')[0]
+    filterFreeButton = TestUtils.scryRenderedDOMComponentsWithTag(@kindFilter, 'button')[0]
     expect(filterFreeButton.props.active).toEqual false
 
   describe 'click on filter button', ->
     describe 'free: false', ->
       beforeEach ->
-        @kindFilter = TestUtils.renderIntoDocument(KindFilter(offer: offer))
         @filterFreeButton = TestUtils.scryRenderedDOMComponentsWithTag(@kindFilter, 'button')[0]
         TestUtils.Simulate.click(@filterFreeButton)
 
       it 'changes kindFilter state', ->
-        expect(@kindFilter.state.free).toEqual true
-
-      it 'changes filterStore', ->
-        expect(filterStore.get 'free').toEqual true
+        expect(@kindFilter.state.kindFilter.free).toEqual true
 
       it 'changes button active state', ->
         expect(@filterFreeButton.props.active).toEqual true
 
     describe 'free: true', ->
       beforeEach ->
-        filterActions.update { free: true }
+        filterStore.mergeFilter { kinds: { free: true } }
         @kindFilter = TestUtils.renderIntoDocument(KindFilter(offer: offer))
         @filterFreeButton = TestUtils.scryRenderedDOMComponentsWithTag(@kindFilter, 'button')[0]
         TestUtils.Simulate.click(@filterFreeButton)
 
       it 'changes kindFilter state', ->
-        expect(@kindFilter.state.free).toEqual false
+        expect(@kindFilter.state.kindFilter.free).toEqual false
 
-      it 'changes filterStore', ->
-        # TODO: Why is this needed?
-        filterStore = require '../../src/stores/filterStore'
-        expect(filterStore.get 'free').toEqual false
-
-      # TODO: Why is this not working
-      xit 'changes button active state', ->
+      it 'changes button active state', ->
         expect(@filterFreeButton.props.active).toEqual false

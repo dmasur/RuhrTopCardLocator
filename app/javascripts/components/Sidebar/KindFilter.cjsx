@@ -3,28 +3,39 @@ Button = require 'react-bootstrap/Button'
 ButtonGroup = require 'react-bootstrap/ButtonGroup'
 filterStore = require '../../stores/filterStore'
 filterActions = require '../../actions/filterActions'
-ReactFlux = require 'react-flux'
+Fluxxor = require 'fluxxor'
+FluxMixin = Fluxxor.FluxMixin(React)
+StoreWatchMixin = Fluxxor.StoreWatchMixin
+flux = require '../../flux'
 
 module.exports = React.createClass
-  mixins: [ ReactFlux.mixin(filterStore) ]
+  mixins: [FluxMixin, StoreWatchMixin("filterStore")]
 
-  getStateFromStores: ->
-    free: filterStore.state.get('free')
-    halfPrice: filterStore.state.get('halfPrice')
-    special: filterStore.state.get('special')
+  getStateFromFlux: ->
+    kindFilter: @.getFlux().store("filterStore").getKinds()
+
+  getDefaultProps: ->
+    flux: flux
+
+  reset: ->
+    store = @.getFlux().store('filterStore')
+    # console.log 'KindFilter.reset: Before', store.getKinds()
+    store.reset()
+    # console.log 'KindFilter.reset: After', store.getKinds()
+    @state = @getStateFromFlux()
 
   updateFilter: (event) ->
-    filters = @state
-    filters[event.target.name] = !filters[event.target.name]
-    filterActions.update(filters)
+    kindFilter = @state.kindFilter
+    kindFilter[event.target.name] = !kindFilter[event.target.name]
+    @.getFlux().actions.mergeFilter(kinds: kindFilter)
     event.target.blur()
 
   render: ->
     <div className='kinds'>
       <h5 className='text-center'>Arten</h5>
       <ButtonGroup vertical>
-        <Button name='free' active={@state.free} onClick={@.updateFilter}>Kostenlos</Button>
-        <Button name='halfPrice' active={@state.halfPrice} onClick={@.updateFilter}>Halber Preis</Button>
-        <Button name='special' active={@state.special} onClick={@.updateFilter}>Spezial</Button>
+        <Button name='free' active={@state.kindFilter.free} onClick={@.updateFilter}>Kostenlos</Button>
+        <Button name='halfPrice' active={@state.kindFilter.halfPrice} onClick={@.updateFilter}>Halber Preis</Button>
+        <Button name='special' active={@state.kindFilter.special} onClick={@.updateFilter}>Spezial</Button>
       </ButtonGroup>
     </div>

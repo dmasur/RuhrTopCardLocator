@@ -4,9 +4,10 @@ OfferRow = require './OfferRow'
 module.exports = React.createClass
   getDefaultProps: ->
     offers: []
+    
   render: ->
     rows = []
-    this.props.offers.forEach (offer) ->
+    @props.offers.forEach (offer) ->
       rows.push <OfferRow offer={offer} />
 
     <table className='table table-striped'>
