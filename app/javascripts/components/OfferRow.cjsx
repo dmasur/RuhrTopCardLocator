@@ -7,5 +7,5 @@ module.exports = React.createClass
       <td className='name'>{@props.offer.name}</td>
       <td>{@props.offer.category}</td>
       <td><Stars count={@props.offer.rating} /></td>
-      <td></td>
+      <td>{@props.offer.distanceString}</td>
     </tr>

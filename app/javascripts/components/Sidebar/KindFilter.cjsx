@@ -1,24 +1,20 @@
 React = require 'react'
 Button = require 'react-bootstrap/Button'
 ButtonGroup = require 'react-bootstrap/ButtonGroup'
-filterStore = require '../../stores/filterStore'
-filterActions = require '../../actions/filterActions'
+offerStore = require '../../stores/offerStore'
 Fluxxor = require 'fluxxor'
-FluxMixin = Fluxxor.FluxMixin(React)
-StoreWatchMixin = Fluxxor.StoreWatchMixin
-flux = require '../../flux'
 
 module.exports = React.createClass
-  mixins: [FluxMixin, StoreWatchMixin("filterStore")]
+  mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
-    kindFilter: @.getFlux().store("filterStore").getKinds()
+    kindFilter: @.getFlux().store("offerStore").getKinds()
 
   getDefaultProps: ->
-    flux: flux
+    flux: require '../../flux'
 
   reset: ->
-    store = @.getFlux().store('filterStore')
+    store = @.getFlux().store('offerStore')
     # console.log 'KindFilter.reset: Before', store.getKinds()
     store.reset()
     # console.log 'KindFilter.reset: After', store.getKinds()

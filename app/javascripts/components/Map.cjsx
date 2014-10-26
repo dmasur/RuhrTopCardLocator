@@ -1,5 +1,4 @@
 react = require "react"
-
 ReactLeaflet = require "react-leaflet"
 
 module.exports = react.createClass

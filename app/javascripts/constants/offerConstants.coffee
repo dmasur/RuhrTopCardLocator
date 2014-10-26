@@ -1,2 +1,3 @@
 module.exports =
   MERGE_FILTER: "MERGE_FILTER"
+  SET_POSITION: "SET_POSITION"

@@ -4,7 +4,7 @@ OfferRow = require './OfferRow'
 module.exports = React.createClass
   getDefaultProps: ->
     offers: []
-    
+
   render: ->
     rows = []
     @props.offers.forEach (offer) ->

@@ -1,7 +1,7 @@
 jest.dontMock('../../../src/components/Sidebar/KindFilter')
-jest.dontMock('../../../src/actions/filterActions')
-jest.dontMock('../../../src/constants/filterConstants')
-jest.dontMock('../../../src/stores/filterStore')
+jest.dontMock('../../../src/actions/offerActions')
+jest.dontMock('../../../src/constants/offerConstants')
+jest.dontMock('../../../src/stores/offerStore')
 jest.dontMock('fluxxor')
 jest.dontMock('util')
 jest.dontMock('../../../src/flux')
@@ -27,7 +27,7 @@ React = require('react/addons')
 TestUtils = React.addons.TestUtils
 KindFilter = require '../../../src/components/Sidebar/KindFilter'
 flux = require '../../../src/flux'
-filterStore = flux.store('filterStore')
+offerStore = flux.store('offerStore')
 
 describe "KindFilter", ->
   beforeEach ->
@@ -35,7 +35,7 @@ describe "KindFilter", ->
     @kindFilter.reset()
 
   it 'default stored value is false', ->
-    expect(filterStore.getKinds().free).toEqual false
+    expect(offerStore.getKinds().free).toEqual false
 
   it 'default prop value is false', ->
     expect(@kindFilter.state.kindFilter.free).toEqual false
@@ -58,7 +58,7 @@ describe "KindFilter", ->
 
     describe 'free: true', ->
       beforeEach ->
-        filterStore.mergeFilter { kinds: { free: true } }
+        offerStore.mergeFilter { kinds: { free: true } }
         @kindFilter = TestUtils.renderIntoDocument(KindFilter(offer: offer))
         @filterFreeButton = TestUtils.scryRenderedDOMComponentsWithTag(@kindFilter, 'button')[0]
         TestUtils.Simulate.click(@filterFreeButton)

@@ -1,11 +1,11 @@
 Fluxxor = require 'fluxxor'
-filterStore = require './stores/filterStore'
-filterActions = require './actions/filterActions'
+offerStore = require './stores/offerStore'
+offerActions = require './actions/offerActions'
 
 stores =
-  filterStore: new filterStore()
+  offerStore: new offerStore()
 
-flux = new Fluxxor.Flux(stores, filterActions)
+flux = new Fluxxor.Flux(stores, offerActions)
 
 # console.log flux
 #

@@ -3,30 +3,25 @@ ListInfo = require './ListInfo'
 Sidebar = require './Sidebar'
 OffersList = require './OffersList'
 Map = require './Map'
-filterStore = require '../stores/filterStore'
+offerStore = require '../stores/offerStore'
 Fluxxor = require 'fluxxor'
-FluxMixin = Fluxxor.FluxMixin(React)
-StoreWatchMixin = Fluxxor.StoreWatchMixin
-flux =  require '../flux'
 
 module.exports = React.createClass
-  mixins: [FluxMixin, StoreWatchMixin("filterStore")]
+  mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
     flux = @.getFlux()
-    filterStore: flux.store('filterStore')
+    offerStore: flux.store('offerStore')
 
   getDefaultProps: ->
     offers: []
-    flux: flux
+    flux: require '../flux'
 
-  filterOffers: ->
-    @props.offers.filter (offer) =>
-      showOffer = !@state.filterStore.getKinds()[offer.kind]
-      showOffer
+  componentWillMount: ->
+    @state.offerStore.setOffers(@props.offers)
 
   render: ->
-    shownOffers = @.filterOffers()
+    shownOffers = @state.offerStore.getShownOffers()
     <div>
       <div className='sidebar col-md-2'>
         <Sidebar />
