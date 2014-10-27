@@ -1,6 +1,6 @@
 Offers = require './components/Offers.cjsx'
 $ = require 'jQuery'
-React = require 'react'
+window.React = React = require 'react'
 
 $ ->
   element = document.getElementById('offers-list')
