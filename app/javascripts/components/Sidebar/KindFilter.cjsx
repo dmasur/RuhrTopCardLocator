@@ -5,6 +5,7 @@ offerStore = require '../../stores/offerStore'
 Fluxxor = require 'fluxxor'
 
 module.exports = React.createClass
+  displayName: 'KindFilter'
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->

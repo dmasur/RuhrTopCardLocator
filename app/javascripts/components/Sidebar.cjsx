@@ -5,6 +5,8 @@ KindFilter = require './Sidebar/KindFilter'
 LocationFilter = require './Sidebar/LocationFilter'
 
 module.exports = React.createClass
+  displayName: 'Sidebar'
+  
   render: ->
     <div className='map-sidebar'>
       <div className='well'>

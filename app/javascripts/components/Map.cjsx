@@ -2,6 +2,8 @@ react = require "react"
 ReactLeaflet = require "react-leaflet"
 
 module.exports = react.createClass
+  displayName: 'Map'
+  
   render: ->
     ReactLeaflet.Map
       center: [51.505, -0.09]

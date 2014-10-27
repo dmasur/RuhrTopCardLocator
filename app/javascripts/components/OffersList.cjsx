@@ -2,6 +2,8 @@ React = require 'react'
 OfferRow = require './OfferRow'
 
 module.exports = React.createClass
+  displayName: 'OfferList'
+  
   getDefaultProps: ->
     offers: []
 

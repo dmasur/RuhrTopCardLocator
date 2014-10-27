@@ -6,6 +6,7 @@ offerActions = require '../../actions/offerActions'
 Fluxxor = require 'fluxxor'
 
 module.exports = React.createClass
+  displayName: 'LocationFilter'
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->

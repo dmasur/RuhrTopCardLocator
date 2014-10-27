@@ -2,6 +2,8 @@ React = require 'react'
 Stars = require './Stars'
 
 module.exports = React.createClass
+  displayName: 'OfferRow'
+  
   render: ->
     <tr className='offer-row'>
       <td className='name'>{@props.offer.name}</td>

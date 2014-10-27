@@ -5,6 +5,8 @@ Number::times = (fn) ->
   return
 
 module.exports = React.createClass
+  displayName: 'Stars'
+  
   stars: (count, iconClass) ->
     code = []
     key = 0
