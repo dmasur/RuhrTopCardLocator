@@ -27,7 +27,8 @@ gulp.task 'jest', ['prepareTest'], ->
       scriptPreprocessor: "./preprocessor.js"
       unmockedModulePathPatterns: [
         "node_modules/react",
-        "node_modules/fluxxor-jest-utils"
+        "node_modules/fluxxor-jest-utils",
+        "jquery"
         ]
       testDirectoryName: "tests"
       testPathIgnorePatterns: [

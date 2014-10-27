@@ -1,5 +1,5 @@
 jest.dontMock('../../src/components/Offers')
-jest.dontMock('jquery')
+jest.dontMock('fluxxor')
 
 Offers = require '../../src/components/Offers'
 React = require('react/addons')

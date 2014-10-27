@@ -1,7 +1,6 @@
 jest.dontMock '../../src/stores/offerStore'
 jest.dontMock 'fluxxor'
 jest.dontMock 'util'
-jest.dontMock 'jquery'
 
 offer = {
    "id":2,
