@@ -30,6 +30,7 @@ module.exports = Fluxxor.createStore
   getShownOffers: ->
     @offers.filter (offer) =>
       showOffer = !@filters.kinds[offer.kind]
+      showOffer &&= !@filters.categories[offer.category] if offer.kind == 'free'
       showOffer
 
   initialize: ->
@@ -44,6 +45,14 @@ module.exports = Fluxxor.createStore
         free: false
         halfPrice: false
         special: false
+      categories:
+        action: false
+        water: false
+        industry: false
+        museeum: false
 
   getKinds: ->
     @filters.kinds
+
+  getCategories: ->
+    @filters.categories

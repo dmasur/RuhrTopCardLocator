@@ -9,14 +9,16 @@ module.exports = React.createClass
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
-    categoryFilter: @.getFlux().store("offerStore").getCategories()
+    offerStore = @.getFlux().store("offerStore")
+    
+    filterFreeOffers: offerStore.getKinds().free
+    categoryFilter: offerStore.getCategories()
 
   getDefaultProps: ->
     flux: require '../../flux'
 
   reset: ->
-    store = @.getFlux().store('offerStore')
-    store.reset()
+    @.getFlux().store('offerStore').reset()
     @state = @getStateFromFlux()
 
   updateFilter: (event) ->
@@ -26,13 +28,12 @@ module.exports = React.createClass
     event.target.blur()
 
   render: ->
-    return unless categoryFilter.getKinds().free
-
     <div className='categories'>
       <h5 className='text-center'>Kategorien</h5>
       <ButtonGroup vertical>
-        <Button name='free' active={@state.categoryFilter.free} onClick={@.updateFilter}>Kostenlos</Button>
-        <Button name='halfPrice' active={@state.categoryFilter.halfPrice} onClick={@.updateFilter}>Halber Preis</Button>
-        <Button name='special' active={@state.categoryFilter.special} onClick={@.updateFilter}>Spezial</Button>
+        <Button name='action' disabled={@state.filterFreeOffers} active={@state.categoryFilter.action} onClick={@.updateFilter}>Erlebnis, Spaß und Action</Button>
+        <Button name='water' disabled={@state.filterFreeOffers} active={@state.categoryFilter.water} onClick={@.updateFilter}>Schifffahrt und Bäder</Button>
+        <Button name='industry' disabled={@state.filterFreeOffers} active={@state.categoryFilter.industry} onClick={@.updateFilter}>Erlebnis Industriekultur</Button>
+        <Button name='museeum' disabled={@state.filterFreeOffers} active={@state.categoryFilter.museeum} onClick={@.updateFilter}>Schätze und Museen</Button>
       </ButtonGroup>
     </div>

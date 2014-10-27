@@ -30,7 +30,7 @@ module.exports = React.createClass
     @.getFlux().actions.setPosition(position)
 
   render: ->
-    return unless @props.geolocation_possible
+    return <div /> unless @props.geolocation_possible
 
     <div className='location'>
       <ButtonGroup vertical>

@@ -8,7 +8,7 @@ Fluxxor = require 'fluxxor'
 
 module.exports = React.createClass
   displayName: 'Offers'
-  
+
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
@@ -24,11 +24,12 @@ module.exports = React.createClass
 
   render: ->
     shownOffers = @state.offerStore.getShownOffers()
+    
     <div>
-      <div className='sidebar col-md-2'>
+      <div className='sidebar col-md-3'>
         <Sidebar />
       </div>
-      <div className='main col-md-10'>
+      <div className='main col-md-9'>
         <ListInfo shownSize={shownOffers.length} allSize={@props.offers.length} />
         <OffersList offers={shownOffers} />
       </div>
