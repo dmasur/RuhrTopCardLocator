@@ -12,7 +12,7 @@ module.exports = React.createClass
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
-    offerStore: @.getFlux().store('offerStore')
+    offerStore: @getFlux().store('offerStore')
 
   getDefaultProps: ->
     offers: []

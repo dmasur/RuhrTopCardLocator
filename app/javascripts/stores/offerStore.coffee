@@ -7,7 +7,7 @@ module.exports = Fluxxor.createStore
     # console.log 'merge', @filters, new_filters
     @filters = jquery.extend @filters, new_filters
     # console.log "Set Kind Free State to #{@filters.kinds.free}"
-    @.emit("change")
+    @emit("change")
 
   setPosition: (position) ->
     latLng = new Leaflet.LatLng(position.coords.latitude, position.coords.longitude)
@@ -15,7 +15,7 @@ module.exports = Fluxxor.createStore
       offer.distance = latLng.distanceTo(offer.latLng)
       rounded_distance =  Math.round(offer.distance / 10) / 100
       offer.distanceString = "#{rounded_distance} km"
-    @.emit("change")
+    @emit("change")
 
   setOffers: (offers) ->
     @offers = offers
@@ -25,7 +25,7 @@ module.exports = Fluxxor.createStore
 
   toggleOfferVisit: (offer) ->
     offer.visited = !offer.visited
-    @.emit("change")
+    @emit("change")
 
   actions:
     MERGE_FILTER: 'mergeFilter'

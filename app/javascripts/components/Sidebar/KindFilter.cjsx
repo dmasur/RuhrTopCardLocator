@@ -9,28 +9,28 @@ module.exports = React.createClass
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
-    kindFilter: @.getFlux().store("offerStore").getKinds()
+    kindFilter: @getFlux().store("offerStore").getKinds()
 
   getDefaultProps: ->
     flux: require '../../flux'
 
   reset: ->
-    store = @.getFlux().store('offerStore')
+    store = @getFlux().store('offerStore')
     store.reset()
     @state = @getStateFromFlux()
 
   updateFilter: (event) ->
     kindFilter = @state.kindFilter
     kindFilter[event.target.name] = !kindFilter[event.target.name]
-    @.getFlux().actions.mergeFilter(kinds: kindFilter)
+    @getFlux().actions.mergeFilter(kinds: kindFilter)
     event.target.blur()
 
   render: ->
     <div className='kinds'>
       <h5 className='text-center'>Arten</h5>
       <ButtonGroup vertical>
-        <Button name='free' active={@state.kindFilter.free} onClick={@.updateFilter}>Kostenlos</Button>
-        <Button name='halfPrice' active={@state.kindFilter.halfPrice} onClick={@.updateFilter}>Halber Preis</Button>
-        <Button name='special' active={@state.kindFilter.special} onClick={@.updateFilter}>Spezial</Button>
+        <Button name='free' active={@state.kindFilter.free} onClick={@updateFilter}>Kostenlos</Button>
+        <Button name='halfPrice' active={@state.kindFilter.halfPrice} onClick={@updateFilter}>Halber Preis</Button>
+        <Button name='special' active={@state.kindFilter.special} onClick={@updateFilter}>Spezial</Button>
       </ButtonGroup>
     </div>

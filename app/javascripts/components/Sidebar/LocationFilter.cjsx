@@ -9,14 +9,14 @@ module.exports = React.createClass
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
-    position: @.getFlux().store("offerStore").position
+    position: @getFlux().store("offerStore").position
 
   getDefaultProps: ->
     flux: require '../../flux'
     geolocation_possible: !!navigator.geolocation
 
   reset: ->
-    store = @.getFlux().store('offerStore')
+    store = @getFlux().store('offerStore')
     store.reset()
     @state = @getStateFromFlux()
 
@@ -26,13 +26,13 @@ module.exports = React.createClass
 
   setPosition: (position) ->
     @state.position = position
-    @.getFlux().actions.setPosition(position)
+    @getFlux().actions.setPosition(position)
 
   render: ->
     return <div /> unless @props.geolocation_possible
 
     <div className='location'>
       <ButtonGroup vertical>
-        <Button onClick={@.getLocation}>Orte mich</Button>
+        <Button onClick={@getLocation}>Orte mich</Button>
       </ButtonGroup>
     </div>

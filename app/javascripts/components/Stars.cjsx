@@ -18,8 +18,8 @@ module.exports = React.createClass
   render: ->
     full_star_count = Math.floor @props.count
     empty_stars_count = 5 - full_star_count
-    full_stars = @.stars(full_star_count, 'fa-star')
-    empty_stars = @.stars(empty_stars_count, 'fa-star-o')
+    full_stars = @stars(full_star_count, 'fa-star')
+    empty_stars = @stars(empty_stars_count, 'fa-star-o')
 
     <span>
       {full_stars}
