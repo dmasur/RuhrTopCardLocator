@@ -37,6 +37,8 @@ module.exports = Fluxxor.createStore
     @offers.filter (offer) =>
       showOffer = !@filters.kinds[offer.kind]
       showOffer &&= !@filters.categories[offer.category] if offer.kind == 'free'
+      showOffer &&= !@filters.visited.visited if offer.visited
+      showOffer &&= !@filters.visited.unvisited unless offer.visited
       showOffer
 
   initialize: ->
@@ -56,9 +58,15 @@ module.exports = Fluxxor.createStore
         water: false
         industry: false
         museeum: false
+      visited:
+        visited: true
+        unvisited: false
 
   getKinds: ->
     @filters.kinds
 
   getCategories: ->
     @filters.categories
+
+  getVisitedFilter: ->
+    @filters.visited
