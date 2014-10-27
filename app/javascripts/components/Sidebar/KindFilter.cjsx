@@ -9,7 +9,7 @@ module.exports = React.createClass
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
-    kindFilter: @getFlux().store("offerStore").getKinds()
+    kindFilter: @getFlux().store("offerStore").getkindFilter()
 
   getDefaultProps: ->
     flux: require '../../flux'
@@ -22,7 +22,7 @@ module.exports = React.createClass
   updateFilter: (event) ->
     kindFilter = @state.kindFilter
     kindFilter[event.target.name] = !kindFilter[event.target.name]
-    @getFlux().actions.mergeFilter(kinds: kindFilter)
+    @getFlux().actions.mergeFilter(kindFilter: kindFilter)
     event.target.blur()
 
   render: ->

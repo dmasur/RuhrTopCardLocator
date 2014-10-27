@@ -11,8 +11,8 @@ module.exports = React.createClass
   getStateFromFlux: ->
     offerStore = @getFlux().store("offerStore")
 
-    filterFreeOffers: offerStore.getKinds().free
-    categoryFilter: offerStore.getCategories()
+    filterFreeOffers: offerStore.getkindFilter().free
+    categoryFilter: offerStore.getcategoryFilter()
 
   getDefaultProps: ->
     flux: require '../../flux'

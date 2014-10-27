@@ -4,9 +4,7 @@ Leaflet = require 'leaflet'
 
 module.exports = Fluxxor.createStore
   mergeFilter: (new_filters) ->
-    # console.log 'merge', @filters, new_filters
     @filters = jquery.extend @filters, new_filters
-    # console.log "Set Kind Free State to #{@filters.kinds.free}"
     @emit("change")
 
   setPosition: (position) ->
@@ -32,13 +30,12 @@ module.exports = Fluxxor.createStore
     SET_POSITION: 'setPosition'
     TOGGLE_OFFER_VISIT: 'toggleOfferVisit'
 
-
   getShownOffers: ->
     @offers.filter (offer) =>
-      showOffer = !@filters.kinds[offer.kind]
-      showOffer &&= !@filters.categories[offer.category] if offer.kind == 'free'
-      showOffer &&= !@filters.visited.visited if offer.visited
-      showOffer &&= !@filters.visited.unvisited unless offer.visited
+      showOffer = !@filters.kindFilter[offer.kind]
+      showOffer &&= !@filters.categoryFilter[offer.category] if offer.kind == 'free'
+      showOffer &&= !@filters.visitFilter.visited if offer.visited
+      showOffer &&= !@filters.visitFilter.unvisited unless offer.visited
       showOffer
 
   initialize: ->
@@ -49,24 +46,24 @@ module.exports = Fluxxor.createStore
   reset: ->
     @position = null
     @filters =
-      kinds:
+      kindFilter:
         free: false
         halfPrice: false
         special: false
-      categories:
+      categoryFilter:
         action: false
         water: false
         industry: false
         museeum: false
-      visited:
+      visitFilter:
         visited: true
         unvisited: false
 
-  getKinds: ->
-    @filters.kinds
+  getkindFilter: ->
+    @filters.kindFilter
 
-  getCategories: ->
-    @filters.categories
+  getcategoryFilter: ->
+    @filters.categoryFilter
 
-  getVisitedFilter: ->
-    @filters.visited
+  getVisitFilter: ->
+    @filters.visitFilter

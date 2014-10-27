@@ -35,7 +35,7 @@ describe "KindFilter", ->
     @kindFilter.reset()
 
   it 'default stored value is false', ->
-    expect(offerStore.getKinds().free).toEqual false
+    expect(offerStore.getkindFilter().free).toEqual false
 
   it 'default prop value is false', ->
     expect(@kindFilter.state.kindFilter.free).toEqual false
@@ -58,7 +58,7 @@ describe "KindFilter", ->
 
     describe 'free: true', ->
       beforeEach ->
-        offerStore.mergeFilter { kinds: { free: true } }
+        offerStore.mergeFilter { kindFilter: { free: true } }
         @kindFilter = TestUtils.renderIntoDocument(KindFilter(offer: offer))
         @filterFreeButton = TestUtils.scryRenderedDOMComponentsWithTag(@kindFilter, 'button')[0]
         TestUtils.Simulate.click(@filterFreeButton)
