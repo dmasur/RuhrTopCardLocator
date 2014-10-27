@@ -16,9 +16,7 @@ module.exports = React.createClass
 
   reset: ->
     store = @.getFlux().store('offerStore')
-    # console.log 'KindFilter.reset: Before', store.getKinds()
     store.reset()
-    # console.log 'KindFilter.reset: After', store.getKinds()
     @state = @getStateFromFlux()
 
   updateFilter: (event) ->
