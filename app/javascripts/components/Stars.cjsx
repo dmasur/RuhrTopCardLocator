@@ -7,8 +7,10 @@ Number::times = (fn) ->
 module.exports = React.createClass
   stars: (count, iconClass) ->
     code = []
-    count.times (key) ->
+    key = 0
+    count.times ->
       code.push <i key={key} className={"fa #{iconClass}"}></i>
+      key++
     code
 
   render: ->
@@ -16,7 +18,7 @@ module.exports = React.createClass
     empty_stars_count = 5 - full_star_count
     full_stars = @.stars(full_star_count, 'fa-star')
     empty_stars = @.stars(empty_stars_count, 'fa-star-o')
-    
+
     <span>
       {full_stars}
       {empty_stars}

@@ -8,7 +8,7 @@ module.exports = React.createClass
   render: ->
     rows = []
     @props.offers.forEach (offer) ->
-      rows.push <OfferRow offer={offer} />
+      rows.push <OfferRow key={offer.id} offer={offer} />
 
     <table className='table table-striped'>
       <thead>
