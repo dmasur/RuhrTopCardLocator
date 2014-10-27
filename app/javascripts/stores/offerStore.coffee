@@ -21,11 +21,17 @@ module.exports = Fluxxor.createStore
     @offers = offers
     jquery.each @offers, (index, offer) ->
       offer.latLng = new Leaflet.LatLng(offer.coords.latitude, offer.coords.longitude)
+      offer.visited = false
+
+  toggleOfferVisit: (offer) ->
+    offer.visited = !offer.visited
+    @.emit("change")
 
   actions:
     MERGE_FILTER: 'mergeFilter'
     SET_POSITION: 'setPosition'
-    SET_OFFERS: 'setOffers'
+    TOGGLE_OFFER_VISIT: 'toggleOfferVisit'
+
 
   getShownOffers: ->
     @offers.filter (offer) =>

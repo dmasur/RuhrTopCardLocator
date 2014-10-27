@@ -2,7 +2,6 @@ React = require 'react'
 Button = require 'react-bootstrap/Button'
 ButtonGroup = require 'react-bootstrap/ButtonGroup'
 offerStore = require '../../stores/offerStore'
-offerActions = require '../../actions/offerActions'
 Fluxxor = require 'fluxxor'
 
 module.exports = React.createClass

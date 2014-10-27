@@ -12,8 +12,7 @@ module.exports = React.createClass
   mixins: [Fluxxor.FluxMixin(React), Fluxxor.StoreWatchMixin("offerStore")]
 
   getStateFromFlux: ->
-    flux = @.getFlux()
-    offerStore: flux.store('offerStore')
+    offerStore: @.getFlux().store('offerStore')
 
   getDefaultProps: ->
     offers: []
@@ -24,7 +23,7 @@ module.exports = React.createClass
 
   render: ->
     shownOffers = @state.offerStore.getShownOffers()
-    
+
     <div>
       <div className='sidebar col-md-3'>
         <Sidebar />
