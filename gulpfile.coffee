@@ -26,7 +26,8 @@ gulp.task 'jest', ['prepareTest'], ->
     .pipe jest
       scriptPreprocessor: "./preprocessor.js"
       unmockedModulePathPatterns: [
-        "node_modules/react"
+        "node_modules/react",
+        "node_modules/fluxxor-jest-utils"
         ]
       testDirectoryName: "tests"
       testPathIgnorePatterns: [
