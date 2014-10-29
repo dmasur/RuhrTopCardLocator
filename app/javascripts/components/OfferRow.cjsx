@@ -16,14 +16,17 @@ module.exports = React.createClass
     @getFlux().actions.toggleOfferVisit(@props.offer)
 
   render: ->
+    visitedIcon = if @props.offer.visited
+      <i className="fa fa-check-square-o" />
+    else
+      <i className="fa fa-square-o" />
+
     <tr className='offer-row'>
       <td className='name'>{@props.offer.name}</td>
       <td>{@props.offer.categoryName}</td>
       <td><Stars count={@props.offer.rating} /></td>
       <td>{@props.offer.distanceString}</td>
       <td>
-        <Button onClick={@toggleVisited}>
-          {if @props.offer.visited then 'Nicht besucht' else 'Schon besucht'}
-        </Button>
+        <a href='#' onClick={@toggleVisited}>{visitedIcon}</a>
       </td>
     </tr>
