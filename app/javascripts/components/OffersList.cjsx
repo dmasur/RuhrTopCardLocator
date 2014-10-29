@@ -3,7 +3,7 @@ OfferRow = require './OfferRow'
 
 module.exports = React.createClass
   displayName: 'OfferList'
-  
+
   getDefaultProps: ->
     offers: []
 
@@ -15,11 +15,11 @@ module.exports = React.createClass
     <table className='table table-striped'>
       <thead>
         <tr>
-          <td>Name</td>
-          <td>Kategorie</td>
-          <td>Bewertung</td>
-          <td>Entfernung</td>
-          <td></td>
+          <th>Name</th>
+          <th>Kategorie</th>
+          <th>Bewertung</th>
+          <th>Entfernung</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
