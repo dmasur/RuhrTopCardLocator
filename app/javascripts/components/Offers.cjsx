@@ -30,6 +30,7 @@ module.exports = React.createClass
       </div>
       <div className='main col-md-9'>
         <ListInfo shownSize={shownOffers.length} allSize={@props.offers.length} />
+        <Map offers={shownOffers} />
         <OffersList offers={shownOffers} />
       </div>
     </div>

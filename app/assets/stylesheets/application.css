@@ -16,6 +16,7 @@
  *= require_tree .
  *= require_self
  */
+.leaflet-map{ height: 400px }
 .angular-google-map-container { height: 400px; }
 
 .map-sidebar .btn-group-vertical {
