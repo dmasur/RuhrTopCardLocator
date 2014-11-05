@@ -43,7 +43,7 @@ gulp.task 'prepareApp', ->
   source = require("vinyl-source-stream")
   rename = require 'gulp-rename'
   coffeeReactify = require 'coffee-reactify'
-  b = browserify({extensions: ['.cjsx', '.js', '.coffee']})
+  b = browserify({debug: true, extensions: ['.cjsx', '.js', '.coffee']})
   b.transform(coffeeReactify)
   b.add('./app/javascripts/application.coffee')
   b.bundle()
