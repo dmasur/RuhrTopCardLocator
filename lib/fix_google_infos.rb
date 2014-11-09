@@ -29,7 +29,7 @@ class FixGoogleInfos
     update_google_place_id 'Ruhr Museum und Portal der Industriekultur',
                            from_place_id: 'ChIJeTlT4b8euUcRQbN1KoXtOSA', to_place_id: 'ChIJiZ9p4O7nuEcRkH9AEqEKyFs'
     update_google_place_id 'Up & Away - Outdoor und mehr ... Klettern leicht gemacht für Einsteiger',
-                           from_place_id: 'ChIJFb_galrDmUcRKfRTEmspLd0', to_place_id: 'ChIJ6y8dFNbwuEcRoXHLIxjIyBM'
+                           from_place_id: 'ChIJheZGWG9MDhMRtyBMc7wV9Jg', to_place_id: 'ChIJ6y8dFNbwuEcRoXHLIxjIyBM'
   end
 
   ##
