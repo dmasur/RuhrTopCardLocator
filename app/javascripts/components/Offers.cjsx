@@ -1,7 +1,7 @@
 React = require 'react'
 ListInfo = require './ListInfo'
 Sidebar = require './Sidebar'
-OffersList = require './OffersList'
+OffersList = require './OfferList'
 Map = require './Map'
 offerStore = require '../stores/offerStore'
 Fluxxor = require 'fluxxor'
@@ -31,6 +31,6 @@ module.exports = React.createClass
       <div className='main col-md-9'>
         <ListInfo shownSize={shownOffers.length} allSize={@props.offers.length} />
         <Map offers={shownOffers} />
-        <OffersList offers={shownOffers} />
+        <OfferList offers={shownOffers} />
       </div>
     </div>
