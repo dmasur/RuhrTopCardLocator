@@ -1,14 +1,14 @@
 language: ruby
 rvm:
-- 2.1.2
+  - 2.1.5
 addons:
   postgresql: '9.3'
 before_script:
-- psql -c 'create database ruhr_top_card_locator_test;' -U postgres
-- cp config/database.travis.yml config/database.yml
-- npm install
-- mkdir -p tmp
+  - psql -c 'create database ruhr_top_card_locator_test;' -U postgres
+  - cp config/database.travis.yml config/database.yml
+  - npm install
+  - mkdir -p tmp
 script:
-- bundle exec rspec spec
-- bundle exec rake karma:run
+  - bundle exec rspec spec
+  - bundle exec rake karma:run
 cache: bundler
