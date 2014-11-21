@@ -21,6 +21,7 @@ gem 'rack-zippy'
 gem 'google_places'
 gem 'rollbar', '~> 1.0.0'
 gem 'angular-rails-templates'
+gem "codeclimate-test-reporter"
 
 group :production do
   gem 'rails_12factor'
