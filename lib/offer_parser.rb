@@ -47,7 +47,12 @@ class OfferParser
   ##
   # Category
   def category
-    @page.css('h2').first.text
+    if @page.css('h2').present?
+      @page.css('h2').first.text
+    else
+      # For 2015 Special offer
+      @page.css('h1').last.text
+    end
   end
 
   private

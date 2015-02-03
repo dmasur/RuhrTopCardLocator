@@ -67,7 +67,7 @@ class UpdateOffer
     # Use only name to find places. Worse results when combined with city
     def google_place
       if google_place_id
-        @google_place ||= GooglePlaces::Client.new(ENV['GOOGLE_API_KEY']).spot(google_place_id)
+        s@google_place ||= GooglePlaces::Client.new(ENV['GOOGLE_API_KEY']).spot(google_place_id)
       else
         @google_place ||= GooglePlaces::Client.new(ENV['GOOGLE_API_KEY']).spots_by_query(name).first
       end

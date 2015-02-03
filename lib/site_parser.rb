@@ -23,8 +23,12 @@ class SiteParser
     offer_overview_links = HomepageParser.new(get_body_from('/index.php')).offer_overview_links
     offer_overview_links.each do |offer_overview_link|
       overview_parser = OfferOverviewParser.new(get_body_from(offer_overview_link))
-      overview_parser.offer_links.each do |offer_link|
-        create_and_parse_offer(offer_link, overview_parser)
+      if overview_parser.kind == 'special'
+        create_and_parse_offer(offer_overview_link, overview_parser)
+      else
+        overview_parser.offer_links.each do |offer_link|
+          create_and_parse_offer(offer_link, overview_parser)
+        end
       end
     end
     log

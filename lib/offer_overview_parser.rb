@@ -21,6 +21,7 @@ class OfferOverviewParser
   ##
   # Description of this Overview
   def kind
-    @page.css('.headline').text.split('-').first.strip
+    headline = @page.css('.claMainContent .headline').text.split('-').first || 'special'
+    headline.strip
   end
 end

@@ -13,6 +13,8 @@ class HomepageParser
   # Links to the offer overview pages
   def offer_overview_links
     links = @page.css('.claLeft.claNoPrint a').map { |anchor| anchor.attributes['href'].value }
-    links.select { |link| link.include? 'angebot' }
+    links_found = links.select { |link| link.include? 'angebot' }
+    raise 'Offer Overview Links not found' if links_found.count != 3
+    links_found
   end
 end

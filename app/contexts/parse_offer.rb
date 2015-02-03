@@ -11,7 +11,7 @@ class ParseOffer
   def call
     offer.attributes = offer_parser.as_attributes
     offer.kind = overview_parser.kind
-    offer.year = 2014
+    offer.year = Date.today.year
     offer.save!
   end
   trigger :call
