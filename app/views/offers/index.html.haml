@@ -4,7 +4,7 @@
       Hier findest du alle Angebote der Ruhr.TopCard 2014 in einer filterbaren Karte.
       Alle Filtereinstellungen werden in deinem Browser gespeichert.
     .col-lg-2.map-sidebar
-      .btn-group-vertical
+      //.btn-group-vertical
         %button.btn.btn-primary{ type: "button", data: { ng_click_async: 'userLocation.locateUser()' } } Orte mich!
       .max-distance
         %h5.text-center Maximale Entfernung
@@ -17,13 +17,13 @@
             80 km
           %label.btn.btn-default{ data: { ng_model: "offerList.storage.maxDistance", btn_radio: "null" } }
             egal
-      .sort-order
-        %h5.text-center Sortierung
-        .btn-group-vertical
-          %label.btn.btn-default{ data: { ng_model: "offerList.storage.sortOrder", btn_radio: "'name'" } }
-            Alphabetisch
-          %label.btn.btn-default{ data: { ng_model: "offerList.storage.sortOrder", btn_radio: "'distanceToUser'" } }
-            Entfernung
+      -# .sort-order
+      -#   %h5.text-center Sortierung
+      -#   .btn-group-vertical
+      -#     %label.btn.btn-default{ data: { ng_model: "offerList.storage.sortOrder", btn_radio: "'name'" } }
+      -#       Alphabetisch
+      -#     %label.btn.btn-default{ data: { ng_model: "offerList.storage.sortOrder", btn_radio: "'distanceToUser'" } }
+      -#       Entfernung
       .categories
         %h5.text-center Kategorien
         .btn-group-vertical
