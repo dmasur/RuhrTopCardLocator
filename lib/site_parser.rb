@@ -20,16 +20,9 @@ class SiteParser
   # Parse the hole website and save offers
   def parse_from_website
     log 'Parsing from Website:'
-    offer_overview_links = HomepageParser.new(get_body_from('/index.php')).offer_overview_links
-    offer_overview_links.each do |offer_overview_link|
-      overview_parser = OfferOverviewParser.new(get_body_from(offer_overview_link))
-      if overview_parser.kind == 'special'
-        create_and_parse_offer(offer_overview_link, overview_parser)
-      else
-        overview_parser.offer_links.each do |offer_link|
-          create_and_parse_offer(offer_link, overview_parser)
-        end
-      end
+    offer_links = HomepageParser.new(get_body_from('/leistungen/alle-leistungen-2016/index.html')).offer_links
+    offer_links.each do |offer_link|
+      create_and_parse_offer(offer_link)
     end
     log
   end
@@ -38,12 +31,12 @@ class SiteParser
 
   ##
   # Create and parse one offer
-  def create_and_parse_offer(offer_link, overview_parser)
+  def create_and_parse_offer(offer_link)
     offer_parser = OfferParser.new(get_body_from(offer_link))
     log offer_parser.name
     offer = Offer.find_or_create_by(name: offer_parser.name)
     offer.url = offer_link
-    ParseOffer.call(offer_parser, overview_parser, offer)
+    ParseOffer.call(offer_parser, offer)
     UpdateOffer.place_id(offer)
   end
 

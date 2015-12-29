@@ -4,7 +4,7 @@ require 'nokogiri'
 # Parses one Offer from the website
 class OfferParser
   CITY_REGEXP = /^\d{4}.*$/ # 4 because of the netherland postalcode
-  STREET_REGEXP = /^[a-z\sßöäü:-]+([\d–\-]+\w?)?$/
+  STREET_REGEXP = /^[\/A-Za-z\söäßü:-]+([\d–\-]+\w?)?$/
   WEBSITE_REGEXP = /^www.*$/
 
   ##
@@ -17,13 +17,13 @@ class OfferParser
   ##
   # Name of the Offer
   def name
-    clean_up_spaces @page.css('.claRight.claPrint h1').text
+    clean_up_spaces @page.css('h1').text
   end
 
   ##
   # Description text
   def description
-    clean_up_spaces @page.css('.claRight.claPrint div p').map(&:text).find(&:present?)
+    clean_up_spaces @page.css('.description').text
   end
 
   ##
@@ -44,15 +44,16 @@ class OfferParser
     address_part(WEBSITE_REGEXP)
   end
 
+  def kind
+    if @page.css('.icon-half').present?
+      return "half-price"
+    end
+  end
+
   ##
   # Category
   def category
-    if @page.css('h2').present?
-      @page.css('h2').first.text
-    else
-      # For 2015 Special offer
-      @page.css('h1').last.text
-    end
+    @page.css('.category').first.text
   end
 
   private
@@ -66,14 +67,26 @@ class OfferParser
   ##
   # Select the line with the city in it
   def address_parts
-    texts = @page.css('.claAngebot .claRight p').map(&:text)
-    found_address = address_part(CITY_REGEXP, texts) || address_part(WEBSITE_REGEXP, texts) || ''
-    found_address.split("\n").map { |line| clean_up_spaces(line) }
+    @page.css('.address').first.text.split("\n").map { |line| clean_up_navigation(line) }.map { |line| clean_up_spaces(line) }
   end
 
   ##
   # Clean line brakes, unbreakable and normal spaces
   def clean_up_spaces(string)
     string.gsub("\n", ' ').gsub(/[[:space:]]+/, ' ').strip if string.is_a? String
+  end
+
+  ##
+  # Clean navigation comments
+  def clean_up_navigation(string)
+    if string.is_a? String
+      string.gsub!(/Navigation:.*$/, '')
+      string.gsub!(/Verwaltung:.*$/, '')
+      string.gsub!(/Haupteingang: /, '')
+      string.gsub!(/Spielstätte: /, '')
+      string.gsub!(/Büro: [^,]*, /, '')
+      string.gsub!(/Kontakt/, '')
+      return string
+    end
   end
 end

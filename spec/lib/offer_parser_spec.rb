@@ -9,20 +9,14 @@ describe OfferParser do
   end
 
   describe 'Aquarius' do
-    let(:path) { 'angebote_eintritt_frei/erlebnis_industriekultur/aquarius_wassermuseum.php.html' }
+    let(:path) { 'leistungen/eintritt-frei-2016/aquarius-wassermuseum/index.html' }
 
     it 'has a name' do
       expect(parser.name).to eq 'Aquarius Wassermuseum'
     end
 
     it 'has a description' do
-      expect(parser.description).to eq 'Multimediatechnik und herausragende Architektur machen den Rundgang durch den '\
-      'über 100 Jahre alten Wasserturm der RWW Rheinisch-Westfälische Wasserwerksgesellschaft zum faszinierenden '\
-      'Erlebnis. Starten Sie mit einer Chipkarte über 30 Computerstationen. Erfahren Sie Wissenswertes über '\
-      'Wassertürme, Kanäle und Talsperren! Lernen Sie u. a. die Themen Grund-, Trink- und Virtuelles Wasser besser '\
-      'kennen. Bereisen Sie am sprechenden Globus interessante Wasserwelten! Nehmen Sie an der Weltwasserkonferenz '\
-      'teil, um die Weichen für eine klima- und wasserfreundliche Zukunft zu stellen. Abschließend können Sie sich '\
-      'eine persönliche Urkunde mit Ihren gesammelten Punkten von Quiz und Spielen ausdrucken.'
+      expect(parser.description).to eq 'Multimediatechnik und herausragende Architektur machen den Rundgang durch den über 100 Jahre alten Wasserturm der RWW Rheinisch-Westfälischen Wasserwerksgesellschaft zum faszinierenden Erlebnis. Starten Sie mit einer Chipkarte über 30 Computerstationen. Erfahren Sie Wissenswertes über Wassertürme, Kanäle und Talsperren! Lernen Sie u. a. die Themen Grund-, Trink- und Virtuelles Wasser besser kennen. Bereisen Sie am sprechenden Globus interessante Wasserwelten! Nehmen Sie an der Weltwasserkonferenz teil, um die Weichen für eine klima- und wasserfreundliche Zukunft zu stellen. Abschließend können Sie sich eine persönliche Urkunde mit Ihren gesammelten Punkten von Quiz und Spielen ausdrucken.'
     end
 
     it 'has an street' do
@@ -43,70 +37,70 @@ describe OfferParser do
   end
 
   describe 'Zoo Duisburg' do
-    let(:path) { 'angebote_eintritt_frei/erlebnis_spass_action/zoo_duisburg.php.html' }
+    let(:path) { 'leistungen/eintritt-frei-2016/zoo-duisburg/index.html' }
     it 'parses name right' do
       expect(parser.name).to eq 'Zoo Duisburg'
     end
   end
 
   describe 'RevuePalast' do
-    let(:path) { 'angebote_halber_preis/14_vorhang_auf_2013/revuepalast_ruhr.php.html' }
+    let(:path) { 'leistungen/halber-preis-2016/revuepalast-ruhr/index.html' }
     it 'parses street right' do
       expect(parser.street).to eq 'Werner-Heisenberg-Straße 2–4'
     end
   end
 
-  describe 'RevuePalast' do
-    let(:path) { 'angebote_halber_preis/14_vorhang_auf_2013/naturbuehne_hohensyburg.php.html' }
+  describe 'Naturbühne Hohensyburg' do
+    let(:path) { 'leistungen/halber-preis-2016/naturbuehne-hohensyburg-ev/index.html' }
     it 'parses street right' do
       expect(parser.street).to eq 'Syburger Dorfstraße 60'
     end
   end
 
   describe 'Mir' do
-    let(:path) { 'angebote_halber_preis/14_vorhang_auf_2013/mir__musiktheater_im_revier_gmbh.php.html' }
+    let(:path) { 'leistungen/halber-preis-2016/mir-musiktheater-im-revier-gmbh/index.html' }
     it 'parses street right' do
       expect(parser.street).to eq 'Kennedyplatz'
     end
   end
 
   describe 'X-Spot Paintball' do
-    let(:path) { 'angebote_halber_preis/13_abenteuer_nrw_2013/x_spot_paintball.php.html' }
+    let(:path) { 'leistungen/halber-preis-2016/x-spot-paintball/index.html' }
     it 'parses street right' do
-      expect(parser.street).to eq 'Spielstätte: Prosperstraße 299–301'
+      expect(parser.street).to eq 'Prosperstraße 299–301'
     end
   end
 
   describe 'Weinerlebnisseminar - Genuss pur' do
-    let(:path) { 'angebote_halber_preis/13_abenteuer_nrw_2013/weinerlebnisseminar.php.html' }
+    let(:path) { 'leistungen/halber-preis-2016/weinerlebnisseminar-genuss-pur/index.html' }
     it 'parses street right' do
       expect(parser.street).to eq 'Hölzerweg 5a'
     end
   end
 
   describe 'Legoland Discovery Centre' do
-    let(:path) { 'angebote_eintritt_frei/erlebnis_spass_action/legoland_discovery_centre.php.html' }
-    it 'parses description right' do
+    let(:path) { 'leistungen/eintritt-frei-2016/legoland-discovery-centre/index.html' }
+    xit 'parses description right' do
       expect(parser.description).to be_present
     end
   end
 
   describe 'Tour de Ruhr – Dortmund, Phoenix aus der Asche' do
-    let(:path) { 'angebote_halber_preis/13_abenteuer_nrw_2013/tour_de_ruhr.php.html' }
-    xit 'parses street right' do
-      expect(parser.street).to eq 'Emscherstraße 71 (Landschaftspark Duisburg-Nord)'
+    let(:path) { 'leistungen/halber-preis-2016/tour-de-ruhr-radeln-zwischen-gasometer-und-huettenwerk/index.html' }
+    it 'parses street right' do
+      expect(parser.street).to eq 'Landschaftspark Duisburg-Nord'
     end
   end
 
   describe 'Grugapark Essen' do
-    let(:path) { 'angebote_eintritt_frei/erlebnis_spass_action/grugapark.php.html' }
-    xit 'parses street right' do
-      expect(parser.street).to eq 'Haupteingang: Alfredstraße/Norberstraße 2'
+    let(:path) { 'leistungen/eintritt-frei-2016/grugapark-essen/index.html' }
+    it 'parses street right' do
+      expect(parser.street).to eq 'Alfredstraße/Norbertstraße 2'
     end
   end
 
   describe 'Extraschicht' do
-    let(:path) { 'angebote_halber_preis/14_vorhang_auf_2013/extraschicht__die_nacht_der_industriekultur.php.html' }
+    let(:path) { 'leistungen/halber-preis-2016/16-extraschicht-die-nacht-der-industriekultur/index.html' }
 
     it 'parses website right' do
       expect(parser.website).to eq 'www.extraschicht.de'

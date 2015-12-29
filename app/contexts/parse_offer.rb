@@ -3,20 +3,18 @@
 class ParseOffer
   extend Surrounded::Context
 
-  initialize :offer_parser, :overview_parser, :offer
+  initialize :offer_parser, :offer
 
   shortcut_triggers
 
   # Update offer from parsing
   def call
     offer.attributes = offer_parser.as_attributes
-    offer.kind = overview_parser.kind
+    offer.kind = offer_parser.kind
     offer.year = Date.today.year
     offer.save!
   end
   trigger :call
-
-  role :overview_parser
 
   role :offer
 
