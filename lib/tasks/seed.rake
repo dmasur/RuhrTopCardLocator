@@ -4,7 +4,7 @@ require './lib/fix_google_infos'
 namespace :seed do
   desc 'Seed and geocode Offers'
   task create_offers_from_website: :environment do
-    SiteParser.parse_from_website
+    #SiteParser.parse_from_website
     FixGoogleInfos.fix_all
     UpdateOffer.full_update_all
   end

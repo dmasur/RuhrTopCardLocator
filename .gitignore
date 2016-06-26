@@ -5,4 +5,5 @@
 /tmp
 node_modules
 .env
+.ruby-env
 config/database.yml

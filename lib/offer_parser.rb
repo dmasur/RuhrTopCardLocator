@@ -48,6 +48,9 @@ class OfferParser
     if @page.css('.icon-half').present?
       return "half-price"
     end
+    if @page.css('.icon-free').present?
+      return 'free'
+    end
   end
 
   ##

@@ -12,6 +12,6 @@ class HomepageParser
   ##
   # Links to the offer overview pages
   def offer_links
-    @page.css('.service-list-item a').map { |anchor| anchor.attributes['href'].value }
+    @page.css('.service-list-item a').map { |anchor| anchor.attributes['href'].value.split('#').first }
   end
 end

@@ -2,7 +2,7 @@ angular.module('ruhrTopCardLocator').controller 'OffersController',
 ['$scope', '$localStorage', 'UserLocation', 'OfferList', ($scope, $localStorage, UserLocation, OfferList) ->
 
   # Set Cookies
-  $localStorage.year = 2014
+  $localStorage.year = 2016
   $localStorage.alreadyVisted ||= []
 
   # Init empty OfferList

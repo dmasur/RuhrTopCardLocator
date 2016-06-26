@@ -4,7 +4,7 @@ angular.module('ruhrTopCardLocator').factory 'Offer', ['$localStorage', ($localS
       $.extend this, offer_json
       @kind = @chooseKind(offer_json.kind)
       @category = offer_json.category unless @kind
-      @latLng = new L.LatLng @coords.latitude, @coords.longitude
+      @latLng = new L.LatLng(@coords.latitude, @coords.longitude) if @coords.latitude && @coords.longitude
       @visited = _.contains $localStorage.alreadyVisted, @id
       @icon = new L.icon
       @icon.iconUrl = offer_json.icon

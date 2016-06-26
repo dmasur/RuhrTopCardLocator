@@ -1,3 +1,6 @@
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 ##
 # Update an Offer with Google infos
 class UpdateOffer
@@ -67,10 +70,14 @@ class UpdateOffer
     # Use only name to find places. Worse results when combined with city
     def google_place
       if google_place_id
-        s@google_place ||= GooglePlaces::Client.new(ENV['GOOGLE_API_KEY']).spot(google_place_id)
+        @google_place ||= GooglePlaces::Client.new(ENV['GOOGLE_API_KEY']).spot(google_place_id)
       else
-        @google_place ||= GooglePlaces::Client.new(ENV['GOOGLE_API_KEY']).spots_by_query(name).first
+        begin
+          @google_place ||= GooglePlaces::Client.new(ENV['GOOGLE_API_KEY']).spots_by_query(name).first
+        rescue
+        end
       end
+        debugger
     end
   end
 end

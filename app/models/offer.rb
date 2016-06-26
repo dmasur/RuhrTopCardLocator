@@ -3,7 +3,7 @@
 class Offer < ActiveRecord::Base
   geocoded_by :full_street_address   # can also be an IP address
   after_validation :geocode, unless: :latitude          # auto-fetch coordinates
-
+  validates :kind, {presence: true}
   ##
   # Full address for geocoding
   def full_street_address

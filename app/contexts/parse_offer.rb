@@ -12,7 +12,7 @@ class ParseOffer
     offer.attributes = offer_parser.as_attributes
     offer.kind = offer_parser.kind
     offer.year = Date.today.year
-    offer.save!
+    offer.save! rescue debugger
   end
   trigger :call
 
